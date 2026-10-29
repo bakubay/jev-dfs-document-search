@@ -1,3 +1,7 @@
+![A small scout exhaustively traverses a document graph, including a branch ranked 0.00, toward an evidence folder.](docs/assets/jev-dfs-header.png)
+
+<p align="center"><em>Ranking sets the route. It does not erase the map.</em></p>
+
 # JEV exhaustive ToC search experiment
 
 This repository tests one narrow idea:
