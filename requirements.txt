@@ -2,3 +2,5 @@ pageindex>=0.2.21
 typesafe-sdk==0.7.2
 tiktoken
 pypdf
+datalab-python-sdk==0.7.1
+openai>=2.0.0

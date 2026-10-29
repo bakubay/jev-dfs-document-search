@@ -196,6 +196,103 @@ export PAGEINDEX_API_KEY="..."
 
 You can get a TypeSafe key from the [TypeSafe console](https://console.typesafe.ai) and a PageIndex key from the [PageIndex dashboard](https://dash.pageindex.ai/).
 
+## Parse and ground a PDF with Datalab
+
+Put `DATALAB_API_KEY=...` in the ignored `.env` file. Parse a document into
+paginated Markdown and structured JSON:
+
+```bash
+python datalab_parse.py document.pdf --output run/document --mode balanced
+```
+
+Then turn the structured result into one record per physical page and ground the
+document's ToC entries to those records:
+
+```bash
+python datalab_ground_toc.py run/document/document.json --output run/document/grounded
+```
+
+The grounded output contains:
+
+- `pages.jsonl`: physical `page_id`, one-based PDF page number, bounding box, and cleaned Markdown.
+- `toc_entries.json`: printed ToC page, grounded PDF page, matched heading, block ID, and bounding box.
+- `grounding_report.json`: inferred offset, offset votes, verification counts, and failed pages.
+
+Search the grounded document with the summary-free ordered DFS:
+
+```bash
+python datalab_dfs_search.py run/document/grounded \
+  "What are the four functions in the AI RMF Core?" \
+  --answer \
+  --json-output run/document/search-trace.json
+```
+
+At each ToC node, JEV `Choice` orders only the immediate children. The code
+preserves every sibling and searches them in that local order. Every page in a
+leaf range is screened with independent `Noul` questions, and the best candidates
+are checked with their adjacent pages. A branch is abandoned only when its page
+evidence fails verification; a high or low `Choice` probability never removes it.
+
+With `--answer`, `EvaluatedDFSSearcher` checks every nonempty page in each visited
+leaf (the legacy top-K candidate limit applies only without `--answer`). It caches
+page checks, retains useful source pages across sections, and calls Sol to draft
+when the evidence bundle grows. Exact citation validation and a JEV answer gate
+run before stopping. JEV sees the original question, draft, and source pages; it
+classifies the answer and independently checks completeness and source support.
+Both Nouls must reach 0.85, the writer must report fully answered, and the verdict
+must be direct or explicitly negative. This is a demo threshold, not a guarantee.
+
+A rejected draft resumes the same recursive DFS stack. Missing-information text
+comes from the writer's limitations field; JEV returns typed judgments, not prose.
+Every unique page has separate screening and verification coverage. Empty,
+missing, and truncated text never counts as fully checked. After exhausting DFS,
+any text pages missed by ToC traversal are checked before reporting exhaustion.
+All-page coverage means model checks over parsed text, not proof of absence.
+
+Accumulated evidence is retained verbatim. If it exceeds the JEV context budget,
+the run stops as incomplete rather than silently discarding evidence. Configure
+the ignored `.env`:
+
+```env
+OPENAI_API_KEY=...
+OPENAI_MODEL=gpt-6.1-sol
+```
+
+## Recorded trace explainers
+
+Two standalone HTML snapshots document the evaluated DFS pipeline without
+requiring API keys or a running server:
+
+- [`docs/traces/jev-token-flow-trace.html`](docs/traces/jev-token-flow-trace.html)
+  follows the query, branch ordering, page checks, retained evidence, drafting,
+  evaluation, and DFS continuation as a visual flow.
+- [`docs/traces/jev-exact-payload-trace.html`](docs/traces/jev-exact-payload-trace.html)
+  exposes the recorded request payloads and typed responses at each hop, with a
+  Langfuse-style observation tree and expandable exact values.
+
+These are recorded demo traces, not live Langfuse exports. Open either file
+directly in a browser; its data, styling, and interactions are embedded.
+
+## Watch the search as a chat
+
+The standalone UI replays the historical golden run when opened directly. To ask new
+questions and stream the real JEV hops into the interface, start the local server:
+
+```bash
+python jev_chat_server.py
+```
+
+If dependencies are cached through uv, use
+`uv run --offline --with-requirements requirements.txt python jev_chat_server.py`.
+
+Then open `http://127.0.0.1:8765`. Every `Choice`, descent, page screen,
+verification, and backtrack is recorded as structured JSON. Use **Export** in the
+UI to download the run. `Choice` rows are explicitly local rankings; all siblings
+remain visible and recoverable until an answer passes evaluation. The memory
+panel shows unique page coverage, retained evidence, the latest verdict and
+missing information. "Replay fee test" loads the recorded live licensing
+regression without another model call.
+
 ## License
 
 [Apache 2.0](LICENSE)
