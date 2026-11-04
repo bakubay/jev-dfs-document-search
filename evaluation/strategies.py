@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import json
 import time
 from dataclasses import dataclass
 from typing import Any, Callable
@@ -10,7 +11,7 @@ from openai import OpenAI
 from pydantic import BaseModel, Field
 
 from datalab_dfs_search import SearchHit, SearchTarget, TocNode
-from evaluated_dfs import EvaluatedDFSSearcher
+from evaluated_dfs import MAX_EVALUATION_TOKENS, EvaluatedDFSSearcher
 
 
 @dataclass(frozen=True)
@@ -53,7 +54,10 @@ def select_sections_with_openai(
             },
             {
                 "role": "user",
-                "content": {"question": question, "toc_leaf_candidates": candidates},
+                "content": json.dumps(
+                    {"question": question, "toc_leaf_candidates": candidates},
+                    ensure_ascii=False,
+                ),
             },
         ],
         text_format=SectionSelection,
@@ -126,6 +130,38 @@ class ExhaustiveSectionSearcher(LeafTargetMixin, EvaluatedDFSSearcher):
             return False
         return super()._try_answer(path)
 
+    def _pack_best_evidence(self) -> None:
+        """Bound the final Sol context after every page has been evaluated."""
+        ranked = sorted(
+            self.partial_pages.values(),
+            key=lambda result: (
+                result.sufficient,
+                result.evidence,
+                result.direct,
+                result.partial,
+            ),
+            reverse=True,
+        )
+        selected: dict[int, str] = {}
+        for result in ranked:
+            for page in (result.page, result.page - 1, result.page + 1):
+                if page in selected or page not in self.pages:
+                    continue
+                candidate = {**selected, page: self.pages[page].markdown}
+                tokens = len(self.encoder.encode(json.dumps(candidate, ensure_ascii=False)))
+                if tokens <= MAX_EVALUATION_TOKENS - 2_000:
+                    selected[page] = self.pages[page].markdown
+        self.evidence_pages = selected
+        self._emit({
+            "type": "exhaustive_evidence_pack",
+            "verified_page_count": len(self.partial_pages),
+            "selected_pages": sorted(selected),
+            "selection_policy": (
+                "highest JEV sufficiency/evidence scores, with adjacent pages, "
+                "packed without truncation into the fixed answer context budget"
+            ),
+        })
+
     def search(self) -> SearchHit | None:
         leaves = self.leaf_targets()
         self._emit({"type": "exhaustive_plan", "leaf_range_count": len(leaves)})
@@ -133,6 +169,7 @@ class ExhaustiveSectionSearcher(LeafTargetMixin, EvaluatedDFSSearcher):
             self._scan_leaf(target.start_page, target.end_page, path)
         self.exhausted = True
         self._progress(["Document root"])
+        self._pack_best_evidence()
         self._defer_answer = False
         if super()._try_answer(["Document root"]):
             ranked = sorted(

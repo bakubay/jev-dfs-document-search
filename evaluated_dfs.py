@@ -162,7 +162,9 @@ class EvaluatedDFSSearcher(OrderedDFSSearcher):
         if not self.evidence_pages or set(self.evidence_pages) == self.last_drafted_pages:
             return False
         # Check before spending on a draft; the same complete bundle goes to JEV.
-        if len(self.encoder.encode(json.dumps(self.evidence_pages))) > MAX_EVALUATION_TOKENS - 2_000:
+        if len(
+            self.encoder.encode(json.dumps(self.evidence_pages, ensure_ascii=False))
+        ) > MAX_EVALUATION_TOKENS - 2_000:
             raise ValueError("Evidence budget reached; cannot claim an exhaustive answer evaluation.")
         self.last_drafted_pages = set(self.evidence_pages)
         self._emit({

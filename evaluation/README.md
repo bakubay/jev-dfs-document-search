@@ -47,7 +47,8 @@ python -m evaluation.run_case \
 Valid strategies are:
 
 - `jev_dfs`: JEV orders branches; failed answer verification resumes DFS;
-- `exhaustive`: inspect every leaf range in document order, then draft once;
+- `exhaustive`: inspect every leaf range in document order, then pack the
+  highest-scoring verified pages into the fixed answer budget and draft once;
 - `llm_toc`: one Sol call selects ToC leaf ranges, followed by the same JEV
   page checks and answer gate used by the other methods.
 
