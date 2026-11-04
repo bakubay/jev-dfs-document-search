@@ -61,7 +61,7 @@ def test_cost_and_summary_keep_requests_distinct_from_questions():
         "failure": None,
         "answer_correct": True,
         "retrieval_metrics": {"gold_section_recall": 1.0, "gold_page_recall": 1.0},
-        "coverage": {"checked_count": 3},
+        "coverage": {"screened_pages": [1, 2, 3, 4], "checked_count": 3},
         "elapsed_seconds": 2.0,
         "usage": usage,
         "cost": cost,
@@ -70,4 +70,6 @@ def test_cost_and_summary_keep_requests_distinct_from_questions():
     assert row["mean_jev_requests"] == 2
     assert row["mean_jev_questions"] == 5
     assert row["answer_accuracy"] == 1.0
+    assert row["mean_pages_screened"] == 4
+    assert row["mean_pages_verified"] == 3
 

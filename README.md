@@ -222,6 +222,11 @@ JEV usage is recorded as both HTTP requests and logical questions because a
 single request may batch several independent judgments. Search traces also
 carry elapsed timestamps, enabling time-to-first-gold-section measurement.
 
+The first three-question engineering smoke test is recorded in
+[the Amazon 2017 10-K pilot comparison](docs/results/amazon-pilot.md). It
+validates the full comparison harness, but is explicitly too small and
+homogeneous to support a general retrieval claim.
+
 ## What this prototype does not settle
 
 - whether DFS is the best latency/cost tradeoff for large documents;

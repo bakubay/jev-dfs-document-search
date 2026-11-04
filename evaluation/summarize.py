@@ -22,6 +22,17 @@ def mean(rows: list[dict[str, Any]], path: tuple[str, ...]) -> float | None:
     return statistics.mean(values) if values else None
 
 
+def mean_length(rows: list[dict[str, Any]], path: tuple[str, ...]) -> float | None:
+    values = []
+    for row in rows:
+        value: Any = row
+        for key in path:
+            value = value.get(key) if isinstance(value, dict) else None
+        if isinstance(value, list):
+            values.append(len(value))
+    return statistics.mean(values) if values else None
+
+
 def summarize(rows: list[dict[str, Any]]) -> dict[str, Any]:
     groups: dict[str, list[dict[str, Any]]] = defaultdict(list)
     for row in rows:
@@ -38,7 +49,8 @@ def summarize(rows: list[dict[str, Any]]) -> dict[str, Any]:
             ),
             "mean_gold_section_recall": mean(items, ("retrieval_metrics", "gold_section_recall")),
             "mean_gold_page_recall": mean(items, ("retrieval_metrics", "gold_page_recall")),
-            "mean_pages_checked": mean(items, ("coverage", "checked_count")),
+            "mean_pages_screened": mean_length(items, ("coverage", "screened_pages")),
+            "mean_pages_verified": mean(items, ("coverage", "checked_count")),
             "mean_latency_seconds": mean(items, ("elapsed_seconds",)),
             "mean_jev_requests": mean(items, ("usage", "jev_requests")),
             "mean_jev_questions": mean(items, ("usage", "jev_questions")),
@@ -51,7 +63,7 @@ def summarize(rows: list[dict[str, Any]]) -> dict[str, Any]:
 def markdown(summary: dict[str, Any]) -> str:
     headers = [
         "strategy", "cases", "failures", "answer accuracy", "section recall",
-        "pages checked", "JEV requests", "Sol calls", "latency (s)", "query cost ($)",
+        "pages screened", "pages verified", "JEV requests", "Sol calls", "latency (s)", "query cost ($)",
     ]
     lines = ["| " + " | ".join(headers) + " |", "| " + " | ".join("---" for _ in headers) + " |"]
     for row in summary["strategies"]:
@@ -60,7 +72,8 @@ def markdown(summary: dict[str, Any]) -> str:
         lines.append("| " + " | ".join([
             row["strategy"], str(row["cases"]), str(row["failures"]),
             show(row["answer_accuracy"]), show(row["mean_gold_section_recall"]),
-            show(row["mean_pages_checked"], 1), show(row["mean_jev_requests"], 1),
+            show(row["mean_pages_screened"], 1), show(row["mean_pages_verified"], 1),
+            show(row["mean_jev_requests"], 1),
             show(row["mean_sol_calls"], 1), show(row["mean_latency_seconds"], 2),
             show(row["mean_query_cost_usd"], 6),
         ]) + " |")
