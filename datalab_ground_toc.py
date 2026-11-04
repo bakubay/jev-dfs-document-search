@@ -56,7 +56,13 @@ def parse_toc_rows(html: str, source_page_id: int) -> list[dict[str, Any]]:
     parser = TableRows()
     parser.feed(html)
     entries = []
+    pending_container: str | None = None
     for row in parser.rows:
+        if len(row) == 1:
+            possible_container = row[0].strip()
+            if re.match(r"^(?:part\s+(?:\d+|[ivxlcdm]+)|appendix\b)", possible_container, re.I):
+                pending_container = possible_container
+            continue
         if len(row) < 2:
             continue
         printed = re.fullmatch(r"\s*(\d+)\s*", row[-1])
@@ -65,6 +71,17 @@ def parse_toc_rows(html: str, source_page_id: int) -> list[dict[str, Any]]:
         title = raw_title.strip()
         if not printed or not title:
             continue
+        if pending_container is not None:
+            entries.append(
+                {
+                    "title": pending_container,
+                    "printed_page": int(printed.group(1)),
+                    "toc_page_id": source_page_id,
+                    "toc_indent": 0,
+                    "toc_leading_characters": 0,
+                }
+            )
+            pending_container = None
         entries.append(
             {
                 "title": title,
@@ -84,10 +101,10 @@ def extract_toc(pages: list[dict[str, Any]]) -> list[dict[str, Any]]:
         for block in page.get("children", []):
             if block.get("block_type") == "SectionHeader":
                 active_heading = normalize(block_text(block))
-            elif (
-                block.get("block_type") == "TableOfContents"
-                and active_heading == "table of contents"
-            ):
+            elif block.get("block_type") == "TableOfContents":
+                # Datalab's block type is the reliable signal. Real documents
+                # commonly label this page "Index", "Contents", or include the
+                # company/report name in the heading.
                 entries.extend(parse_toc_rows(block.get("html", ""), page_id))
     return entries
 

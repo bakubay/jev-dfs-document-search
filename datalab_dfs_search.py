@@ -150,56 +150,60 @@ def load_pages(path: Path) -> dict[int, PageRecord]:
     return pages
 
 
-def _number_path(title: str) -> tuple[int, ...] | None:
+def _number_path(title: str) -> tuple[str, ...] | None:
+    item = re.match(r"^\s*item\s+(\d+[a-z]?)[.\s]", title, re.IGNORECASE)
+    if item:
+        return (item.group(1).lower(),)
     match = re.match(r"^\s*(\d+(?:\.\d+)*)[.\s]", title)
-    return tuple(int(part) for part in match.group(1).split(".")) if match else None
+    return tuple(match.group(1).split(".")) if match else None
 
 
 def build_toc_tree(entries: list[dict[str, Any]], page_count: int) -> list[TocNode]:
-    """Recover a hierarchy from numbered ToC titles and explicit Part containers."""
-    roots: list[TocNode] = []
-    active_part: TocNode | None = None
-    numbered: dict[tuple[int, ...], TocNode] = {}
+    """Recover hierarchy, including later sub-indexes inside a parent section."""
 
-    for index, entry in enumerate(entries):
-        title = str(entry["title"]).strip()
-        start = int(entry["pdf_page_number"])
-        if not 1 <= start <= page_count:
-            raise ValueError(f"ToC entry {title!r} points outside the PDF: {start}")
-        node = TocNode(
-            id=f"toc-{index:04d}",
-            title=title,
-            printed_page=int(entry["printed_page"]),
-            start_page=start,
-        )
+    def build_group(group: list[tuple[int, dict[str, Any]]]) -> list[TocNode]:
+        roots: list[TocNode] = []
+        active_part: TocNode | None = None
+        numbered: dict[tuple[str, ...], TocNode] = {}
+        for index, entry in group:
+            title = str(entry["title"]).strip()
+            start = int(entry["pdf_page_number"])
+            if not 1 <= start <= page_count:
+                raise ValueError(f"ToC entry {title!r} points outside the PDF: {start}")
+            node = TocNode(
+                id=f"toc-{index:04d}",
+                title=title,
+                printed_page=int(entry["printed_page"]),
+                start_page=start,
+            )
 
-        is_part = bool(
-            re.match(r"^part\s+(?:\d+|[ivxlcdm]+)\b", title, re.IGNORECASE)
-        )
-        is_appendix = bool(re.match(r"^appendix\b", title, re.IGNORECASE))
-        number_path = _number_path(title)
+            is_part = bool(
+                re.match(r"^part\s+(?:\d+|[ivxlcdm]+)\b", title, re.IGNORECASE)
+            )
+            is_appendix = bool(re.match(r"^appendix\b", title, re.IGNORECASE))
+            number_path = _number_path(title)
 
-        if is_part:
-            roots.append(node)
-            active_part = node
-            numbered.clear()
-        elif is_appendix:
-            roots.append(node)
-            active_part = None
-            numbered.clear()
-        elif number_path:
-            if len(number_path) == 1:
-                parent = active_part
+            if is_part:
+                roots.append(node)
+                active_part = node
+                numbered.clear()
+            elif is_appendix:
+                roots.append(node)
+                active_part = None
+                numbered.clear()
+            elif number_path:
+                if len(number_path) == 1:
+                    parent = active_part
+                else:
+                    parent = numbered.get(number_path[:-1]) or active_part
+                (parent.children if parent else roots).append(node)
+                numbered[number_path] = node
+                for path in list(numbered):
+                    if len(path) > len(number_path) and path[: len(number_path)] != number_path:
+                        numbered.pop(path)
             else:
-                parent = numbered.get(number_path[:-1]) or active_part
-            (parent.children if parent else roots).append(node)
-            numbered[number_path] = node
-            # A new peer invalidates deeper paths from the previous branch.
-            for path in list(numbered):
-                if len(path) > len(number_path) and path[: len(number_path)] != number_path:
-                    numbered.pop(path)
-        else:
-            roots.append(node)
+                roots.append(node)
+        return roots
 
     def assign_ranges(siblings: list[TocNode], parent_end: int) -> None:
         for position, node in enumerate(siblings):
@@ -211,7 +215,46 @@ def build_toc_tree(entries: list[dict[str, Any]], page_count: int) -> list[TocNo
             node.end_page = max(node.start_page, next_start - 1)
             assign_ranges(node.children, node.end_page)
 
+    # Consecutive physical ToC pages are one index. A later, separated ToC is
+    # usually a sub-index (for example, financial statement notes inside Item 8).
+    groups: list[list[tuple[int, dict[str, Any]]]] = []
+    last_toc_page: int | None = None
+    for index, entry in enumerate(entries):
+        toc_page = int(entry.get("toc_page_id", -1))
+        if not groups or (
+            toc_page >= 0 and last_toc_page is not None and toc_page > last_toc_page + 1
+        ):
+            groups.append([])
+        groups[-1].append((index, entry))
+        if toc_page >= 0:
+            last_toc_page = toc_page
+
+    if not groups:
+        return []
+    roots = build_group(groups[0])
     assign_ranges(roots, page_count)
+
+    def deepest_container(nodes: list[TocNode], page: int) -> TocNode | None:
+        for node in nodes:
+            end = node.end_page if node.end_page is not None else node.start_page
+            if node.start_page <= page <= end:
+                return deepest_container(node.children, page) or node
+        return None
+
+    for group in groups[1:]:
+        toc_page_id = int(group[0][1].get("toc_page_id", -1))
+        anchor_page = toc_page_id + 1 if toc_page_id >= 0 else min(
+            int(entry["pdf_page_number"]) for _, entry in group
+        )
+        parent = deepest_container(roots, anchor_page)
+        subroots = build_group(group)
+        if parent is None:
+            roots.extend(subroots)
+            assign_ranges(roots, page_count)
+        else:
+            parent.children.extend(subroots)
+            parent.children.sort(key=lambda node: node.start_page)
+            assign_ranges(parent.children, parent.end_page or parent.start_page)
     return roots
 
 
@@ -247,22 +290,85 @@ class OrderedDFSSearcher:
         self.max_depth = max_depth
         self.encoder = tiktoken.get_encoding("o200k_base")
         self.trace: list[dict[str, Any]] = []
+        self.request_trace: list[dict[str, Any]] = []
         self.event_sink = event_sink
         self.partial_pages: dict[int, PageVerification] = {}
         self.api_input_tokens = 0
+        self.api_output_tokens = 0
+        self.jev_requests = 0
+        self.jev_questions = 0
+        self.jev_latency_seconds = 0.0
+        self.started_at = time.perf_counter()
         self.usage_lock = Lock()
 
     def _emit(self, event: dict[str, Any]) -> None:
         """Record a search hop and optionally stream it to a UI or logger."""
+        event = {
+            **event,
+            "elapsed_seconds": round(time.perf_counter() - self.started_at, 6),
+        }
         self.trace.append(event)
         if self.event_sink is not None:
             self.event_sink(event)
 
-    def _record_usage(self, response: Any) -> None:
+    def _record_usage(
+        self,
+        response: Any,
+        *,
+        question_count: int = 0,
+        latency_seconds: float = 0.0,
+    ) -> None:
         usage = getattr(response, "usage", None)
-        tokens = int(getattr(usage, "input_tokens", 0) or 0)
+        input_tokens = int(getattr(usage, "input_tokens", 0) or 0)
+        output_tokens = int(getattr(usage, "output_tokens", 0) or 0)
         with self.usage_lock:
-            self.api_input_tokens += tokens
+            self.api_input_tokens += input_tokens
+            self.api_output_tokens += output_tokens
+            self.jev_requests += 1
+            self.jev_questions += question_count
+            self.jev_latency_seconds += latency_seconds
+
+    def _system_one(
+        self,
+        *,
+        purpose: str,
+        state: dict[str, Any],
+        questions: dict[str, Any],
+    ) -> Any:
+        """Call JEV and record requests separately from batched questions."""
+        started = time.perf_counter()
+        response = self.typesafe.system_one(state=state, questions=questions)
+        latency = time.perf_counter() - started
+        self._record_usage(
+            response,
+            question_count=len(questions),
+            latency_seconds=latency,
+        )
+        self.request_trace.append(
+            {
+                "type": "jev_request",
+                "purpose": purpose,
+                "question_ids": list(questions),
+                "latency_seconds": round(latency, 6),
+                "elapsed_seconds": round(time.perf_counter() - self.started_at, 6),
+                "input_tokens": int(
+                    getattr(getattr(response, "usage", None), "input_tokens", 0) or 0
+                ),
+                "output_tokens": int(
+                    getattr(getattr(response, "usage", None), "output_tokens", 0) or 0
+                ),
+            }
+        )
+        return response
+
+    def usage_summary(self) -> dict[str, Any]:
+        return {
+            "jev_requests": self.jev_requests,
+            "jev_questions": self.jev_questions,
+            "jev_input_tokens": self.api_input_tokens,
+            "jev_output_tokens": self.api_output_tokens,
+            "jev_latency_seconds": round(self.jev_latency_seconds, 6),
+        }
 
     def _targets_for(
         self,
@@ -341,7 +447,8 @@ class OrderedDFSSearcher:
             confidence = 1.0
         else:
             by_key = {f"target_{i}": target for i, target in enumerate(targets)}
-            response = self.typesafe.system_one(
+            response = self._system_one(
+                purpose="rank_toc_children",
                 state={
                     "question": self.question,
                     "current_toc_path": path or ["Document root"],
@@ -359,7 +466,6 @@ class OrderedDFSSearcher:
                     )
                 },
             )
-            self._record_usage(response)
             answer = response.answers["next_section"]
             probabilities = {
                 key: float(value) for key, value in answer.probabilities.items()
@@ -397,7 +503,8 @@ class OrderedDFSSearcher:
 
     def _screen_page(self, page: int) -> PageScreen:
         record = self.pages[page]
-        response = self.typesafe.system_one(
+        response = self._system_one(
+            purpose="screen_page",
             state={
                 "question": self.question,
                 "physical_pdf_page": page,
@@ -418,7 +525,6 @@ class OrderedDFSSearcher:
                 ),
             },
         )
-        self._record_usage(response)
         return PageScreen(
             page=page,
             direct=float(response.answers["direct"].noul),
@@ -437,7 +543,8 @@ class OrderedDFSSearcher:
         return "\n\n".join(blocks)
 
     def _verify_page(self, screen: PageScreen) -> PageVerification:
-        response = self.typesafe.system_one(
+        response = self._system_one(
+            purpose="verify_page",
             state={
                 "question": self.question,
                 "candidate_physical_pdf_page": screen.page,
@@ -458,7 +565,6 @@ class OrderedDFSSearcher:
                 ),
             },
         )
-        self._record_usage(response)
         return PageVerification(
             page=screen.page,
             direct=screen.direct,
@@ -726,6 +832,7 @@ def main() -> int:
         "grounded_answer": grounded_answer,
         "best_partial_results": searcher.best_partial_results(),
         "input_tokens": searcher.api_input_tokens,
+        "usage": searcher.usage_summary(),
         "elapsed_seconds": round(elapsed, 3),
         "settings": {
             "workers": args.workers,
@@ -735,6 +842,7 @@ def main() -> int:
         },
         "toc_tree": serialize_tree(tree),
         "trace": searcher.trace,
+        "request_trace": searcher.request_trace,
         "coverage": searcher.coverage() if args.answer else None,
         "answer_attempts": searcher.answer_attempts if args.answer else [],
     }

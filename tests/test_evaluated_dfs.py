@@ -85,14 +85,20 @@ class EvaluatedDFSTests(unittest.TestCase):
         hit = search.search()
         self.assertIsNotNone(hit)
         self.assertEqual(client.menus, 1)  # No root restart.
-        self.assertEqual(len(bundles),2)
-        self.assertIn(1,bundles[1])
-        self.assertIn(5,bundles[1])
-        self.assertEqual(sorted(client.checked),[1,2,3,4,5])
+        # max_verify_per_leaf=1 deliberately exercises incremental drafting.
+        # Page 4 verification includes adjacent page 5, so a supported answer
+        # can stop without separately verifying page 5.
+        self.assertEqual(len(bundles),4)
+        self.assertIn(1,bundles[-1])
+        self.assertIn(5,bundles[-1])
+        self.assertEqual(sorted(client.checked),[1,2,3,4])
         self.assertEqual(len(set(client.checked)),len(client.checked))
-        self.assertEqual([a["evaluation"]["accepted"] for a in search.answer_attempts],[False,True])
+        self.assertEqual(
+            [a["evaluation"]["accepted"] for a in search.answer_attempts],
+            [False, False, False, True],
+        )
         self.assertEqual(search.final_answer()["status"],"answered")
-        self.assertTrue(search.coverage()["all_pages_checked"])
+        self.assertFalse(search.coverage()["all_pages_checked"])
 
     def test_jev_can_reject_a_writer_that_claims_completeness(self):
         search, _, _ = self.make_search(truthful_writer=False)

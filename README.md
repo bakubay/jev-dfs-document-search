@@ -111,6 +111,7 @@ datalab_dfs_search.py     build the ToC tree and run JEV-ordered DFS
 evaluated_dfs.py          accumulate evidence, draft, judge, resume, and audit
 openai_grounded_answer.py produce a structured answer with exact citations
 tests/                    deterministic traversal, coverage, and citation tests
+evaluation/               benchmark import, gold mapping, and trace metrics
 docs/traces/              standalone interactive recorded-run explainers
 ```
 
@@ -203,6 +204,23 @@ python -m pytest -q
 The deterministic tests cover ToC-tree construction, ordered DFS backtracking,
 retention of low/zero-probability siblings, exhaustive page verification,
 evidence accumulation, answer-gate continuation, and exact citation validation.
+
+## Evaluation work
+
+The initial evaluation adapter uses
+[`PageIndex-OSS-Benchmark`](https://github.com/VectifyAI/PageIndex-OSS-Benchmark),
+which provides 62 answerable text-lookup questions over 34 PDFs with reference
+answers and physical evidence pages. The upstream files are downloaded locally,
+not copied into this repository.
+
+Run `python -m evaluation.pageindex_oss ...` to normalize its annotations and
+cheaply screen for PDFs that appear to expose a real ToC. After Datalab
+grounding, the gold evidence pages map deterministically to the deepest
+containing ToC paths. See [evaluation/README.md](evaluation/README.md).
+
+JEV usage is recorded as both HTTP requests and logical questions because a
+single request may batch several independent judgments. Search traces also
+carry elapsed timestamps, enabling time-to-first-gold-section measurement.
 
 ## What this prototype does not settle
 

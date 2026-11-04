@@ -8,6 +8,7 @@ restarting the root. Every nonempty page is verified once before exhaustion.
 from __future__ import annotations
 
 import json
+import time
 from dataclasses import asdict
 from typing import Any, Callable
 
@@ -58,6 +59,8 @@ class EvaluatedDFSSearcher(OrderedDFSSearcher):
         self.truncated_pages: set[int] = set()
         self.writer_input_tokens = 0
         self.writer_output_tokens = 0
+        self.writer_calls = 0
+        self.writer_latency_seconds = 0.0
 
     def coverage(self) -> dict[str, Any]:
         expected = set(range(1, max(self.pages) + 1))
@@ -91,7 +94,8 @@ class EvaluatedDFSSearcher(OrderedDFSSearcher):
         # Never silently truncate accumulated evidence or pretend the judge saw it.
         if len(self.encoder.encode(json.dumps(state, ensure_ascii=False))) > MAX_EVALUATION_TOKENS:
             raise ValueError("Accumulated evidence exceeds the JEV evaluation budget; search is incomplete.")
-        response = self.typesafe.system_one(
+        response = self._system_one(
+            purpose="judge_candidate_answer",
             state=state,
             questions={
                 "answer_kind": Choice(
@@ -119,7 +123,6 @@ class EvaluatedDFSSearcher(OrderedDFSSearcher):
                 )),
             },
         )
-        self._record_usage(response)
         probabilities = {
             key: float(value)
             for key, value in response.answers["answer_kind"].probabilities.items()
@@ -167,6 +170,7 @@ class EvaluatedDFSSearcher(OrderedDFSSearcher):
             "evidence_pages": sorted(self.evidence_pages), "model": self.answer_model,
         })
         try:
+            started = time.perf_counter()
             draft = self.drafter(
                 api_key=self.api_key,
                 model=self.answer_model,
@@ -174,6 +178,8 @@ class EvaluatedDFSSearcher(OrderedDFSSearcher):
                 evidence_pages=dict(self.evidence_pages),
                 missing_information=self.missing_information,
             )
+            self.writer_calls += 1
+            self.writer_latency_seconds += time.perf_counter() - started
             self.writer_input_tokens += draft.input_tokens
             self.writer_output_tokens += draft.output_tokens
             validate_citations(GroundedAnswer(
@@ -232,37 +238,69 @@ class EvaluatedDFSSearcher(OrderedDFSSearcher):
         ordered = sorted(
             (self.screens[p] for p in pending), key=lambda s: s.recall_score, reverse=True,
         )
-        results = run_parallel(ordered, self.workers, self._verify_page)
-        for result in results:
-            self.partial_pages[result.page] = result
-            if len(self.encoder.encode(self.pages[result.page].markdown)) > VERIFY_CENTER_TOKENS:
-                self.truncated_pages.add(result.page)
-        self._progress(path)
-        useful = sorted(
-            (r for r in results if max(r.evidence, r.sufficient) >= self.recall_threshold),
-            key=lambda r: r.sufficient, reverse=True,
-        )
-        for result in useful:
-            for p in (result.page - 1, result.page, result.page + 1):
-                if p in self.pages and self.pages[p].markdown.strip():
-                    self.evidence_pages[p] = self.pages[p].markdown
+        results = []
+        useful = []
+        batch_size = self.max_verify_per_leaf
+        for offset in range(0, len(ordered), batch_size):
+            batch = run_parallel(
+                ordered[offset : offset + batch_size], self.workers, self._verify_page,
+            )
+            batch.sort(key=lambda result: result.sufficient, reverse=True)
+            results.extend(batch)
+            for result in batch:
+                self.partial_pages[result.page] = result
+                if len(self.encoder.encode(self.pages[result.page].markdown)) > VERIFY_CENTER_TOKENS:
+                    self.truncated_pages.add(result.page)
+            batch_useful = sorted(
+                (
+                    result for result in batch
+                    if max(result.evidence, result.sufficient) >= self.recall_threshold
+                ),
+                key=lambda result: result.sufficient,
+                reverse=True,
+            )
+            useful.extend(batch_useful)
+            for result in batch_useful:
+                for page in (result.page - 1, result.page, result.page + 1):
+                    if page in self.pages and self.pages[page].markdown.strip():
+                        self.evidence_pages[page] = self.pages[page].markdown
+            self._progress(path)
+            self._emit({
+                "type": "leaf_scan_batch",
+                "path": path,
+                "start_page": start_page,
+                "end_page": end_page,
+                "batch_index": offset // batch_size,
+                "verified_pages": [result.page for result in batch],
+                "remaining_pages": max(0, len(ordered) - offset - len(batch)),
+                "evidence_pages": sorted(self.evidence_pages),
+            })
+            if batch_useful and self._try_answer(path):
+                self._emit({
+                    "type": "leaf_scan", "path": path,
+                    "start_page": start_page, "end_page": end_page,
+                    "status": "accepted",
+                    "screens": [asdict(self.screens[p]) for p in available if p in self.screens],
+                    "verifications": [asdict(result) for result in results],
+                    "evidence_pages": sorted(self.evidence_pages),
+                    "policy": "ranked verification batches; rejected answers continue until every page is verified",
+                })
+                best = batch_useful[0]
+                return SearchHit(
+                    path=path, candidate_page=best.page,
+                    evidence_pages=sorted(self.evidence_pages), evidence=best.evidence,
+                    sufficient=best.sufficient,
+                    snippets={p: text[:1500] for p, text in self.evidence_pages.items()},
+                )
         self._emit({
             "type": "leaf_scan", "path": path,
             "start_page": start_page, "end_page": end_page,
-            "status": "candidate" if useful else "failed",
+            "status": "candidate_rejected" if useful else "failed",
             "screens": [asdict(self.screens[p]) for p in available if p in self.screens],
-            "verifications": [asdict(r) for r in results],
+            "verifications": [asdict(result) for result in results],
             "evidence_pages": sorted(self.evidence_pages),
-            "policy": "every nonempty page verified; answer gate controls stopping",
+            "policy": "ranked verification batches; rejected answers continue until every page is verified",
         })
-        if useful and self._try_answer(path):
-            best = useful[0]
-            return SearchHit(
-                path=path, candidate_page=best.page,
-                evidence_pages=sorted(self.evidence_pages), evidence=best.evidence,
-                sufficient=best.sufficient,
-                snippets={p: text[:1500] for p, text in self.evidence_pages.items()},
-            )
         return None
 
     def search(self) -> SearchHit | None:
@@ -297,4 +335,6 @@ class EvaluatedDFSSearcher(OrderedDFSSearcher):
             "status": status, "coverage": coverage,
             "model": self.answer_model,
             "input_tokens": self.writer_input_tokens, "output_tokens": self.writer_output_tokens,
+            "writer_calls": self.writer_calls,
+            "writer_latency_seconds": round(self.writer_latency_seconds, 6),
         }
