@@ -1,72 +1,72 @@
-# Evaluation dataset preparation
+# Evaluate the three retrieval methods
 
-The first benchmark source is
-[`VectifyAI/PageIndex-OSS-Benchmark`](https://github.com/VectifyAI/PageIndex-OSS-Benchmark):
-62 text-lookup questions over 34 PDFs, with reference answers and physical
-evidence pages. The source files are downloaded separately and are not vendored
-here.
+All methods return source pages. Gold annotations are used only after retrieval
+and its timer finish. The policies, read budgets and evidence budgets are defined
+in [the main README](../README.md).
 
-Prepare a local manifest:
+## Prepare documents
 
-```bash
-git clone --depth 1 \
-  https://github.com/VectifyAI/PageIndex-OSS-Benchmark.git \
-  runs/upstream/PageIndex-OSS-Benchmark
+`python -m evaluation.dataset --help` describes importing a local checkout of
+[PageIndex-OSS-Benchmark](https://github.com/VectifyAI/PageIndex-OSS-Benchmark).
+Its inexpensive ToC screening requires the `pdfinfo` and `pdftotext` commands
+from Poppler. PDF parsing and page grounding then use `preparation.parse` and
+`preparation.ground_toc`; parser calls consume Datalab credits.
 
-python -m evaluation.pageindex_oss \
-  runs/upstream/PageIndex-OSS-Benchmark \
-  --output runs/evaluation/pageindex-oss-manifest.json
-```
+The retained [study manifest](../docs/results/retrieval-repeated-2026-11-08/manifest.json)
+contains twenty known questions and evidence-page labels over four PageIndex
+PDFs. Eight questions come from the OSS subset; twelve are existing annotations
+from its MMLongBench-Doc-V2 source. `evaluation.prepare_cohort` records that
+selection from the pinned upstream dataset; it does not generate questions.
 
-The screen uses `pdftotext` on the first and last 20 pages to find documents
-that appear to expose a real table of contents. The initial cohort also requires
-at least 70 pages; change that with `--min-pages`. The screen is deliberately
-cheap and conservative. Selected PDFs must still pass the actual Datalab
-extraction and physical-page grounding checks before an evaluation run.
+## Run all three methods
 
-The normalized question records retain the upstream answer and evidence pages.
-After grounding, `evaluation.metrics.map_gold_pages` maps each evidence page to
-the deepest containing ToC path. `score_trace` then reports gold-page recall,
-gold-section recall, inspected leaf ranges, and time to the first gold range.
-
-The benchmark subset contains answerable text lookups. A separate, manually
-audited unanswerable set is still required to evaluate exhaustive negative
-claims.
-
-Run one grounded case with any of the three policies:
+Prepared documents live under `runs/evaluation/<PDF filename without extension>/grounded/`.
 
 ```bash
-python -m evaluation.run_case \
-  runs/evaluation/AMAZON_2017_10K/grounded \
-  runs/evaluation/pageindex-oss-manifest.json \
-  QUESTION_ID \
-  --strategy jev_dfs \
-  --output evaluation-results/QUESTION_ID.jev_dfs.json
+python -m evaluation.run \
+  docs/results/retrieval-repeated-2026-11-08/manifest.json \
+  --grounded-root runs/evaluation \
+  --question-ids pi-oss-ad5dbad521ca pi-oss-b728c1d683c6 \
+  --output-dir evaluation-results/new-comparison
 ```
 
-Valid strategies are:
+Use `--dry-run` to inspect the schedule without API calls. `--strategies
+jev_dfs exhaustive` selects just the JEV methods. Runs use a seeded shuffled
+order. Queries run one at a time; workers within a query can run concurrently.
 
-- `jev_dfs`: JEV orders branches; failed answer verification resumes DFS;
-- `exhaustive`: inspect every leaf range in document order, then pack the
-  highest-scoring verified pages into the fixed answer budget and draft once;
-- `llm_toc`: one Sol call selects ToC leaf ranges, followed by the same JEV
-  page checks and answer gate used by the other methods.
-
-The runner records gold-page/section recall, coverage, JEV requests, batched
-JEV questions, writer/selector calls and tokens, and separate model latencies.
-`answer_correct` remains null until the common semantic judge is run.
-
-Per-query cost estimates pin the public prices observed on 2026-11-04:
-[JEV at $0.042/M input tokens](https://help.typesafe.ai/articles/5187202169-how-much-does-jev-cost)
-and standard short-context
-[`gpt-6.1-sol` at $2/M input and $10/M output](https://platform.openai.com/pricing).
-The Datalab parse charge is recorded separately as a one-time document cost.
-
-After the common judge populates `answer_correct`, aggregate case files with:
+## Repeat the frozen cohort
 
 ```bash
-python -m evaluation.summarize evaluation-results/*.json \
-  --json-output evaluation-results/summary.json \
-  --markdown-output evaluation-results/summary.md
+python -m evaluation.run_repeated \
+  docs/results/retrieval-repeated-2026-11-08/manifest.json \
+  --grounded-root runs/evaluation \
+  --output-dir evaluation-results/new-repeated-study
 ```
 
+Each question/method pair runs three times. Use `--resume` only when the input,
+source hashes and run plan match. Completed failures remain recorded; they are
+not selectively retried. The runner saves a source snapshot with the results.
+The repository cleanup changed file hashes, so old studies cannot be resumed
+with the consolidated source. Use a new output directory.
+
+## Build offline reports
+
+```bash
+python -m reporting.build_cohort_report \
+  --runs evaluation-results/new-repeated-study \
+  --output docs/traces/new-study.html \
+  --summary evaluation-results/new-repeated-study/summary.md
+```
+
+Reports verify input and source hashes. Historical reports use the original
+`source-snapshot/` beside the run records, never today's source under an old
+label. Raw records and snapshots are local and ignored by Git. The committed
+HTML includes its recorded data and snippets and works without those files.
+
+`python -m reporting.build_simple_trace` rebuilds the retained coffee timeline
+from the local November 8 repeated-study records. It makes no model calls.
+
+Recall measures returned annotated pages, separately from pages merely read.
+Costs use the pinned assumptions in `evaluation/pricing.py`, not invoices.
+Source preparation and scoring are outside the retrieval timer. See the study
+README for cohort selection, repeated-measurement aggregation and limitations.

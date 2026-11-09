@@ -3,36 +3,10 @@ from __future__ import annotations
 import unittest
 from types import SimpleNamespace
 
-from datalab_dfs_search import OrderedDFSSearcher, PageRecord, build_toc_tree
-from datalab_ground_toc import extract_toc
-
-
-class FakeTypeSafe:
-    """Rank the wrong branch first, then fail it and verify the right branch."""
-
-    def system_one(self, *, state, questions):
-        usage = SimpleNamespace(input_tokens=10)
-        if "next_section" in questions:
-            criteria = questions["next_section"].criteria
-            probabilities = {}
-            for key, description in criteria.items():
-                probabilities[key] = 0.9 if "Wrong branch" in description else 0.1
-            answer = SimpleNamespace(probabilities=probabilities, confidence=0.8)
-            return SimpleNamespace(answers={"next_section": answer}, usage=usage)
-
-        page = state.get("physical_pdf_page") or state["candidate_physical_pdf_page"]
-        good = page == 3
-        if "direct" in questions:
-            answers = {
-                "direct": SimpleNamespace(noul=0.9 if good else 0.1),
-                "partial": SimpleNamespace(noul=0.8 if good else 0.2),
-            }
-        else:
-            answers = {
-                "evidence": SimpleNamespace(noul=0.95 if good else 0.1),
-                "sufficient": SimpleNamespace(noul=0.9 if good else 0.1),
-            }
-        return SimpleNamespace(answers=answers, usage=usage)
+from retrieval.tree import PageRecord, build_toc_tree
+from retrieval.jev import JevDFSRetriever
+from test_retrieval import Jev
+from preparation.ground_toc import extract_toc
 
 
 class TocTreeTests(unittest.TestCase):
@@ -115,8 +89,8 @@ class TocTreeTests(unittest.TestCase):
             page: PageRecord(page - 1, page, f"Page {page} text")
             for page in range(1, 5)
         }
-        searcher = OrderedDFSSearcher(
-            typesafe=FakeTypeSafe(),
+        searcher = JevDFSRetriever(
+            typesafe=Jev(useful={3}, required={3}),
             pages=pages,
             tree=tree,
             question="Where is the answer?",
@@ -124,7 +98,7 @@ class TocTreeTests(unittest.TestCase):
         )
         hit = searcher.search()
         self.assertIsNotNone(hit)
-        self.assertEqual(hit.candidate_page, 3)
+        self.assertIn(3, hit.evidence_pages)
         attempted = [event["target"] for event in searcher.trace if event["type"] == "attempt"]
         self.assertIn("Part 1: Wrong branch", attempted)
         self.assertIn("Part 2: Correct branch", attempted)
@@ -138,8 +112,8 @@ class TocTreeTests(unittest.TestCase):
             for page in range(1, 5)
         }
         streamed = []
-        searcher = OrderedDFSSearcher(
-            typesafe=FakeTypeSafe(),
+        searcher = JevDFSRetriever(
+            typesafe=Jev(useful={3}, required={3}),
             pages=pages,
             tree=tree,
             question="Where is the answer?",
@@ -148,7 +122,7 @@ class TocTreeTests(unittest.TestCase):
         )
         searcher.search()
         self.assertEqual(streamed, searcher.trace)
-        self.assertEqual(streamed[0]["type"], "choice")
+        self.assertTrue(any(event["type"] == "choice" for event in streamed))
         self.assertTrue(any(event["type"] == "backtrack" for event in streamed))
 
 

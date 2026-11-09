@@ -1,0 +1,2617 @@
+{
+  "schema_version": 1,
+  "cohort": "retrieval-repeated-2026-11-08",
+  "experiment": "retrieval-v2-combined",
+  "selected_on": "2026-11-08",
+  "selection_policy": {
+    "documents": "Four already parsed PageIndex-OSS PDFs with visible ToCs: 3 financial reports and 1 manual, 75–198 pages; convenience cohort, not representative sampling.",
+    "questions": "Retain all eight questions from the prior OSS subset, then select 12 existing V2 annotations to reach five per document, adding table and multi-page evidence. No new questions or labels generated. Selection frozen before this cohort's runs.",
+    "scope": "Answerable text/table evidence only. Parsed supporting pages inspected before execution. Formula/count questions test retrieval of the cited inputs, not answer calculation. No image-only or absent-evidence cases in this cohort.",
+    "annotation_limit": "Reference pages are the upstream annotation, not all possible valid evidence locations; exact page recall can penalize alternative/repeated evidence."
+  },
+  "source": {
+    "url": "https://github.com/VectifyAI/MMLongBench-Doc-V2",
+    "commit": "3aba3c6831a432ee882f763435f9ebe92ab75ed9",
+    "samples_sha256": "ed771241fa1916659ded272997011e0496cf3ca86ed339bc6a1ace1447b51529",
+    "pageindex_pdf_source": {
+      "name": "PageIndex-OSS-Benchmark",
+      "url": "https://github.com/VectifyAI/PageIndex-OSS-Benchmark",
+      "commit": "ad4c0b92970a6f4801f09ff2e647389e8f5874fa",
+      "note": "Upstream files are referenced from a local checkout and are not vendored into this repository. Confirm upstream licensing before redistribution."
+    }
+  },
+  "strategies": [
+    "jev_dfs",
+    "exhaustive",
+    "sol_only"
+  ],
+  "repeats": 3,
+  "seed": 20261108,
+  "workers": 8,
+  "models": {
+    "jev": "jev-1.13.0",
+    "sol": "gpt-6.1-sol"
+  },
+  "max_navigation_steps": 32,
+  "max_pages_per_read": 8,
+  "max_read_tokens": 12000,
+  "output_budget": {
+    "max_pages": 8,
+    "max_tokens": 12000
+  },
+  "page_judgments_per_target": 4,
+  "documents": [
+    {
+      "doc_id": "AMAZON_2017_10K.pdf",
+      "page_count": 85,
+      "nonempty_pages": 85,
+      "root_options": 6,
+      "question_ids": [
+        "mlb2-3c384e7a0537",
+        "mlb2-bbe12dd39bef",
+        "pi-oss-f8fc68db6b5d",
+        "pi-oss-a9021020fce3",
+        "pi-oss-303e9cebcd66"
+      ],
+      "pdf_sha256": "f8af08ff6c4147351ec3a6e5e2c74e104678ce68fb0d6d476b1e43f685c09a3f",
+      "pages_sha256": "c2c804626818121dfef8bc0e52b9fc14d683b8b7014e26db8de00f1fec1bdc61",
+      "toc_sha256": "6a396552122d66d1ac961829af0fceaddbfec2c1ebd2d3b0a5acd290c1429fac",
+      "preflight_combined_windows": 14,
+      "tree": [
+        {
+          "id": "toc-0000",
+          "title": "PART I",
+          "printed_page": 3,
+          "start_page": 3,
+          "end_page": 16,
+          "children": [
+            {
+              "id": "toc-0001",
+              "title": "Item 1. Business",
+              "printed_page": 3,
+              "start_page": 3,
+              "end_page": 5,
+              "children": []
+            },
+            {
+              "id": "toc-0002",
+              "title": "Item 1A. Risk Factors",
+              "printed_page": 6,
+              "start_page": 6,
+              "end_page": 13,
+              "children": []
+            },
+            {
+              "id": "toc-0003",
+              "title": "Item 1B. Unresolved Staff Comments",
+              "printed_page": 14,
+              "start_page": 14,
+              "end_page": 15,
+              "children": []
+            },
+            {
+              "id": "toc-0004",
+              "title": "Item 2. Properties",
+              "printed_page": 16,
+              "start_page": 16,
+              "end_page": 16,
+              "children": []
+            },
+            {
+              "id": "toc-0005",
+              "title": "Item 3. Legal Proceedings",
+              "printed_page": 16,
+              "start_page": 16,
+              "end_page": 16,
+              "children": []
+            },
+            {
+              "id": "toc-0006",
+              "title": "Item 4. Mine Safety Disclosures",
+              "printed_page": 16,
+              "start_page": 16,
+              "end_page": 16,
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "toc-0007",
+          "title": "PART II",
+          "printed_page": 17,
+          "start_page": 17,
+          "end_page": 74,
+          "children": [
+            {
+              "id": "toc-0008",
+              "title": "Item 5. Market for the Registrant's Common Stock, Related Shareholder Matters, and Issuer Purchases of Equity Securities",
+              "printed_page": 17,
+              "start_page": 17,
+              "end_page": 17,
+              "children": []
+            },
+            {
+              "id": "toc-0009",
+              "title": "Item 6. Selected Consolidated Financial Data",
+              "printed_page": 18,
+              "start_page": 18,
+              "end_page": 18,
+              "children": []
+            },
+            {
+              "id": "toc-0010",
+              "title": "Item 7. Management's Discussion and Analysis of Financial Condition and Results of Operations",
+              "printed_page": 19,
+              "start_page": 19,
+              "end_page": 32,
+              "children": []
+            },
+            {
+              "id": "toc-0011",
+              "title": "Item 7A. Quantitative and Qualitative Disclosures About Market Risk",
+              "printed_page": 33,
+              "start_page": 33,
+              "end_page": 34,
+              "children": []
+            },
+            {
+              "id": "toc-0012",
+              "title": "Item 8. Financial Statements and Supplementary Data",
+              "printed_page": 35,
+              "start_page": 35,
+              "end_page": 72,
+              "children": [
+                {
+                  "id": "toc-0026",
+                  "title": "Report of Ernst & Young LLP, Independent Registered Public Accounting Firm",
+                  "printed_page": 36,
+                  "start_page": 36,
+                  "end_page": 36,
+                  "children": []
+                },
+                {
+                  "id": "toc-0027",
+                  "title": "Consolidated Statements of Cash Flows",
+                  "printed_page": 37,
+                  "start_page": 37,
+                  "end_page": 37,
+                  "children": []
+                },
+                {
+                  "id": "toc-0028",
+                  "title": "Consolidated Statements of Operations",
+                  "printed_page": 38,
+                  "start_page": 38,
+                  "end_page": 38,
+                  "children": []
+                },
+                {
+                  "id": "toc-0029",
+                  "title": "Consolidated Statements of Comprehensive Income",
+                  "printed_page": 39,
+                  "start_page": 39,
+                  "end_page": 39,
+                  "children": []
+                },
+                {
+                  "id": "toc-0030",
+                  "title": "Consolidated Balance Sheets",
+                  "printed_page": 40,
+                  "start_page": 40,
+                  "end_page": 40,
+                  "children": []
+                },
+                {
+                  "id": "toc-0031",
+                  "title": "Consolidated Statements of Stockholders' Equity",
+                  "printed_page": 41,
+                  "start_page": 41,
+                  "end_page": 41,
+                  "children": []
+                },
+                {
+                  "id": "toc-0032",
+                  "title": "Notes to Consolidated Financial Statements",
+                  "printed_page": 42,
+                  "start_page": 42,
+                  "end_page": 72,
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "toc-0013",
+              "title": "Item 9. Changes in and Disagreements with Accountants on Accounting and Financial Disclosure",
+              "printed_page": 73,
+              "start_page": 73,
+              "end_page": 73,
+              "children": []
+            },
+            {
+              "id": "toc-0014",
+              "title": "Item 9A. Controls and Procedures",
+              "printed_page": 73,
+              "start_page": 73,
+              "end_page": 74,
+              "children": []
+            },
+            {
+              "id": "toc-0015",
+              "title": "Item 9B. Other Information",
+              "printed_page": 75,
+              "start_page": 75,
+              "end_page": 75,
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "toc-0016",
+          "title": "PART III",
+          "printed_page": 75,
+          "start_page": 75,
+          "end_page": 75,
+          "children": [
+            {
+              "id": "toc-0017",
+              "title": "Item 10. Directors, Executive Officers, and Corporate Governance",
+              "printed_page": 75,
+              "start_page": 75,
+              "end_page": 75,
+              "children": []
+            },
+            {
+              "id": "toc-0018",
+              "title": "Item 11. Executive Compensation",
+              "printed_page": 75,
+              "start_page": 75,
+              "end_page": 75,
+              "children": []
+            },
+            {
+              "id": "toc-0019",
+              "title": "Item 12. Security Ownership of Certain Beneficial Owners and Management and Related Shareholder Matters",
+              "printed_page": 75,
+              "start_page": 75,
+              "end_page": 75,
+              "children": []
+            },
+            {
+              "id": "toc-0020",
+              "title": "Item 13. Certain Relationships and Related Transactions, and Director Independence",
+              "printed_page": 75,
+              "start_page": 75,
+              "end_page": 75,
+              "children": []
+            },
+            {
+              "id": "toc-0021",
+              "title": "Item 14. Principal Accountant Fees and Services",
+              "printed_page": 75,
+              "start_page": 75,
+              "end_page": 75,
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "toc-0022",
+          "title": "PART IV",
+          "printed_page": 76,
+          "start_page": 76,
+          "end_page": 77,
+          "children": [
+            {
+              "id": "toc-0023",
+              "title": "Item 15. Exhibits, Financial Statement Schedules",
+              "printed_page": 76,
+              "start_page": 76,
+              "end_page": 76,
+              "children": []
+            },
+            {
+              "id": "toc-0024",
+              "title": "Item 16. Form 10-K Summary",
+              "printed_page": 76,
+              "start_page": 76,
+              "end_page": 77,
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "toc-0025",
+          "title": "Signatures",
+          "printed_page": 78,
+          "start_page": 78,
+          "end_page": 85,
+          "children": []
+        }
+      ]
+    },
+    {
+      "doc_id": "BESTBUY_2023_10K.pdf",
+      "page_count": 75,
+      "nonempty_pages": 75,
+      "root_options": 7,
+      "question_ids": [
+        "mlb2-1ae2534c2fe8",
+        "pi-oss-a55448348fbb",
+        "pi-oss-c97407afe5f0",
+        "pi-oss-ad5dbad521ca",
+        "mlb2-68fe98d0f7fb"
+      ],
+      "pdf_sha256": "7ca465d31a08be29e8c08d756644d33d818c7254a1215720f265227005cda696",
+      "pages_sha256": "baee300c46df4a4bb57b8d692075e949f4e8370039b1d4482a84059b7ba48066",
+      "toc_sha256": "d668de5777dd95e72c1828095286e8aad9865d46f526520b76a37a4278422519",
+      "preflight_combined_windows": 13,
+      "tree": [
+        {
+          "id": "toc-0000",
+          "title": "PART I",
+          "printed_page": 4,
+          "start_page": 4,
+          "end_page": 19,
+          "children": [
+            {
+              "id": "toc-0001",
+              "title": "Item 1. Business.",
+              "printed_page": 4,
+              "start_page": 4,
+              "end_page": 7,
+              "children": []
+            },
+            {
+              "id": "toc-0002",
+              "title": "Item 1A. Risk Factors.",
+              "printed_page": 8,
+              "start_page": 8,
+              "end_page": 17,
+              "children": []
+            },
+            {
+              "id": "toc-0003",
+              "title": "Item 1B. Unresolved Staff Comments.",
+              "printed_page": 18,
+              "start_page": 18,
+              "end_page": 18,
+              "children": []
+            },
+            {
+              "id": "toc-0004",
+              "title": "Item 2. Properties.",
+              "printed_page": 19,
+              "start_page": 19,
+              "end_page": 19,
+              "children": []
+            },
+            {
+              "id": "toc-0005",
+              "title": "Item 3. Legal Proceedings.",
+              "printed_page": 20,
+              "start_page": 20,
+              "end_page": 20,
+              "children": []
+            },
+            {
+              "id": "toc-0006",
+              "title": "Item 4. Mine Safety Disclosures.",
+              "printed_page": 20,
+              "start_page": 20,
+              "end_page": 20,
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "toc-0007",
+          "title": "Information about our Executive Officers.",
+          "printed_page": 20,
+          "start_page": 20,
+          "end_page": 20,
+          "children": []
+        },
+        {
+          "id": "toc-0008",
+          "title": "PART II",
+          "printed_page": 21,
+          "start_page": 21,
+          "end_page": 63,
+          "children": [
+            {
+              "id": "toc-0009",
+              "title": "Item 5. Market for Registrant's Common Equity, Related Stockholder Matters and Issuer Purchases of Equity Securities.",
+              "printed_page": 21,
+              "start_page": 21,
+              "end_page": 21,
+              "children": []
+            },
+            {
+              "id": "toc-0010",
+              "title": "Item 6. [Reserved].",
+              "printed_page": 22,
+              "start_page": 22,
+              "end_page": 22,
+              "children": []
+            },
+            {
+              "id": "toc-0011",
+              "title": "Item 7. Management's Discussion and Analysis of Financial Condition and Results of Operations.",
+              "printed_page": 23,
+              "start_page": 23,
+              "end_page": 32,
+              "children": []
+            },
+            {
+              "id": "toc-0012",
+              "title": "Item 7A. Quantitative and Qualitative Disclosures About Market Risk.",
+              "printed_page": 33,
+              "start_page": 33,
+              "end_page": 34,
+              "children": []
+            },
+            {
+              "id": "toc-0013",
+              "title": "Item 8. Financial Statements and Supplementary Data.",
+              "printed_page": 35,
+              "start_page": 35,
+              "end_page": 63,
+              "children": []
+            },
+            {
+              "id": "toc-0014",
+              "title": "Item 9. Changes in and Disagreements With Accountants on Accounting and Financial Disclosure.",
+              "printed_page": 64,
+              "start_page": 64,
+              "end_page": 64,
+              "children": []
+            },
+            {
+              "id": "toc-0015",
+              "title": "Item 9A. Controls and Procedures.",
+              "printed_page": 64,
+              "start_page": 64,
+              "end_page": 64,
+              "children": []
+            },
+            {
+              "id": "toc-0016",
+              "title": "Item 9B. Other Information.",
+              "printed_page": 64,
+              "start_page": 64,
+              "end_page": 64,
+              "children": []
+            },
+            {
+              "id": "toc-0017",
+              "title": "Item 9C. Disclosure Regarding Foreign Jurisdictions that Prevent Inspections.",
+              "printed_page": 64,
+              "start_page": 64,
+              "end_page": 64,
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "toc-0018",
+          "title": "PART III",
+          "printed_page": 64,
+          "start_page": 64,
+          "end_page": 64,
+          "children": [
+            {
+              "id": "toc-0019",
+              "title": "Item 10. Directors, Executive Officers and Corporate Governance.",
+              "printed_page": 64,
+              "start_page": 64,
+              "end_page": 64,
+              "children": []
+            },
+            {
+              "id": "toc-0020",
+              "title": "Item 11. Executive Compensation.",
+              "printed_page": 64,
+              "start_page": 64,
+              "end_page": 64,
+              "children": []
+            },
+            {
+              "id": "toc-0021",
+              "title": "Item 12. Security Ownership of Certain Beneficial Owners and Management and Related Stockholder Matters.",
+              "printed_page": 65,
+              "start_page": 65,
+              "end_page": 65,
+              "children": []
+            },
+            {
+              "id": "toc-0022",
+              "title": "Item 13. Certain Relationships and Related Transactions, and Director Independence.",
+              "printed_page": 65,
+              "start_page": 65,
+              "end_page": 65,
+              "children": []
+            },
+            {
+              "id": "toc-0023",
+              "title": "Item 14. Principal Accountant Fees and Services.",
+              "printed_page": 65,
+              "start_page": 65,
+              "end_page": 65,
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "toc-0024",
+          "title": "PART IV",
+          "printed_page": 65,
+          "start_page": 65,
+          "end_page": 67,
+          "children": [
+            {
+              "id": "toc-0025",
+              "title": "Item 15. Exhibit and Financial Statement Schedules.",
+              "printed_page": 65,
+              "start_page": 65,
+              "end_page": 66,
+              "children": []
+            },
+            {
+              "id": "toc-0026",
+              "title": "Item 16. Form 10-K Summary.",
+              "printed_page": 67,
+              "start_page": 67,
+              "end_page": 67,
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "toc-0027",
+          "title": "Signatures.",
+          "printed_page": 68,
+          "start_page": 68,
+          "end_page": 75,
+          "children": []
+        }
+      ]
+    },
+    {
+      "doc_id": "ACTIVISIONBLIZZARD_2019_10K.pdf",
+      "page_count": 198,
+      "nonempty_pages": 198,
+      "root_options": 6,
+      "question_ids": [
+        "mlb2-5023c270cfa8",
+        "mlb2-4978b2e47a2c",
+        "mlb2-62f288595f8d",
+        "mlb2-65206bcc55cf",
+        "pi-oss-c8533f45e99f"
+      ],
+      "pdf_sha256": "017f1bbc1e37f2945a41fa2b5cf39d822e1e9d435a2c2b9c6b1cc76cd114a2df",
+      "pages_sha256": "d2671fae573fe803f9c7a2aa8d4fa9a801ad0fa38ff2cbc0fe39cfcff3958c79",
+      "toc_sha256": "51755979623a9f80869a1903ff2dfec712856568eb55f91bd29d4602e72102d2",
+      "preflight_combined_windows": 33,
+      "tree": [
+        {
+          "id": "toc-0000",
+          "title": "PART I.",
+          "printed_page": 3,
+          "start_page": 3,
+          "end_page": 3,
+          "children": [
+            {
+              "id": "toc-0002",
+              "title": "Item 1. Business",
+              "printed_page": 4,
+              "start_page": 4,
+              "end_page": 9,
+              "children": []
+            },
+            {
+              "id": "toc-0003",
+              "title": "Item 1A. Risk Factors",
+              "printed_page": 10,
+              "start_page": 10,
+              "end_page": 26,
+              "children": []
+            },
+            {
+              "id": "toc-0004",
+              "title": "Item 1B. Unresolved Staff Comments",
+              "printed_page": 27,
+              "start_page": 27,
+              "end_page": 27,
+              "children": []
+            },
+            {
+              "id": "toc-0005",
+              "title": "Item 2. Properties",
+              "printed_page": 27,
+              "start_page": 27,
+              "end_page": 27,
+              "children": []
+            },
+            {
+              "id": "toc-0006",
+              "title": "Item 3. Legal Proceedings",
+              "printed_page": 27,
+              "start_page": 27,
+              "end_page": 27,
+              "children": []
+            },
+            {
+              "id": "toc-0007",
+              "title": "Item 4. Mine Safety Disclosures",
+              "printed_page": 27,
+              "start_page": 27,
+              "end_page": 27,
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "toc-0001",
+          "title": "Cautionary Statement",
+          "printed_page": 3,
+          "start_page": 3,
+          "end_page": 27,
+          "children": []
+        },
+        {
+          "id": "toc-0008",
+          "title": "PART II.",
+          "printed_page": 28,
+          "start_page": 28,
+          "end_page": 63,
+          "children": [
+            {
+              "id": "toc-0009",
+              "title": "Item 5. Market for Registrant's Common Equity, Related Stockholder Matters, and Issuer Purchases of Equity Securities",
+              "printed_page": 28,
+              "start_page": 28,
+              "end_page": 29,
+              "children": []
+            },
+            {
+              "id": "toc-0010",
+              "title": "Item 6. Selected Financial Data",
+              "printed_page": 30,
+              "start_page": 30,
+              "end_page": 30,
+              "children": []
+            },
+            {
+              "id": "toc-0011",
+              "title": "Item 7. Management's Discussion and Analysis of Financial Condition and Results of Operations",
+              "printed_page": 31,
+              "start_page": 31,
+              "end_page": 59,
+              "children": []
+            },
+            {
+              "id": "toc-0012",
+              "title": "Item 7A. Quantitative and Qualitative Disclosures about Market Risk",
+              "printed_page": 60,
+              "start_page": 60,
+              "end_page": 61,
+              "children": []
+            },
+            {
+              "id": "toc-0013",
+              "title": "Item 8. Financial Statements and Supplementary Data",
+              "printed_page": 62,
+              "start_page": 62,
+              "end_page": 62,
+              "children": []
+            },
+            {
+              "id": "toc-0014",
+              "title": "Item 9. Changes in and Disagreements with Accountants on Accounting and Financial Disclosure",
+              "printed_page": 62,
+              "start_page": 62,
+              "end_page": 62,
+              "children": []
+            },
+            {
+              "id": "toc-0015",
+              "title": "Item 9A. Controls and Procedures",
+              "printed_page": 62,
+              "start_page": 62,
+              "end_page": 62,
+              "children": []
+            },
+            {
+              "id": "toc-0016",
+              "title": "Item 9B. Other Information",
+              "printed_page": 63,
+              "start_page": 63,
+              "end_page": 63,
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "toc-0017",
+          "title": "PART III.",
+          "printed_page": 64,
+          "start_page": 64,
+          "end_page": 64,
+          "children": [
+            {
+              "id": "toc-0018",
+              "title": "Item 10. Directors, Executive Officers, and Corporate Governance",
+              "printed_page": 64,
+              "start_page": 64,
+              "end_page": 64,
+              "children": []
+            },
+            {
+              "id": "toc-0019",
+              "title": "Item 11. Executive Compensation",
+              "printed_page": 64,
+              "start_page": 64,
+              "end_page": 64,
+              "children": []
+            },
+            {
+              "id": "toc-0020",
+              "title": "Item 12. Security Ownership of Certain Beneficial Owners and Management and Related Stockholder Matters",
+              "printed_page": 64,
+              "start_page": 64,
+              "end_page": 64,
+              "children": []
+            },
+            {
+              "id": "toc-0021",
+              "title": "Item 13. Certain Relationships and Related Transactions, and Director Independence",
+              "printed_page": 64,
+              "start_page": 64,
+              "end_page": 64,
+              "children": []
+            },
+            {
+              "id": "toc-0022",
+              "title": "Item 14. Principal Accounting Fees and Services",
+              "printed_page": 64,
+              "start_page": 64,
+              "end_page": 64,
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "toc-0023",
+          "title": "PART IV.",
+          "printed_page": 65,
+          "start_page": 65,
+          "end_page": 198,
+          "children": [
+            {
+              "id": "toc-0024",
+              "title": "Item 15. Exhibits, Financial Statement Schedules",
+              "printed_page": 65,
+              "start_page": 65,
+              "end_page": 65,
+              "children": []
+            },
+            {
+              "id": "toc-0025",
+              "title": "Item 16. Form 10-K Summary",
+              "printed_page": 65,
+              "start_page": 65,
+              "end_page": 198,
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "doc_id": "User_Manual_1500S_Classic_EN.pdf",
+      "page_count": 108,
+      "nonempty_pages": 106,
+      "root_options": 92,
+      "question_ids": [
+        "mlb2-66ac018b13d5",
+        "mlb2-d84051dd72bd",
+        "mlb2-18e011e92e01",
+        "pi-oss-b728c1d683c6",
+        "mlb2-3def27336095"
+      ],
+      "pdf_sha256": "ba6a07e262b070f963cf1f4ef3372074d08e5820a833f130e67d597af211359c",
+      "pages_sha256": "257d64c2f1b22531b0e28483e68519ac76f7ba024b9a321b7a207db48326eb06",
+      "toc_sha256": "05eed80341d8cec3f21b0e8bf1b6645b2c0755c403a22e8ab7cb4312ca7f30f8",
+      "preflight_combined_windows": 18,
+      "tree": [
+        {
+          "id": "toc-0000",
+          "title": "1 Safety",
+          "printed_page": 6,
+          "start_page": 6,
+          "end_page": 13,
+          "children": [
+            {
+              "id": "toc-0001",
+              "title": "1.1 General safety instructions",
+              "printed_page": 6,
+              "start_page": 6,
+              "end_page": 11,
+              "children": []
+            },
+            {
+              "id": "toc-0002",
+              "title": "1.2 Intended use",
+              "printed_page": 12,
+              "start_page": 12,
+              "end_page": 12,
+              "children": []
+            },
+            {
+              "id": "toc-0003",
+              "title": "1.3 Conditions for usage and installation",
+              "printed_page": 13,
+              "start_page": 13,
+              "end_page": 13,
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "toc-0004",
+          "title": "2 Introduction",
+          "printed_page": 14,
+          "start_page": 14,
+          "end_page": 14,
+          "children": [
+            {
+              "id": "toc-0005",
+              "title": "2.1 Parts of the coffee machine",
+              "printed_page": 14,
+              "start_page": 14,
+              "end_page": 14,
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "toc-0006",
+          "title": "Display.....",
+          "printed_page": 14,
+          "start_page": 14,
+          "end_page": 16,
+          "children": []
+        },
+        {
+          "id": "toc-0007",
+          "title": "Glossary .....",
+          "printed_page": 17,
+          "start_page": 17,
+          "end_page": 17,
+          "children": []
+        },
+        {
+          "id": "toc-0008",
+          "title": "3 Operation",
+          "printed_page": 18,
+          "start_page": 18,
+          "end_page": 20,
+          "children": [
+            {
+              "id": "toc-0009",
+              "title": "3.1 Operation safety instructions",
+              "printed_page": 18,
+              "start_page": 18,
+              "end_page": 18,
+              "children": []
+            },
+            {
+              "id": "toc-0010",
+              "title": "3.2 Switch on coffee machine",
+              "printed_page": 19,
+              "start_page": 19,
+              "end_page": 19,
+              "children": []
+            },
+            {
+              "id": "toc-0011",
+              "title": "3.3 Milk or milk foam (optional)",
+              "printed_page": 19,
+              "start_page": 19,
+              "end_page": 20,
+              "children": [
+                {
+                  "id": "toc-0012",
+                  "title": "3.3.1 Connect up the milk.....",
+                  "printed_page": 19,
+                  "start_page": 19,
+                  "end_page": 19,
+                  "children": []
+                },
+                {
+                  "id": "toc-0013",
+                  "title": "3.3.2 Milk or milk foam dispensing .....",
+                  "printed_page": 20,
+                  "start_page": 20,
+                  "end_page": 20,
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "toc-0014",
+              "title": "3.4 Beverage dispensing",
+              "printed_page": 21,
+              "start_page": 21,
+              "end_page": 21,
+              "children": []
+            },
+            {
+              "id": "toc-0016",
+              "title": "3.5 Preselection pads (optional)",
+              "printed_page": 21,
+              "start_page": 21,
+              "end_page": 21,
+              "children": []
+            },
+            {
+              "id": "toc-0017",
+              "title": "3.6 Special buttons (optional)",
+              "printed_page": 21,
+              "start_page": 21,
+              "end_page": 21,
+              "children": []
+            },
+            {
+              "id": "toc-0018",
+              "title": "3.7 Hot water dispensing",
+              "printed_page": 22,
+              "start_page": 22,
+              "end_page": 22,
+              "children": []
+            },
+            {
+              "id": "toc-0019",
+              "title": "3.8 Basic Steam (optional)",
+              "printed_page": 22,
+              "start_page": 22,
+              "end_page": 23,
+              "children": []
+            },
+            {
+              "id": "toc-0020",
+              "title": "3.9 Height adjustment of the combi spout",
+              "printed_page": 24,
+              "start_page": 24,
+              "end_page": 24,
+              "children": []
+            },
+            {
+              "id": "toc-0021",
+              "title": "3.10 Bean hopper / powder hopper",
+              "printed_page": 24,
+              "start_page": 24,
+              "end_page": 24,
+              "children": []
+            },
+            {
+              "id": "toc-0022",
+              "title": "3.11 Manual insert (optional) / tablet insert",
+              "printed_page": 24,
+              "start_page": 24,
+              "end_page": 24,
+              "children": []
+            },
+            {
+              "id": "toc-0023",
+              "title": "3.12 Grounds container",
+              "printed_page": 25,
+              "start_page": 25,
+              "end_page": 25,
+              "children": []
+            },
+            {
+              "id": "toc-0024",
+              "title": "3.13 Grounds disposal through the counter (optional)",
+              "printed_page": 26,
+              "start_page": 26,
+              "end_page": 26,
+              "children": []
+            },
+            {
+              "id": "toc-0025",
+              "title": "3.14 Drip tray",
+              "printed_page": 26,
+              "start_page": 26,
+              "end_page": 26,
+              "children": [
+                {
+                  "id": "toc-0026",
+                  "title": "3.14.1 Drip tray sensor (optional).....",
+                  "printed_page": 26,
+                  "start_page": 26,
+                  "end_page": 26,
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "toc-0027",
+              "title": "3.15 Switch off the coffee machine",
+              "printed_page": 27,
+              "start_page": 27,
+              "end_page": 27,
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "toc-0015",
+          "title": "Cancel beverage .....",
+          "printed_page": 21,
+          "start_page": 21,
+          "end_page": 27,
+          "children": []
+        },
+        {
+          "id": "toc-0028",
+          "title": "4 Software",
+          "printed_page": 28,
+          "start_page": 28,
+          "end_page": 28,
+          "children": [
+            {
+              "id": "toc-0029",
+              "title": "4.1 Overview",
+              "printed_page": 28,
+              "start_page": 28,
+              "end_page": 29,
+              "children": []
+            },
+            {
+              "id": "toc-0035",
+              "title": "4.2 Ready to operate",
+              "printed_page": 30,
+              "start_page": 30,
+              "end_page": 31,
+              "children": [
+                {
+                  "id": "toc-0037",
+                  "title": "4.2.1 \"Ready to operate\" display pads .....",
+                  "printed_page": 30,
+                  "start_page": 30,
+                  "end_page": 30,
+                  "children": []
+                },
+                {
+                  "id": "toc-0041",
+                  "title": "4.2.2 SteamJet cup warmer.....",
+                  "printed_page": 31,
+                  "start_page": 31,
+                  "end_page": 31,
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "toc-0042",
+              "title": "4.3 Care",
+              "printed_page": 32,
+              "start_page": 32,
+              "end_page": 34,
+              "children": []
+            },
+            {
+              "id": "toc-0047",
+              "title": "4.4 Beverages",
+              "printed_page": 35,
+              "start_page": 35,
+              "end_page": 40,
+              "children": []
+            },
+            {
+              "id": "toc-0052",
+              "title": "4.5 Operating options",
+              "printed_page": 41,
+              "start_page": 41,
+              "end_page": 45,
+              "children": []
+            },
+            {
+              "id": "toc-0070",
+              "title": "4.6 Information .....",
+              "printed_page": 46,
+              "start_page": 46,
+              "end_page": 46,
+              "children": []
+            },
+            {
+              "id": "toc-0078",
+              "title": "4.7 Accounting .....",
+              "printed_page": 47,
+              "start_page": 47,
+              "end_page": 47,
+              "children": []
+            },
+            {
+              "id": "toc-0081",
+              "title": "4.8 PIN rights .....",
+              "printed_page": 48,
+              "start_page": 48,
+              "end_page": 48,
+              "children": []
+            },
+            {
+              "id": "toc-0085",
+              "title": "4.9 Timer .....",
+              "printed_page": 49,
+              "start_page": 49,
+              "end_page": 50,
+              "children": []
+            },
+            {
+              "id": "toc-0095",
+              "title": "4.10 System .....",
+              "printed_page": 51,
+              "start_page": 51,
+              "end_page": 54,
+              "children": []
+            },
+            {
+              "id": "toc-0106",
+              "title": "4.11 Language .....",
+              "printed_page": 55,
+              "start_page": 55,
+              "end_page": 55,
+              "children": []
+            },
+            {
+              "id": "toc-0107",
+              "title": "4.12 Eco-mode .....",
+              "printed_page": 55,
+              "start_page": 55,
+              "end_page": 55,
+              "children": []
+            },
+            {
+              "id": "toc-0108",
+              "title": "4.13 USB .....",
+              "printed_page": 56,
+              "start_page": 56,
+              "end_page": 56,
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "toc-0030",
+          "title": "Ready to operate .....",
+          "printed_page": 28,
+          "start_page": 28,
+          "end_page": 28,
+          "children": []
+        },
+        {
+          "id": "toc-0031",
+          "title": "\"Ready to operate\" display pads .....",
+          "printed_page": 28,
+          "start_page": 28,
+          "end_page": 28,
+          "children": []
+        },
+        {
+          "id": "toc-0032",
+          "title": "Main menu functions.....",
+          "printed_page": 29,
+          "start_page": 29,
+          "end_page": 29,
+          "children": []
+        },
+        {
+          "id": "toc-0033",
+          "title": "Menu control pads.....",
+          "printed_page": 29,
+          "start_page": 29,
+          "end_page": 29,
+          "children": []
+        },
+        {
+          "id": "toc-0034",
+          "title": "Messages on the display .....",
+          "printed_page": 29,
+          "start_page": 29,
+          "end_page": 29,
+          "children": []
+        },
+        {
+          "id": "toc-0036",
+          "title": "\"Ready to operate\" display.....",
+          "printed_page": 30,
+          "start_page": 30,
+          "end_page": 30,
+          "children": []
+        },
+        {
+          "id": "toc-0038",
+          "title": "Beverage buttons .....",
+          "printed_page": 30,
+          "start_page": 30,
+          "end_page": 30,
+          "children": []
+        },
+        {
+          "id": "toc-0039",
+          "title": "\"Warm rinse\" pad.....",
+          "printed_page": 30,
+          "start_page": 30,
+          "end_page": 30,
+          "children": []
+        },
+        {
+          "id": "toc-0040",
+          "title": "Barista pad - coffee strength .....",
+          "printed_page": 30,
+          "start_page": 30,
+          "end_page": 31,
+          "children": []
+        },
+        {
+          "id": "toc-0043",
+          "title": "Cleaning programs.....",
+          "printed_page": 32,
+          "start_page": 32,
+          "end_page": 32,
+          "children": []
+        },
+        {
+          "id": "toc-0044",
+          "title": "CleanLock .....",
+          "printed_page": 32,
+          "start_page": 32,
+          "end_page": 32,
+          "children": []
+        },
+        {
+          "id": "toc-0045",
+          "title": "Instructions.....",
+          "printed_page": 33,
+          "start_page": 33,
+          "end_page": 33,
+          "children": []
+        },
+        {
+          "id": "toc-0046",
+          "title": "Fill milk system (Dynamic Milk).....",
+          "printed_page": 33,
+          "start_page": 33,
+          "end_page": 34,
+          "children": []
+        },
+        {
+          "id": "toc-0048",
+          "title": "General information.....",
+          "printed_page": 35,
+          "start_page": 35,
+          "end_page": 35,
+          "children": []
+        },
+        {
+          "id": "toc-0049",
+          "title": "Cup volume, multiple brewing, and dispensing option .....",
+          "printed_page": 36,
+          "start_page": 36,
+          "end_page": 36,
+          "children": []
+        },
+        {
+          "id": "toc-0050",
+          "title": "Change recipes .....",
+          "printed_page": 37,
+          "start_page": 37,
+          "end_page": 39,
+          "children": []
+        },
+        {
+          "id": "toc-0051",
+          "title": "Text and illustration.....",
+          "printed_page": 40,
+          "start_page": 40,
+          "end_page": 40,
+          "children": []
+        },
+        {
+          "id": "toc-0053",
+          "title": "Keyboard layout .....",
+          "printed_page": 41,
+          "start_page": 41,
+          "end_page": 41,
+          "children": []
+        },
+        {
+          "id": "toc-0054",
+          "title": "Level switching .....",
+          "printed_page": 41,
+          "start_page": 41,
+          "end_page": 41,
+          "children": []
+        },
+        {
+          "id": "toc-0055",
+          "title": "Button allocation .....",
+          "printed_page": 41,
+          "start_page": 41,
+          "end_page": 41,
+          "children": []
+        },
+        {
+          "id": "toc-0056",
+          "title": "Rinsing signal .....",
+          "printed_page": 42,
+          "start_page": 42,
+          "end_page": 42,
+          "children": []
+        },
+        {
+          "id": "toc-0057",
+          "title": "Decaf factor .....",
+          "printed_page": 42,
+          "start_page": 42,
+          "end_page": 42,
+          "children": []
+        },
+        {
+          "id": "toc-0058",
+          "title": "Small .....",
+          "printed_page": 43,
+          "start_page": 43,
+          "end_page": 43,
+          "children": []
+        },
+        {
+          "id": "toc-0059",
+          "title": "Large .....",
+          "printed_page": 43,
+          "start_page": 43,
+          "end_page": 43,
+          "children": []
+        },
+        {
+          "id": "toc-0060",
+          "title": "Self-service mode .....",
+          "printed_page": 43,
+          "start_page": 43,
+          "end_page": 43,
+          "children": []
+        },
+        {
+          "id": "toc-0061",
+          "title": "Barista pad .....",
+          "printed_page": 43,
+          "start_page": 43,
+          "end_page": 43,
+          "children": []
+        },
+        {
+          "id": "toc-0062",
+          "title": "“Warm rinse” pad .....",
+          "printed_page": 44,
+          "start_page": 44,
+          "end_page": 44,
+          "children": []
+        },
+        {
+          "id": "toc-0063",
+          "title": "SteamJet pad (optional) .....",
+          "printed_page": 44,
+          "start_page": 44,
+          "end_page": 44,
+          "children": []
+        },
+        {
+          "id": "toc-0064",
+          "title": "Manual insert (depending on the model) .....",
+          "printed_page": 44,
+          "start_page": 44,
+          "end_page": 44,
+          "children": []
+        },
+        {
+          "id": "toc-0065",
+          "title": "Beverage preselection .....",
+          "printed_page": 44,
+          "start_page": 44,
+          "end_page": 44,
+          "children": []
+        },
+        {
+          "id": "toc-0066",
+          "title": "PostSelection .....",
+          "printed_page": 45,
+          "start_page": 45,
+          "end_page": 45,
+          "children": []
+        },
+        {
+          "id": "toc-0067",
+          "title": "Cancel beverage .....",
+          "printed_page": 45,
+          "start_page": 45,
+          "end_page": 45,
+          "children": []
+        },
+        {
+          "id": "toc-0068",
+          "title": "Menu pad .....",
+          "printed_page": 45,
+          "start_page": 45,
+          "end_page": 45,
+          "children": []
+        },
+        {
+          "id": "toc-0069",
+          "title": "Error message .....",
+          "printed_page": 45,
+          "start_page": 45,
+          "end_page": 45,
+          "children": []
+        },
+        {
+          "id": "toc-0071",
+          "title": "Last brewing cycle .....",
+          "printed_page": 46,
+          "start_page": 46,
+          "end_page": 46,
+          "children": []
+        },
+        {
+          "id": "toc-0072",
+          "title": "Timer .....",
+          "printed_page": 46,
+          "start_page": 46,
+          "end_page": 46,
+          "children": []
+        },
+        {
+          "id": "toc-0073",
+          "title": "Service .....",
+          "printed_page": 46,
+          "start_page": 46,
+          "end_page": 46,
+          "children": []
+        },
+        {
+          "id": "toc-0074",
+          "title": "Care .....",
+          "printed_page": 46,
+          "start_page": 46,
+          "end_page": 46,
+          "children": []
+        },
+        {
+          "id": "toc-0075",
+          "title": "Water filter and descaling .....",
+          "printed_page": 46,
+          "start_page": 46,
+          "end_page": 46,
+          "children": []
+        },
+        {
+          "id": "toc-0076",
+          "title": "Journal .....",
+          "printed_page": 46,
+          "start_page": 46,
+          "end_page": 46,
+          "children": []
+        },
+        {
+          "id": "toc-0077",
+          "title": "User Manual .....",
+          "printed_page": 46,
+          "start_page": 46,
+          "end_page": 46,
+          "children": []
+        },
+        {
+          "id": "toc-0079",
+          "title": "Counter .....",
+          "printed_page": 47,
+          "start_page": 47,
+          "end_page": 47,
+          "children": []
+        },
+        {
+          "id": "toc-0080",
+          "title": "Vending machines .....",
+          "printed_page": 47,
+          "start_page": 47,
+          "end_page": 47,
+          "children": []
+        },
+        {
+          "id": "toc-0082",
+          "title": "Cleaning PIN .....",
+          "printed_page": 48,
+          "start_page": 48,
+          "end_page": 48,
+          "children": []
+        },
+        {
+          "id": "toc-0083",
+          "title": "Settings PIN .....",
+          "printed_page": 48,
+          "start_page": 48,
+          "end_page": 48,
+          "children": []
+        },
+        {
+          "id": "toc-0084",
+          "title": "Accounting PIN .....",
+          "printed_page": 48,
+          "start_page": 48,
+          "end_page": 48,
+          "children": []
+        },
+        {
+          "id": "toc-0086",
+          "title": "Detail view of current day .....",
+          "printed_page": 49,
+          "start_page": 49,
+          "end_page": 49,
+          "children": []
+        },
+        {
+          "id": "toc-0087",
+          "title": "Set timer switching times .....",
+          "printed_page": 49,
+          "start_page": 49,
+          "end_page": 49,
+          "children": []
+        },
+        {
+          "id": "toc-0088",
+          "title": "Date / Time .....",
+          "printed_page": 49,
+          "start_page": 49,
+          "end_page": 49,
+          "children": []
+        },
+        {
+          "id": "toc-0089",
+          "title": "Timer status .....",
+          "printed_page": 49,
+          "start_page": 49,
+          "end_page": 49,
+          "children": []
+        },
+        {
+          "id": "toc-0090",
+          "title": "Timer overview and setting the timer .....",
+          "printed_page": 50,
+          "start_page": 50,
+          "end_page": 50,
+          "children": []
+        },
+        {
+          "id": "toc-0091",
+          "title": "Status of keyboard layout .....",
+          "printed_page": 50,
+          "start_page": 50,
+          "end_page": 50,
+          "children": []
+        },
+        {
+          "id": "toc-0092",
+          "title": "Keyboard layout overview .....",
+          "printed_page": 50,
+          "start_page": 50,
+          "end_page": 50,
+          "children": []
+        },
+        {
+          "id": "toc-0093",
+          "title": "Eco-mode state .....",
+          "printed_page": 51,
+          "start_page": 51,
+          "end_page": 51,
+          "children": []
+        },
+        {
+          "id": "toc-0094",
+          "title": "Eco-mode overview .....",
+          "printed_page": 51,
+          "start_page": 51,
+          "end_page": 51,
+          "children": []
+        },
+        {
+          "id": "toc-0096",
+          "title": "Milk and foam .....",
+          "printed_page": 51,
+          "start_page": 51,
+          "end_page": 51,
+          "children": []
+        },
+        {
+          "id": "toc-0097",
+          "title": "Illumination .....",
+          "printed_page": 52,
+          "start_page": 52,
+          "end_page": 52,
+          "children": []
+        },
+        {
+          "id": "toc-0098",
+          "title": "Switch-off rinsing .....",
+          "printed_page": 52,
+          "start_page": 52,
+          "end_page": 52,
+          "children": []
+        },
+        {
+          "id": "toc-0099",
+          "title": "Display brightness .....",
+          "printed_page": 53,
+          "start_page": 53,
+          "end_page": 53,
+          "children": []
+        },
+        {
+          "id": "toc-0100",
+          "title": "Reduce brightness .....",
+          "printed_page": 53,
+          "start_page": 53,
+          "end_page": 53,
+          "children": []
+        },
+        {
+          "id": "toc-0101",
+          "title": "Touch display calibration .....",
+          "printed_page": 53,
+          "start_page": 53,
+          "end_page": 53,
+          "children": []
+        },
+        {
+          "id": "toc-0102",
+          "title": "Eco-mode .....",
+          "printed_page": 53,
+          "start_page": 53,
+          "end_page": 53,
+          "children": []
+        },
+        {
+          "id": "toc-0103",
+          "title": "Temperature .....",
+          "printed_page": 54,
+          "start_page": 54,
+          "end_page": 54,
+          "children": []
+        },
+        {
+          "id": "toc-0104",
+          "title": "Water filter .....",
+          "printed_page": 54,
+          "start_page": 54,
+          "end_page": 54,
+          "children": []
+        },
+        {
+          "id": "toc-0105",
+          "title": "Machine configuration .....",
+          "printed_page": 54,
+          "start_page": 54,
+          "end_page": 55,
+          "children": []
+        },
+        {
+          "id": "toc-0109",
+          "title": "Load recipes .....",
+          "printed_page": 56,
+          "start_page": 56,
+          "end_page": 56,
+          "children": []
+        },
+        {
+          "id": "toc-0110",
+          "title": "Load cup symbols .....",
+          "printed_page": 56,
+          "start_page": 56,
+          "end_page": 56,
+          "children": []
+        },
+        {
+          "id": "toc-0111",
+          "title": "Save recipes .....",
+          "printed_page": 56,
+          "start_page": 56,
+          "end_page": 56,
+          "children": []
+        },
+        {
+          "id": "toc-0112",
+          "title": "Export counters .....",
+          "printed_page": 56,
+          "start_page": 56,
+          "end_page": 56,
+          "children": []
+        },
+        {
+          "id": "toc-0113",
+          "title": "HACCP export .....",
+          "printed_page": 56,
+          "start_page": 56,
+          "end_page": 56,
+          "children": []
+        },
+        {
+          "id": "toc-0114",
+          "title": "Data backup .....",
+          "printed_page": 57,
+          "start_page": 57,
+          "end_page": 57,
+          "children": []
+        },
+        {
+          "id": "toc-0115",
+          "title": "Load data .....",
+          "printed_page": 57,
+          "start_page": 57,
+          "end_page": 57,
+          "children": []
+        },
+        {
+          "id": "toc-0116",
+          "title": "Load language .....",
+          "printed_page": 57,
+          "start_page": 57,
+          "end_page": 57,
+          "children": []
+        },
+        {
+          "id": "toc-0117",
+          "title": "Firmware update .....",
+          "printed_page": 57,
+          "start_page": 57,
+          "end_page": 57,
+          "children": []
+        },
+        {
+          "id": "toc-0118",
+          "title": "5 Other settings",
+          "printed_page": 58,
+          "start_page": 58,
+          "end_page": 58,
+          "children": [
+            {
+              "id": "toc-0119",
+              "title": "5.1 Set grinding degree",
+              "printed_page": 58,
+              "start_page": 58,
+              "end_page": 58,
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "toc-0120",
+          "title": "6 Care",
+          "printed_page": 59,
+          "start_page": 59,
+          "end_page": 81,
+          "children": [
+            {
+              "id": "toc-0121",
+              "title": "6.1 Care safety instructions",
+              "printed_page": 59,
+              "start_page": 59,
+              "end_page": 60,
+              "children": []
+            },
+            {
+              "id": "toc-0122",
+              "title": "6.2 Cleaning intervals overview",
+              "printed_page": 61,
+              "start_page": 61,
+              "end_page": 61,
+              "children": []
+            },
+            {
+              "id": "toc-0123",
+              "title": "6.3 Cleaning programs",
+              "printed_page": 62,
+              "start_page": 62,
+              "end_page": 66,
+              "children": [
+                {
+                  "id": "toc-0124",
+                  "title": "6.3.1 System cleaning .....",
+                  "printed_page": 62,
+                  "start_page": 62,
+                  "end_page": 63,
+                  "children": []
+                },
+                {
+                  "id": "toc-0125",
+                  "title": "6.3.2 Mixer rinsing .....",
+                  "printed_page": 64,
+                  "start_page": 64,
+                  "end_page": 64,
+                  "children": []
+                },
+                {
+                  "id": "toc-0126",
+                  "title": "6.3.3 Milk system rinsing .....",
+                  "printed_page": 64,
+                  "start_page": 64,
+                  "end_page": 64,
+                  "children": []
+                },
+                {
+                  "id": "toc-0127",
+                  "title": "6.3.4 Foamer rinsing .....",
+                  "printed_page": 65,
+                  "start_page": 65,
+                  "end_page": 65,
+                  "children": []
+                },
+                {
+                  "id": "toc-0128",
+                  "title": "6.3.5 Foamer rinsing Dynamic Milk .....",
+                  "printed_page": 65,
+                  "start_page": 65,
+                  "end_page": 65,
+                  "children": []
+                },
+                {
+                  "id": "toc-0129",
+                  "title": "6.3.6 Milk system cleaning overview .....",
+                  "printed_page": 66,
+                  "start_page": 66,
+                  "end_page": 66,
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "toc-0130",
+              "title": "6.4 Descaling",
+              "printed_page": 67,
+              "start_page": 67,
+              "end_page": 71,
+              "children": [
+                {
+                  "id": "toc-0131",
+                  "title": "6.4.1 Descaling coffee machine with water tank. ....",
+                  "printed_page": 69,
+                  "start_page": 69,
+                  "end_page": 69,
+                  "children": []
+                },
+                {
+                  "id": "toc-0132",
+                  "title": "6.4.2 Descaling coffee machine with constant water supply .....",
+                  "printed_page": 70,
+                  "start_page": 70,
+                  "end_page": 71,
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "toc-0133",
+              "title": "6.5 Manual cleaning",
+              "printed_page": 72,
+              "start_page": 72,
+              "end_page": 81,
+              "children": [
+                {
+                  "id": "toc-0134",
+                  "title": "6.5.1 Clean the operating panel (CleanLock). ....",
+                  "printed_page": 72,
+                  "start_page": 72,
+                  "end_page": 72,
+                  "children": []
+                },
+                {
+                  "id": "toc-0135",
+                  "title": "6.5.2 Clean the grounds container (grounds chute, optional) .....",
+                  "printed_page": 73,
+                  "start_page": 73,
+                  "end_page": 73,
+                  "children": []
+                },
+                {
+                  "id": "toc-0136",
+                  "title": "6.5.3 Clean the brewing unit .....",
+                  "printed_page": 73,
+                  "start_page": 73,
+                  "end_page": 75,
+                  "children": []
+                },
+                {
+                  "id": "toc-0137",
+                  "title": "6.5.4 Clean the water tank .....",
+                  "printed_page": 76,
+                  "start_page": 76,
+                  "end_page": 76,
+                  "children": []
+                },
+                {
+                  "id": "toc-0138",
+                  "title": "6.5.5 Clean the drip tray. ....",
+                  "printed_page": 76,
+                  "start_page": 76,
+                  "end_page": 76,
+                  "children": []
+                },
+                {
+                  "id": "toc-0139",
+                  "title": "6.5.6 Clean the housing .....",
+                  "printed_page": 77,
+                  "start_page": 77,
+                  "end_page": 77,
+                  "children": []
+                },
+                {
+                  "id": "toc-0140",
+                  "title": "6.5.7 Clean milk system manually (Basic Milk / Easy Milk). ....",
+                  "printed_page": 77,
+                  "start_page": 77,
+                  "end_page": 78,
+                  "children": []
+                },
+                {
+                  "id": "toc-0141",
+                  "title": "6.5.8 Clean combi spout manually (Dynamic Milk). ....",
+                  "printed_page": 79,
+                  "start_page": 79,
+                  "end_page": 79,
+                  "children": []
+                },
+                {
+                  "id": "toc-0142",
+                  "title": "6.5.9 Clean the mixer .....",
+                  "printed_page": 79,
+                  "start_page": 79,
+                  "end_page": 79,
+                  "children": []
+                },
+                {
+                  "id": "toc-0143",
+                  "title": "6.5.10 Clean the bean hopper. ....",
+                  "printed_page": 80,
+                  "start_page": 80,
+                  "end_page": 80,
+                  "children": []
+                },
+                {
+                  "id": "toc-0144",
+                  "title": "6.5.11 Clean the powder hopper. ....",
+                  "printed_page": 81,
+                  "start_page": 81,
+                  "end_page": 81,
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "toc-0145",
+          "title": "7 HACCP cleaning schedule",
+          "printed_page": 82,
+          "start_page": 82,
+          "end_page": 83,
+          "children": []
+        },
+        {
+          "id": "toc-0146",
+          "title": "8 Maintenance and descaling",
+          "printed_page": 84,
+          "start_page": 84,
+          "end_page": 85,
+          "children": [
+            {
+              "id": "toc-0147",
+              "title": "8.1 Maintenance",
+              "printed_page": 84,
+              "start_page": 84,
+              "end_page": 84,
+              "children": []
+            },
+            {
+              "id": "toc-0148",
+              "title": "8.2 WMF Service",
+              "printed_page": 85,
+              "start_page": 85,
+              "end_page": 85,
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "toc-0149",
+          "title": "9 Messages and instructions",
+          "printed_page": 86,
+          "start_page": 86,
+          "end_page": 92,
+          "children": [
+            {
+              "id": "toc-0150",
+              "title": "9.1 Messages for operation",
+              "printed_page": 86,
+              "start_page": 86,
+              "end_page": 86,
+              "children": []
+            },
+            {
+              "id": "toc-0151",
+              "title": "9.2 Error messages and malfunctions",
+              "printed_page": 87,
+              "start_page": 87,
+              "end_page": 89,
+              "children": []
+            },
+            {
+              "id": "toc-0152",
+              "title": "9.3 Errors without error message",
+              "printed_page": 90,
+              "start_page": 90,
+              "end_page": 92,
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "toc-0153",
+          "title": "10 Safety and warranty",
+          "printed_page": 93,
+          "start_page": 93,
+          "end_page": 97,
+          "children": [
+            {
+              "id": "toc-0154",
+              "title": "10.1 Hazards to the coffee machine",
+              "printed_page": 93,
+              "start_page": 93,
+              "end_page": 94,
+              "children": []
+            },
+            {
+              "id": "toc-0155",
+              "title": "10.2 Directives",
+              "printed_page": 95,
+              "start_page": 95,
+              "end_page": 95,
+              "children": []
+            },
+            {
+              "id": "toc-0156",
+              "title": "10.3 Duties of the owner / operator",
+              "printed_page": 96,
+              "start_page": 96,
+              "end_page": 96,
+              "children": []
+            },
+            {
+              "id": "toc-0157",
+              "title": "10.4 Warranty claims",
+              "printed_page": 97,
+              "start_page": 97,
+              "end_page": 97,
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "toc-0158",
+          "title": "Appendix: Technical data",
+          "printed_page": 98,
+          "start_page": 98,
+          "end_page": 98,
+          "children": []
+        },
+        {
+          "id": "toc-0159",
+          "title": "Technical data for coffee machine",
+          "printed_page": 98,
+          "start_page": 98,
+          "end_page": 100,
+          "children": []
+        },
+        {
+          "id": "toc-0160",
+          "title": "Appendix: Accessories and spare parts",
+          "printed_page": 101,
+          "start_page": 101,
+          "end_page": 103,
+          "children": []
+        },
+        {
+          "id": "toc-0161",
+          "title": "Index",
+          "printed_page": 104,
+          "start_page": 104,
+          "end_page": 108,
+          "children": []
+        }
+      ]
+    }
+  ],
+  "questions": [
+    {
+      "id": "mlb2-3c384e7a0537",
+      "doc_id": "AMAZON_2017_10K.pdf",
+      "doc_type": "Financial report",
+      "question": "what is Amazon's FY2017 cash balance to total liability ratio? round your answer to three decimal",
+      "answer": "0.198",
+      "answer_format": "Float",
+      "evidence_pages": [
+        40,
+        50
+      ],
+      "evidence_sources": [
+        "Table"
+      ],
+      "answerable": true,
+      "task_type": "derive",
+      "upstream_requires_visual": false,
+      "in_pageindex_oss_subset": false,
+      "source": "MMLongBench-Doc-V2",
+      "source_row_index": 1037,
+      "reference_page_text_sha256": {
+        "40": "7be0566a460eb87ad4871d863528492ebcd4c87ce23b92b546600f526406f34f",
+        "50": "5b071d5586074578877e48640b531581da9f3bd2ec6881a8faefa6265d628029"
+      }
+    },
+    {
+      "id": "mlb2-bbe12dd39bef",
+      "doc_id": "AMAZON_2017_10K.pdf",
+      "doc_type": "Financial report",
+      "question": "what are the components of cost of sales  for Amazon's FY2017?",
+      "answer": "['the purchase price of consumer products', 'digital media content costs', 'packaging supplies', 'sortation and delivery centers and related equipment costs', 'inbound and outbound shipping costs']",
+      "answer_format": "List",
+      "evidence_pages": [
+        44
+      ],
+      "evidence_sources": [
+        "Pure-text (Plain-text)"
+      ],
+      "answerable": true,
+      "task_type": "enumerate",
+      "upstream_requires_visual": false,
+      "in_pageindex_oss_subset": false,
+      "source": "MMLongBench-Doc-V2",
+      "source_row_index": 1040,
+      "reference_page_text_sha256": {
+        "44": "b037ad2796e30cf31c61f4a0a8afe4f4b3029a55da0f4a46229afc3b61b43ac3"
+      }
+    },
+    {
+      "id": "pi-oss-f8fc68db6b5d",
+      "doc_id": "AMAZON_2017_10K.pdf",
+      "doc_type": "Financial report",
+      "question": "How do Amazon recognize lease costs?",
+      "answer": "straight-line basis without regard to deferred payment terms",
+      "answer_format": "Str",
+      "evidence_pages": [
+        47
+      ],
+      "evidence_sources": [
+        "Pure-text (Plain-text)"
+      ],
+      "answerable": true,
+      "task_type": "lookup",
+      "upstream_requires_visual": false,
+      "in_pageindex_oss_subset": true,
+      "source": "MMLongBench-Doc-V2",
+      "source_row_index": 1041,
+      "reference_page_text_sha256": {
+        "47": "ea5d0bb47eb3fa4372466e98f449708d097f3cc6ad039afb2eedc7b67df2cecf"
+      }
+    },
+    {
+      "id": "pi-oss-a9021020fce3",
+      "doc_id": "AMAZON_2017_10K.pdf",
+      "doc_type": "Financial report",
+      "question": "what amount is liabilities for unredeemed gift cards in FY2017 for Amazon? Answer in billion.",
+      "answer": "3.0",
+      "answer_format": "Float",
+      "evidence_pages": [
+        48
+      ],
+      "evidence_sources": [
+        "Pure-text (Plain-text)"
+      ],
+      "answerable": true,
+      "task_type": "lookup",
+      "upstream_requires_visual": false,
+      "in_pageindex_oss_subset": true,
+      "source": "MMLongBench-Doc-V2",
+      "source_row_index": 1042,
+      "reference_page_text_sha256": {
+        "48": "0b1437b834a5ed9bff4a83ce96542144dcf66137374f204782195a2f6fbfbbbd"
+      }
+    },
+    {
+      "id": "pi-oss-303e9cebcd66",
+      "doc_id": "AMAZON_2017_10K.pdf",
+      "doc_type": "Financial report",
+      "question": "what is depreciation expense on property and equipment in 2017 for Amazon? Answer in billion",
+      "answer": "8.8",
+      "answer_format": "Float",
+      "evidence_pages": [
+        52
+      ],
+      "evidence_sources": [
+        "Pure-text (Plain-text)"
+      ],
+      "answerable": true,
+      "task_type": "lookup",
+      "upstream_requires_visual": false,
+      "in_pageindex_oss_subset": true,
+      "source": "MMLongBench-Doc-V2",
+      "source_row_index": 1043,
+      "reference_page_text_sha256": {
+        "52": "cb7209ee815e7152b9c7e2aa72525408dcd33f51ddae7dcede2642becb42cd17"
+      }
+    },
+    {
+      "id": "mlb2-1ae2534c2fe8",
+      "doc_id": "BESTBUY_2023_10K.pdf",
+      "doc_type": "Financial report",
+      "question": "what is Return on Capital Employed for the fiscal year ending January 28, 2023? round your answer to three decimal places ",
+      "answer": "0.263 ",
+      "answer_format": "Float",
+      "evidence_pages": [
+        25,
+        39
+      ],
+      "evidence_sources": [
+        "Table"
+      ],
+      "answerable": true,
+      "task_type": "lookup",
+      "upstream_requires_visual": false,
+      "in_pageindex_oss_subset": false,
+      "source": "MMLongBench-Doc-V2",
+      "source_row_index": 1052,
+      "reference_page_text_sha256": {
+        "25": "cc486010c61b97ad8a21bc1fdfae2b62ef71188dad355eefec69efb6cdf982ff",
+        "39": "206c18c4cf9c5423d630fe67c1551ae751d540005567787f25793b2861f78f77"
+      }
+    },
+    {
+      "id": "pi-oss-a55448348fbb",
+      "doc_id": "BESTBUY_2023_10K.pdf",
+      "doc_type": "Financial report",
+      "question": "how does Best Buy record Merchandise inventories?",
+      "answer": "the lower of cost or net realizable value",
+      "answer_format": "Str",
+      "evidence_pages": [
+        45
+      ],
+      "evidence_sources": [
+        "Pure-text (Plain-text)"
+      ],
+      "answerable": true,
+      "task_type": "lookup",
+      "upstream_requires_visual": false,
+      "in_pageindex_oss_subset": true,
+      "source": "MMLongBench-Doc-V2",
+      "source_row_index": 1057,
+      "reference_page_text_sha256": {
+        "45": "9669e1079bb80e3bce0f858466584111d4dfd034d4514931bdc408265e06217d"
+      }
+    },
+    {
+      "id": "pi-oss-c97407afe5f0",
+      "doc_id": "BESTBUY_2023_10K.pdf",
+      "doc_type": "Financial report",
+      "question": "what goodwill does Best Buy have for for the fiscal year ending January 28, 2023?",
+      "answer": "1383",
+      "answer_format": "Int",
+      "evidence_pages": [
+        39
+      ],
+      "evidence_sources": [
+        "Pure-text (Plain-text)"
+      ],
+      "answerable": true,
+      "task_type": "lookup",
+      "upstream_requires_visual": false,
+      "in_pageindex_oss_subset": true,
+      "source": "MMLongBench-Doc-V2",
+      "source_row_index": 1058,
+      "reference_page_text_sha256": {
+        "39": "206c18c4cf9c5423d630fe67c1551ae751d540005567787f25793b2861f78f77"
+      }
+    },
+    {
+      "id": "pi-oss-ad5dbad521ca",
+      "doc_id": "BESTBUY_2023_10K.pdf",
+      "doc_type": "Financial report",
+      "question": "what proportion does Best Buy have female employees in new, salaried field positions  for the fiscal year ending January 28, 2023?",
+      "answer": "25%",
+      "answer_format": "Float",
+      "evidence_pages": [
+        7
+      ],
+      "evidence_sources": [
+        "Pure-text (Plain-text)"
+      ],
+      "answerable": true,
+      "task_type": "lookup",
+      "upstream_requires_visual": false,
+      "in_pageindex_oss_subset": true,
+      "source": "MMLongBench-Doc-V2",
+      "source_row_index": 1060,
+      "reference_page_text_sha256": {
+        "7": "ce287aa3fb9160f26abf2ee114921628bfd82db71ccba960110bb90db4e888b7"
+      }
+    },
+    {
+      "id": "mlb2-68fe98d0f7fb",
+      "doc_id": "BESTBUY_2023_10K.pdf",
+      "doc_type": "Financial report",
+      "question": "how many Domestic store does Best Buy have in fiscal 2023?",
+      "answer": "978",
+      "answer_format": "Int",
+      "evidence_pages": [
+        19
+      ],
+      "evidence_sources": [
+        "Table"
+      ],
+      "answerable": true,
+      "task_type": "lookup",
+      "upstream_requires_visual": false,
+      "in_pageindex_oss_subset": false,
+      "source": "MMLongBench-Doc-V2",
+      "source_row_index": 1061,
+      "reference_page_text_sha256": {
+        "19": "4c9f8ccd8d72260885601875e29eb01a1e99715238fe87ed4ac5f3d6b7a72ae4"
+      }
+    },
+    {
+      "id": "mlb2-5023c270cfa8",
+      "doc_id": "ACTIVISIONBLIZZARD_2019_10K.pdf",
+      "doc_type": "Financial report",
+      "question": "what is the FY2019 fixed asset turnover ratio for Activision Blizzard?",
+      "answer": "24.26",
+      "answer_format": "Float",
+      "evidence_pages": [
+        69,
+        70
+      ],
+      "evidence_sources": [
+        "Table"
+      ],
+      "answerable": true,
+      "task_type": "lookup",
+      "upstream_requires_visual": false,
+      "in_pageindex_oss_subset": false,
+      "source": "MMLongBench-Doc-V2",
+      "source_row_index": 988,
+      "reference_page_text_sha256": {
+        "69": "48f363f37eb4df7f5542f6f90fd78395b1871b2d713d2294b54be1fad7bc9e76",
+        "70": "e18bce25f4a75da977d5366a99aa43e5754a30b1e9b3484b10387360235b9d7e"
+      }
+    },
+    {
+      "id": "mlb2-4978b2e47a2c",
+      "doc_id": "ACTIVISIONBLIZZARD_2019_10K.pdf",
+      "doc_type": "Financial report",
+      "question": "What is the FY2017 - FY2019 3 year average of capex to revenue ratio for Activision Blizzard?Answer in units of percents and round to one decimal place. ",
+      "answer": "1.9%",
+      "answer_format": "Float",
+      "evidence_pages": [
+        70,
+        73
+      ],
+      "evidence_sources": [],
+      "answerable": true,
+      "task_type": "derive",
+      "upstream_requires_visual": false,
+      "in_pageindex_oss_subset": false,
+      "source": "MMLongBench-Doc-V2",
+      "source_row_index": 989,
+      "reference_page_text_sha256": {
+        "70": "e18bce25f4a75da977d5366a99aa43e5754a30b1e9b3484b10387360235b9d7e",
+        "73": "86182191a9e788da2e0e0775731dcfaa3fd087b1ab53a6c9f7f9d2564b753a5f"
+      }
+    },
+    {
+      "id": "mlb2-62f288595f8d",
+      "doc_id": "ACTIVISIONBLIZZARD_2019_10K.pdf",
+      "doc_type": "Financial report",
+      "question": "what is R&D to asset ratio for Activision Blizzard in FY 2019? ",
+      "answer": "5.03%",
+      "answer_format": "Float",
+      "evidence_pages": [
+        47,
+        69
+      ],
+      "evidence_sources": [
+        "Table"
+      ],
+      "answerable": true,
+      "task_type": "lookup",
+      "upstream_requires_visual": false,
+      "in_pageindex_oss_subset": false,
+      "source": "MMLongBench-Doc-V2",
+      "source_row_index": 990,
+      "reference_page_text_sha256": {
+        "47": "bc8117e91b345f806d2ce645e1dc8cfedb42bf3ae9ae62450f8a1f7f532ddb94",
+        "69": "48f363f37eb4df7f5542f6f90fd78395b1871b2d713d2294b54be1fad7bc9e76"
+      }
+    },
+    {
+      "id": "mlb2-65206bcc55cf",
+      "doc_id": "ACTIVISIONBLIZZARD_2019_10K.pdf",
+      "doc_type": "Financial report",
+      "question": "what is Interest Coverage Ratio for Activsion Blizzard In F2019?",
+      "answer": "17.85",
+      "answer_format": "Float",
+      "evidence_pages": [
+        70,
+        114
+      ],
+      "evidence_sources": [
+        "Table"
+      ],
+      "answerable": true,
+      "task_type": "lookup",
+      "upstream_requires_visual": false,
+      "in_pageindex_oss_subset": false,
+      "source": "MMLongBench-Doc-V2",
+      "source_row_index": 991,
+      "reference_page_text_sha256": {
+        "70": "e18bce25f4a75da977d5366a99aa43e5754a30b1e9b3484b10387360235b9d7e",
+        "114": "be00327ca8eeb6277246766c22fc72ae8cb980ae3d438518e5dfbb144694004b"
+      }
+    },
+    {
+      "id": "pi-oss-c8533f45e99f",
+      "doc_id": "ACTIVISIONBLIZZARD_2019_10K.pdf",
+      "doc_type": "Financial report",
+      "question": "what value stock does Activsion Blizzard repurchase in FY2019? Answer in USD billion\n",
+      "answer": "0",
+      "answer_format": "Float",
+      "evidence_pages": [
+        29
+      ],
+      "evidence_sources": [
+        "Pure-text (Plain-text)"
+      ],
+      "answerable": true,
+      "task_type": "lookup",
+      "upstream_requires_visual": false,
+      "in_pageindex_oss_subset": true,
+      "source": "MMLongBench-Doc-V2",
+      "source_row_index": 992,
+      "reference_page_text_sha256": {
+        "29": "dde5c0a7c61c7138f6d45a482059e2671033ae1d790feb62a15dc724c9da2584"
+      }
+    },
+    {
+      "id": "mlb2-66ac018b13d5",
+      "doc_id": "User_Manual_1500S_Classic_EN.pdf",
+      "doc_type": "Guidebook",
+      "question": "What temperature does the green color of the coffee machine represent for the milk?",
+      "answer": "very cold milk (up to 8 degrees celsius)",
+      "answer_format": "Str",
+      "evidence_pages": [
+        19
+      ],
+      "evidence_sources": [],
+      "answerable": true,
+      "task_type": "lookup",
+      "upstream_requires_visual": true,
+      "in_pageindex_oss_subset": false,
+      "source": "MMLongBench-Doc-V2",
+      "source_row_index": 470,
+      "reference_page_text_sha256": {
+        "19": "5118e124438434cf97726803ac734ac0fb611406df771de3adadb4d39b106856"
+      }
+    },
+    {
+      "id": "mlb2-d84051dd72bd",
+      "doc_id": "User_Manual_1500S_Classic_EN.pdf",
+      "doc_type": "Guidebook",
+      "question": "How many grams of coffee can be put in the manual insert? Return me an integer.",
+      "answer": "16",
+      "answer_format": "Int",
+      "evidence_pages": [
+        24,
+        25
+      ],
+      "evidence_sources": [
+        "Generalized-text (Layout)"
+      ],
+      "answerable": true,
+      "task_type": "lookup",
+      "upstream_requires_visual": false,
+      "in_pageindex_oss_subset": false,
+      "source": "MMLongBench-Doc-V2",
+      "source_row_index": 472,
+      "reference_page_text_sha256": {
+        "24": "fe9e1268fc51281c28f62c9be8425da80aa7bc963c7d4650d14a51a3ef2e1d32",
+        "25": "51906f333442356af632f4b6c19b6afc3791848933adda35e82d502679d3e0f0"
+      }
+    },
+    {
+      "id": "mlb2-18e011e92e01",
+      "doc_id": "User_Manual_1500S_Classic_EN.pdf",
+      "doc_type": "Guidebook",
+      "question": "How many USB functions are available for data exchange?",
+      "answer": "9",
+      "answer_format": "Int",
+      "evidence_pages": [
+        56,
+        57
+      ],
+      "evidence_sources": [
+        "Generalized-text (Layout)"
+      ],
+      "answerable": true,
+      "task_type": "lookup",
+      "upstream_requires_visual": false,
+      "in_pageindex_oss_subset": false,
+      "source": "MMLongBench-Doc-V2",
+      "source_row_index": 476,
+      "reference_page_text_sha256": {
+        "56": "d7c367918a52bbdb195cc456552cc139a6a1417312b47a9a3b2e3763eff53f12",
+        "57": "db87c3a05df38ab606311cbeb6fff1c3b90ae361c2b71df5aa4013011a69d3a9"
+      }
+    },
+    {
+      "id": "pi-oss-b728c1d683c6",
+      "doc_id": "User_Manual_1500S_Classic_EN.pdf",
+      "doc_type": "Guidebook",
+      "question": "How many coffee quality levels can the coffee machine be set to?",
+      "answer": "7",
+      "answer_format": "Int",
+      "evidence_pages": [
+        39
+      ],
+      "evidence_sources": [
+        "Pure-text (Plain-text)"
+      ],
+      "answerable": true,
+      "task_type": "lookup",
+      "upstream_requires_visual": false,
+      "in_pageindex_oss_subset": true,
+      "source": "MMLongBench-Doc-V2",
+      "source_row_index": 477,
+      "reference_page_text_sha256": {
+        "39": "3ef8ec94cfdf8f8a40b8f9e0244b7ce641d32b397030898186b9b206fd3deb07"
+      }
+    },
+    {
+      "id": "mlb2-3def27336095",
+      "doc_id": "User_Manual_1500S_Classic_EN.pdf",
+      "doc_type": "Guidebook",
+      "question": "What are the error descriptions corresponding to error numbers 88 and 188?",
+      "answer": "['Boiler: over-temperature ', 'Heater error ']",
+      "answer_format": "List",
+      "evidence_pages": [
+        88,
+        89
+      ],
+      "evidence_sources": [
+        "Table"
+      ],
+      "answerable": true,
+      "task_type": "lookup",
+      "upstream_requires_visual": false,
+      "in_pageindex_oss_subset": false,
+      "source": "MMLongBench-Doc-V2",
+      "source_row_index": 478,
+      "reference_page_text_sha256": {
+        "88": "8bf7140a032b27b3af13af3898b62d1f4b0aa77beaba5faf18f722307f5d7062",
+        "89": "1ed1c663ef9c19f991eec4f17d2dba74164f7346bfef81e87609ea5dbf01e1b7"
+      }
+    }
+  ]
+}

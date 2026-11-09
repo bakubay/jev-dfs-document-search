@@ -1,123 +1,68 @@
-![A small scout exhaustively traverses a document graph, including a branch ranked 0.00, toward an evidence folder.](docs/assets/jev-dfs-header.png)
+![A scout traverses a document graph toward evidence.](docs/assets/jev-dfs-header.png)
 
-<p align="center"><em>Ranking sets the route. It does not erase the map.</em></p>
+# ToC evidence retrieval with JEV
 
-# JEV exhaustive ToC search experiment
+A small experiment inspired by [PageIndex](https://github.com/VectifyAI/PageIndex)
+and its [JEV document search](https://github.com/VectifyAI/jev-doc-search).
+Can we reuse a PDF's real table of contents and parsed pages, then use fast
+decision models to find evidence without generating a separate summary tree?
 
-This repository tests one narrow idea:
+This repository contains **three retrieval methods**. Each receives a question
+and the same prepared document, then returns original source pages. Answer
+generation is downstream and is not implemented here.
 
-> Can a parser give us enough structure to search a PDF directly through its
-> real table of contents and physical pages, while cheap, fast JEV judgments
-> make an exhaustive depth-first fallback practical?
+| Method | Navigation and reading | When it stops |
+|---|---|---|
+| JEV DFS | JEV ranks immediate ToC children; Python searches them depth first and checks bounded page windows. Every sibling stays available. | Selected evidence passes a joint sufficiency check, or all remaining nonempty pages have been checked. |
+| Exhaustive JEV | The same page checks run across the whole document with up to eight concurrent workers. No ToC ranking. | All windows finish; code selects and assesses evidence once. |
+| Sol agent | Sol chooses descend, read, backtrack, finish or stop actions. Python supplies raw pages. No JEV calls. | Sol finishes, abstains, or reaches its step/context budget. |
 
-It is an experimental prototype, not a final retrieval architecture and not a
-claim that this is the best way to search documents.
+Both JEV methods ask four independent judgments per target page in **one call
+per window**. Evidence selection is followed by a separate joint check because
+its input depends on the completed page judgments. Read windows and returned
+evidence are each capped at **8 complete pages / 12,000 text tokens**; neighbors
+count toward the limits. Page text is never truncated to fit.
 
-## Why this exists
+## Start here
 
-[PageIndex](https://github.com/VectifyAI/PageIndex) is the major inspiration.
-Its hierarchical view of a document makes long-document search easier to reason
-about than one flat retrieval operation.
+- [One-question timeline](docs/traces/jev-simple-execution-trace.html): actual requests, replies, code actions and timing for the coffee example.
+- [Study and all replays](docs/traces/jev-retrieval-study.html): four PDFs, twenty annotated questions, three methods, three repeats.
+- [Results and limitations](docs/results/retrieval-repeated-2026-11-08/summary.md).
 
-This experiment asks a different follow-up question: for a text-based PDF with
-a useful table of contents, can we avoid generating a separate summary tree?
-Instead, we try to:
+The HTML files work offline. They are recorded snapshots, not live searches.
+Their source snippets match the code at recording time, before this repository
+was consolidated. The file map below describes the current implementation.
 
-1. parse the PDF with a document parser such as Datalab;
-2. recover the document's own ToC;
-3. ground printed ToC page numbers to physical PDF pages;
-4. let JEV order the available branches at each level;
-5. traverse those branches with depth-first search;
-6. keep every sibling available, even when JEV gives it a low probability; and
-7. in the worst case, check every parsed text page before reporting that no
-   sufficient evidence was found.
-
-PageIndex inspired the hierarchical traversal. This repository deliberately
-tests direct traversal over parser output, real ToC entries, and real page text.
-It does not use the PageIndex package or generated section summaries.
-
-## Pipeline
+## Code map
 
 ```text
-PDF
-  ↓
-Datalab paginated parse
-  ↓
-real ToC entries + physical page text
-  ↓
-printed-page → PDF-page grounding
-  ↓
-ToC tree with explicit uncovered page ranges
-  ↓
-JEV Choice orders immediate children
-  ↓
-ordered DFS visits branches (Choice never prunes)
-  ↓
-JEV screens and verifies pages with adjacent-page context
-  ↓
-useful evidence accumulates across branches
-  ↓
-Sol drafts a source-grounded answer
-  ↓
-exact citation validation + JEV completeness/support gate
-  ├── accepted → return the answer
-  └── incomplete → resume the saved DFS frontier
-                         ↓
-                frontier exhausted
-                         ↓
-        audit any parsed pages missed by the ToC
-                         ↓
-        report measured page coverage and limitations
+retrieval/
+  jev.py          JEV DFS + exhaustive JEV; page questions, evidence selection, stopping
+  sol.py          Sol prompt, action loop, page reads and evidence selection
+  tree.py         document types, ToC construction, ranking, descent and backtracking
+  windows.py      complete-page batching shared by both providers
+  common.py       evidence budgets, result type and coverage accounting
+  config.py       model default and local .env loading
+  run.py          retrieval timing and source-version recording helpers
+  __main__.py     single-question command
+preparation/
+  parse.py        Datalab PDF parsing
+  ground_toc.py   extract the real ToC and map it to physical PDF pages
+evaluation/      dataset preparation, three-method runner, repeats, recall and cost
+reporting/       builders for the two retained HTML views
+tests/           deterministic tests; no live model calls
+docs/            latest study, frozen question manifest and two HTML snapshots
 ```
 
-Python owns traversal, coverage, citation checks, thresholds, and stopping.
-JEV supplies typed semantic judgments (`Choice` and `Noul`). Sol writes the
-candidate answer; it does not decide whether the search is complete.
+Start reading **`JevDFSRetriever._scan_leaf()` in [retrieval/jev.py](retrieval/jev.py)**:
+check windows → pack useful evidence → assess sufficiency → continue if needed.
+`OrderedDFSSearcher._search_node()` in [retrieval/tree.py](retrieval/tree.py)
+handles the surrounding branch traversal. For Sol, start at `SolRetriever.search()`
+in [retrieval/sol.py](retrieval/sol.py).
 
-## What “exhaustive” means here
+## Setup and one search
 
-In evaluated mode, JEV ranking changes only the order of traversal. A branch is
-not deleted because its local probability is small or zero. If no answer passes
-the stopping gate, DFS continues through the saved siblings and finally audits
-parsed pages that were not reached through the ToC.
-
-An `all_pages_checked` result means that the configured model checks completed
-against every expected, non-truncated parsed text page. It does **not** prove
-that the original PDF contains no answer. Parsing errors, missing text, tables,
-images, incorrect ToC grounding, model mistakes, and context limits remain
-possible. Empty, missing, or truncated pages prevent the implementation from
-making the clean all-pages claim.
-
-## Stopping rule
-
-A candidate answer stops search only when all of these conditions hold:
-
-- Sol reports the original question fully answered;
-- at least one exact source citation validates against retained page text;
-- JEV classifies the result as `direct` or `explicit_negative`;
-- JEV completeness is at least `0.85`; and
-- JEV source support is at least `0.85`.
-
-The `0.85` values are conservative demo policies, not calibrated guarantees.
-If the gate rejects a draft, its useful evidence and missing-information note
-remain available while DFS resumes from the existing frontier.
-
-## Repository layout
-
-```text
-datalab_parse.py          submit a PDF and preserve paginated parser output
-datalab_ground_toc.py     extract/ground the real ToC and emit physical pages
-datalab_dfs_search.py     build the ToC tree and run JEV-ordered DFS
-evaluated_dfs.py          accumulate evidence, draft, judge, resume, and audit
-openai_grounded_answer.py produce a structured answer with exact citations
-tests/                    deterministic traversal, coverage, and citation tests
-evaluation/               benchmark import, gold mapping, and trace metrics
-docs/traces/              standalone interactive recorded-run explainers
-```
-
-## Setup
-
-Python 3.12 was used for the prototype.
+Python 3.12 is used for the prototype.
 
 ```bash
 python -m venv .venv
@@ -126,123 +71,56 @@ pip install -r requirements.txt
 cp .env.example .env
 ```
 
-Fill in the ignored `.env` file:
-
-```env
-TYPESAFE_API_KEY=...
-DATALAB_API_KEY=...
-OPENAI_API_KEY=...
-OPENAI_MODEL=gpt-6.1-sol
-```
-
-## Run the experiment
-
-### 1. Parse a text-based PDF
+Fill in the ignored `.env`: JEV needs `TYPESAFE_API_KEY`; Sol needs
+`OPENAI_API_KEY` and optionally `OPENAI_MODEL`. Parsing needs `DATALAB_API_KEY`.
+The two JEV methods do not need an OpenAI key.
 
 ```bash
-python datalab_parse.py document.pdf \
-  --output runs/document \
-  --mode balanced
+python -m preparation.parse document.pdf --output runs/document --mode balanced
+python -m preparation.ground_toc runs/document/document.json --output runs/document/grounded
+python -m retrieval runs/document/grounded "What evidence supports this claim?" \
+  --method jev_dfs --output runs/document/dfs.json
 ```
 
-The parser response is saved locally so later experiments do not need to parse
-the same PDF again.
+Use `--method exhaustive` or `--method sol_only` for the other methods, with a
+new output filename. The result includes full evidence pages, coverage, model
+requests/replies, usage and elapsed time. Prepared inputs are `pages.jsonl` and
+`toc_entries.json`; raw PDFs, parser outputs, keys and live run logs stay ignored.
 
-### 2. Extract and ground its ToC
+## Compare the methods
 
-```bash
-python datalab_ground_toc.py \
-  runs/document/document.json \
-  --output runs/document/grounded
-```
-
-This produces:
-
-- `pages.jsonl`: one record per physical PDF page;
-- `toc_entries.json`: real ToC entries grounded to physical pages; and
-- `grounding_report.json`: offset votes, verification counts, and failures.
-
-The current grounding method combines heading similarity with a dominant
-printed-page/PDF-page offset. It worked for the demo document, but it is one of
-the experiment's most obvious areas for improvement.
-
-### 3. Search, draft, evaluate, and resume
-
-```bash
-python datalab_dfs_search.py \
-  runs/document/grounded \
-  "What are the four functions in the AI RMF Core?" \
-  --answer \
-  --json-output runs/document/search-trace.json
-```
-
-The JSON output records branch rankings, page judgments, evidence, drafts,
-answer evaluations, backtracking, coverage, and the final status.
-
-## Recorded trace explainers
-
-The two HTML files are standalone snapshots. They require no server or API keys;
-open them directly in a browser.
-
-- [Visual token and control flow](docs/traces/jev-token-flow-trace.html) follows
-  the query, branch order, page checks, evidence, draft, rejection, and resumed
-  DFS as data moves through the system.
-- [Exact payload trace](docs/traces/jev-exact-payload-trace.html) exposes the
-  recorded inputs, normalized outputs, decision policy, search memory, and
-  coverage through a Langfuse-style observation tree.
-
-The latter is a Langfuse-style projection from recorded application events, not
-a Langfuse export. Both explainers describe one run against the 48-page NIST AI
-RMF 1.0 PDF and label the limits of the recorded data.
-
-## Tests
+See [evaluation/README.md](evaluation/README.md) for dataset preparation, paired
+runs, repeated experiments and offline report rebuilding.
 
 ```bash
 python -m pytest -q
 ```
 
-The deterministic tests cover ToC-tree construction, ordered DFS backtracking,
-retention of low/zero-probability siblings, exhaustive page verification,
-evidence accumulation, answer-gate continuation, and exact citation validation.
+Tests cover branch recovery, uncovered pages, joint evidence across sections,
+parallel windows, page/token limits, failed requests, invalid agent actions,
+returned-page recall and faithful trace reconstruction. No API keys are needed.
 
-## Evaluation work
+## What this experiment can and cannot establish
 
-The initial evaluation adapter uses
-[`PageIndex-OSS-Benchmark`](https://github.com/VectifyAI/PageIndex-OSS-Benchmark),
-which provides 62 answerable text-lookup questions over 34 PDFs with reference
-answers and physical evidence pages. The upstream files are downloaded locally,
-not copied into this repository.
+Timing runs from the question to returned evidence, including navigation and
+stopping decisions. It excludes parsing, ground-truth scoring and answer writing.
+Client-observed API time includes network, provider and SDK overhead.
 
-Run `python -m evaluation.pageindex_oss ...` to normalize its annotations and
-cheaply screen for PDFs that appear to expose a real ToC. After Datalab
-grounding, the gold evidence pages map deterministically to the deepest
-containing ToC paths. See [evaluation/README.md](evaluation/README.md).
+DFS may spend extra calls navigating weak ToC labels. Parallel exhaustive checks
+can finish sooner despite reading more pages. Model sufficiency is a judgment,
+not a guarantee; thresholds are experimental. Exhausting all parsed text does
+not prove an answer is absent from the original PDF. Parsing, grounding, missing
+text, images and model mistakes remain limitations. The grounding heuristic
+uses heading matches and printed/physical-page offsets; it is not universal.
 
-JEV usage is recorded as both HTTP requests and logical questions because a
-single request may batch several independent judgments. Search traces also
-carry elapsed timestamps, enabling time-to-first-gold-section measurement.
+This is a quick trial, not a claim of the best retrieval architecture. The study
+uses a convenience cohort and exact annotated-page recall, which can miss valid
+alternative evidence. See the retained study's evidence review before drawing
+quality conclusions.
 
-The first three-question engineering smoke test is recorded in
-[the Amazon 2017 10-K pilot comparison](docs/results/amazon-pilot.md). It
-validates the full comparison harness, but is explicitly too small and
-homogeneous to support a general retrieval claim.
+## Attribution
 
-## What this prototype does not settle
-
-- whether DFS is the best latency/cost tradeoff for large documents;
-- whether parser-derived ToCs work reliably across diverse PDF layouts;
-- how to handle scanned PDFs, diagrams, complex tables, or missing text;
-- how thresholds should be calibrated on a representative evaluation set;
-- how to compress large accumulated evidence without damaging recall;
-- whether a best-first, beam, hybrid, or learned policy should replace DFS; or
-- whether the answer writer and evaluator should use different models.
-
-Those are evaluation questions, not conclusions hidden by the demo.
-
-## Attribution and license
-
-This work began from VectifyAI's open-source
-[`jev-doc-search`](https://github.com/VectifyAI/jev-doc-search) example and was
-substantially refocused into the direct-parser, exhaustive-DFS experiment above.
-PageIndex remains the central architectural inspiration. The original Apache 2.0
-license is preserved in [LICENSE](LICENSE).
+PageIndex is the principal inspiration. This work began from VectifyAI's
+open-source JEV search example and tests direct traversal of parser output and
+real ToC entries. It does not use generated section summaries or the PageIndex
+package. The original [Apache 2.0 license](LICENSE) is preserved.

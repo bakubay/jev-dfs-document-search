@@ -12,12 +12,10 @@ SOL_OUTPUT_USD_PER_MILLION = 10.00
 
 def estimate_query_cost(usage: dict[str, Any]) -> dict[str, Any]:
     jev = float(usage.get("jev_input_tokens", 0)) / 1_000_000 * JEV_INPUT_USD_PER_MILLION
-    openai_input = float(usage.get("writer_input_tokens", 0)) + float(
-        usage.get("selector_input_tokens", 0)
-    )
-    openai_output = float(usage.get("writer_output_tokens", 0)) + float(
-        usage.get("selector_output_tokens", 0)
-    )
+    openai_input = sum(float(usage.get(f"{role}_input_tokens", 0))
+                       for role in ("writer", "selector", "navigation", "agent"))
+    openai_output = sum(float(usage.get(f"{role}_output_tokens", 0))
+                        for role in ("writer", "selector", "navigation", "agent"))
     sol = (
         openai_input / 1_000_000 * SOL_INPUT_USD_PER_MILLION
         + openai_output / 1_000_000 * SOL_OUTPUT_USD_PER_MILLION

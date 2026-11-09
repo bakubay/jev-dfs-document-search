@@ -1,0 +1,180 @@
+{
+  "status": "Post-run source inspection by the assistant; not independent human adjudication and not a revised benchmark score. Original annotations and retrieval runs remain unchanged.",
+  "reviews": [
+    {
+      "question_id": "mlb2-bbe12dd39bef",
+      "doc_id": "AMAZON_2017_10K.pdf",
+      "kind": "Repeated source text",
+      "note": "The cost-of-sales components on annotated p44 are also stated on p27. Returning p27 can satisfy the evidence need while receiving zero exact annotated-page recall.",
+      "alternative_page_sets": [
+        [
+          27
+        ]
+      ],
+      "source_excerpts": [
+        {
+          "page": 27,
+          "anchor": "Cost of sales primarily consists",
+          "excerpt": "1         |\n\n#### *Cost of Sales*\n\nCost of sales primarily consists of the purchase price of consumer products, digital media content costs where we record revenue gross, including video and music, packaging supplies, sortation and delivery center and related equipment costs, and inbound and outbound shipping costs, including where we are the transportation service provider.\n\nThe increase in cost of sales in absolute dollars in 2016 and 2017 , compared to the comparable prior year periods, is primarily due to increased product and shipping costs resulting from increased sales.\n\nShipping costs to receive products from our suppliers are included in our inventory and recognized as cost of sales upon sale of products to our customers. Shipping costs, which include sortation and ",
+          "page_text_sha256": "db76013013d4eeda435a435ea03ca015949e29f4abfbebc142a9e38598cc4589"
+        }
+      ]
+    },
+    {
+      "question_id": "mlb2-3c384e7a0537",
+      "doc_id": "AMAZON_2017_10K.pdf",
+      "kind": "Annotated set is not minimal",
+      "note": "PDF p40 contains cash of 20,522 and liabilities of 57,883 + 24,743 + 20,975. Those inputs yield approximately 0.198; annotated p50 is not necessary for that calculation.",
+      "alternative_page_sets": [
+        [
+          40
+        ]
+      ],
+      "source_excerpts": [
+        {
+          "page": 40,
+          "anchor": "Cash and cash equivalents",
+          "excerpt": "           |                   |\n| Cash and cash equivalents                          | \\$ 19,334           | \\$ 20,522         |\n| Marketable securities                              | 6,647               | 10,464            |\n| Inventories                                        | 11,461              | 16,047            |\n| Accounts receivable, net and other                 | 8,339               | 13,164            |\n| Total current assets                               | 45,781              | 60,197            |\n| Property and equipment, net                        | 29,114              | 48,866            |\n| Goodwill                                           | 3,784               | 13,350            |\n| Other assets                                       | 4,723             ",
+          "page_text_sha256": "7be0566a460eb87ad4871d863528492ebcd4c87ce23b92b546600f526406f34f"
+        }
+      ]
+    },
+    {
+      "question_id": "mlb2-1ae2534c2fe8",
+      "doc_id": "BESTBUY_2023_10K.pdf",
+      "kind": "Equivalent statement location",
+      "note": "The reference uses operating income on p25 and balance-sheet inputs on p39. Operating income 1,795 is repeated on p40; p39 supplies assets 15,803 and current liabilities 8,979. The returned pair p39+p40 supports 1,795 / (15,803 − 8,979) ≈ 0.263.",
+      "alternative_page_sets": [
+        [
+          39,
+          40
+        ]
+      ],
+      "source_excerpts": [
+        {
+          "page": 39,
+          "anchor": "Total current liabilities",
+          "excerpt": "     | 13                      |\n| Total current liabilities                                                                                                                      | 8,979                   | 10,674                  |\n| <b>Long-term operating lease liabilities</b>                                                                                                   | 2,164                   | 2,061                   |\n| <b>Long-term liabilities</b>                                                                                                                   | 705                     | 533                     |\n| <b>Long-term debt</b>                                                                                                                          | 1,160   ",
+          "page_text_sha256": "206c18c4cf9c5423d630fe67c1551ae751d540005567787f25793b2861f78f77"
+        },
+        {
+          "page": 40,
+          "anchor": "Operating income",
+          "excerpt": "     | 254                     |\n| Operating income                                                      | 1,795                   | 3,039                   | 2,391                   |\n| Other income (expense):                                               |                         |                         |                         |\n| Investment income and other                                           | 28                      | 10                      | 38                      |\n| Interest expense                                                      | (35)                    | (25)                    | (52)                    |\n| Earnings before income tax expense and equity in income of affiliates | 1,788                   | 3,024                   | 2,377             ",
+          "page_text_sha256": "959ebc1b7d3b3146b475e680b739ccea0f8992ea298a5fe3836ea8c53e475f7d"
+        }
+      ]
+    },
+    {
+      "question_id": "mlb2-d84051dd72bd",
+      "doc_id": "User_Manual_1500S_Classic_EN.pdf",
+      "kind": "Annotated set is not minimal",
+      "note": "The reference includes p24 and p25, but p25 explicitly identifies preparation using the manual insert and says max. 16 g. That page alone contains the requested fact.",
+      "alternative_page_sets": [
+        [
+          25
+        ]
+      ],
+      "source_excerpts": [
+        {
+          "page": 25,
+          "anchor": "Preparation of ground coffee using the manual insert",
+          "excerpt": "*  \n*▷ starting on page 97*\n\n### **Preparation of ground coffee using the manual insert**\n\n- ✱ Open manual insert lid\n- ✱ Insert ground coffee (max. 16 g)\n- ✱ Close manual insert lid\n- ✱ Touch the desired beverage button\n\n*Manual insert*\n\n## **3.12 Grounds container**\n\nThe grounds container receives the used coffee grounds. It has enough capacity to store coffee grounds from approx. 50 brewing cycles.\n\nThe display shows a message as soon as the grounds container needs to be emptied. Beverage dispensing is blocked for as long as the grounds container is removed.\n\n- ✱ Push combi spout upward\n- ✱ Remove grounds container\n- ✱ Empty and replace grounds container\n- ✱ Confirm process on the display\n\n*Grounds container cleaning*  \n*▷ Manual cleaning*  \n*page 73*\n\n- Replacing without",
+          "page_text_sha256": "51906f333442356af632f4b6c19b6afc3791848933adda35e82d502679d3e0f0"
+        }
+      ]
+    },
+    {
+      "question_id": "mlb2-62f288595f8d",
+      "doc_id": "ACTIVISIONBLIZZARD_2019_10K.pdf",
+      "kind": "Repeated financial inputs",
+      "note": "The reference uses product-development/R&D spending on p47 and total assets on p69. Spending 998 also appears on p70 and assets 19,845 also appear on p30. These listed alternative page pairs contain the inputs for approximately 5.03%.",
+      "alternative_page_sets": [
+        [
+          69,
+          70
+        ],
+        [
+          30,
+          47
+        ],
+        [
+          30,
+          70
+        ]
+      ],
+      "source_excerpts": [
+        {
+          "page": 30,
+          "anchor": "Total assets",
+          "excerpt": "   | \\$ 3,271    | \\$ 1,840    |\n| Total assets                             | 19,845                                  | 17,890          | 18,668      | 17,452      | 15,246      |\n| Long-term debt, net (4)                  | 2,675                                   | 2,671           | 4,390       | 4,887       | 4,074       |\n| Long-term debt, gross                    | 2,700                                   | 2,700           | 4,440       | 4,940       | 4,119       |\n| Net debt (5)                             | —                                       | —               | —           | 1,669       | 2,279       |\n\n- (1) On January 1, 2018, we adopted a new revenue accounting standard utilizing the modified retrospective method of transition. As a result, periods prior to Jan",
+          "page_text_sha256": "8bd565fca6818bf5b37d899eee10e5aff83c0d422eba4f3933eb36a368ddd769"
+        },
+        {
+          "page": 47,
+          "anchor": "Product Development",
+          "excerpt": "##### *Product Development (amounts in millions)*\n\n|                     | Year Ended December<br>31, 2019 | % of<br>consolidated<br>net revenues | Year Ended December<br>31, 2018 | % of<br>consolidated<br>net revenues | Increase<br>(Decrease) |\n|---------------------|---------------------------------|--------------------------------------|---------------------------------|--------------------------------------|------------------------|\n| Product development | \\$ 998                          | 15%                                  | \\$ 1,101                        | 15%                                  | \\$ (103)               |\n\nThe decrease in product development costs for 2019, as compared to 2018, was primarily due to:\n\n- lower product developm",
+          "page_text_sha256": "bc8117e91b345f806d2ce645e1dc8cfedb42bf3ae9ae62450f8a1f7f532ddb94"
+        },
+        {
+          "page": 69,
+          "anchor": "Total assets",
+          "excerpt": "         | 9,762   |  |  |  |  |\n| Total assets                                                                                                                                                                | \\$                          | 19,845  | \\$                          | 17,890  |  |  |  |  |\n| <b>Liabilities and Shareholders' Equity</b>                                                                                                                                 |                             |         |                             |         |  |  |  |  |\n| Current liabilities:                                                                                                                                                        |                             |         | ",
+          "page_text_sha256": "48f363f37eb4df7f5542f6f90fd78395b1871b2d713d2294b54be1fad7bc9e76"
+        },
+        {
+          "page": 70,
+          "anchor": "Product development",
+          "excerpt": "         | 399      | 484      |\n| Product development                                                  | 998                              | 1,101    | 1,069    |\n| Sales and marketing                                                  | 926                              | 1,062    | 1,378    |\n| General and administrative                                           | 732                              | 822      | 745      |\n| Restructuring and related costs                                      | 132                              | 10       | 15       |\n| Total costs and expenses                                             | 4,882                            | 5,512    | 5,708    |\n| Operating income                                                     | 1,607                        ",
+          "page_text_sha256": "e18bce25f4a75da977d5366a99aa43e5754a30b1e9b3484b10387360235b9d7e"
+        }
+      ]
+    },
+    {
+      "question_id": "pi-oss-c97407afe5f0",
+      "doc_id": "BESTBUY_2023_10K.pdf",
+      "kind": "Equivalent inputs requiring arithmetic",
+      "note": "The annotated p39 states net goodwill 1,383. PDF p53 supplies total gross goodwill 2,058 and cumulative impairment 675, which yield 1,383. This is useful alternative evidence, although it requires arithmetic rather than a direct lookup.",
+      "alternative_page_sets": [
+        [
+          53
+        ]
+      ],
+      "source_excerpts": [
+        {
+          "page": 53,
+          "anchor": "Goodwill balances by reportable segment",
+          "excerpt": "tangible Assets\n\n##### *Goodwill*\n\nGoodwill balances by reportable segment were as follows (\\$ in millions):\n\n|               | <b>January 28, 2023</b>      |                              | <b>January 29, 2022</b>      |                              |\n|---------------|------------------------------|------------------------------|------------------------------|------------------------------|\n|               | <b>Gross Carrying Amount</b> | <b>Cumulative Impairment</b> | <b>Gross Carrying Amount</b> | <b>Cumulative Impairment</b> |\n| Domestic      | \\$ 1,450                     | \\$ (67)                      | \\$ 1,451                     | \\$ (67)                      |\n| International | 608                          | (608)                        | 608                        ",
+          "page_text_sha256": "a23931c92a7c9d896cb54bf0e428075619212eeda98d750534055eda6e8f3f6c"
+        }
+      ]
+    },
+    {
+      "question_id": "mlb2-65206bcc55cf",
+      "doc_id": "ACTIVISIONBLIZZARD_2019_10K.pdf",
+      "kind": "Possible genuine evidence gap",
+      "note": "Some returned bundles include operating income but omit p114, where the separate interest expense of 90 is stated. The net interest-and-other-income line is a different number. A high sufficiency score alone does not establish that the denominator was retrieved; these runs need closer review.",
+      "alternative_page_sets": [],
+      "source_excerpts": [
+        {
+          "page": 37,
+          "anchor": "Interest and other expense",
+          "excerpt": " |                 | 1,988 27  |\n| Interest and other expense (income), net                             |                                         | (26)  | —    |                 | 71 1      |\n| Loss on extinguishment of debt (2)                                   |                                         | —     | —    |                 | 40 1      |\n| Income before income tax expense                                     |                                         | 1,633 | 25   |                 | 1,877 25  |\n| Income tax expense                                                   |                                         | 130   | 2    |                 | 29 —      |\n| Net income                                                           | \\$                                     ",
+          "page_text_sha256": "b759ce25da7ff3319a8f4ecd83b040f8f2cedfdad2644aadd315fa5ff808448b"
+        },
+        {
+          "page": 70,
+          "anchor": "Operating income",
+          "excerpt": "         | 5,512    | 5,708    |\n| Operating income                                                     | 1,607                            | 1,988    | 1,309    |\n| Interest and other expense (income), net (<a href=\"#\">Note 18</a>)   | (26)                             | 71       | 146      |\n| Loss on extinguishment of debt                                       | —                                | 40       | 12       |\n| Income before income tax expense                                     | 1,633                            | 1,877    | 1,151    |\n| Income tax expense                                                   | 130                              | 29       | 878      |\n| Net income                                                           | \\$ 1,503                     ",
+          "page_text_sha256": "e18bce25f4a75da977d5366a99aa43e5754a30b1e9b3484b10387360235b9d7e"
+        },
+        {
+          "page": 114,
+          "anchor": "Interest expense from debt",
+          "excerpt": "           | \\$ (65) | \\$ (24) |\n| Interest expense from debt and amortization of debt discount and deferred financing costs | 90                               | 140     | 162     |\n| Unrealized gain on equity investment                                                      | (38)                             | —       | —       |\n| Other expense (income), net                                                               | 1                                | (4)     | 8       |\n| Interest and other expense (income), net                                                  | \\$ (26)                          | \\$ 71   | \\$ 146  |",
+          "page_text_sha256": "be00327ca8eeb6277246766c22fc72ae8cb980ae3d438518e5dfbb144694004b"
+        }
+      ]
+    }
+  ]
+}

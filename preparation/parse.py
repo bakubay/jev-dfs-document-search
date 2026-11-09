@@ -14,18 +14,7 @@ from datalab_sdk import DatalabClient
 from datalab_sdk.models import ConvertOptions
 
 
-def load_local_env(path: Path) -> None:
-    """Load simple KEY=VALUE pairs without adding another dependency."""
-    if not path.exists():
-        return
-    for raw_line in path.read_text(encoding="utf-8").splitlines():
-        line = raw_line.strip()
-        if not line or line.startswith("#") or "=" not in line:
-            continue
-        key, value = line.split("=", 1)
-        key = key.strip()
-        if not os.environ.get(key):
-            os.environ[key] = value.strip().strip('"').strip("'")
+from retrieval.config import load_local_env
 
 
 def parse_args() -> argparse.Namespace:
@@ -38,7 +27,7 @@ def parse_args() -> argparse.Namespace:
         choices=("lite", "fast", "balanced", "accurate"),
         default="balanced",
     )
-    parser.add_argument("--env-file", type=Path, default=Path(__file__).with_name(".env"))
+    parser.add_argument("--env-file", type=Path, default=Path(__file__).resolve().parents[1] / ".env")
     return parser.parse_args()
 
 
