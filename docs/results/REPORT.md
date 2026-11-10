@@ -4,6 +4,12 @@
 as a tree, walk it, and find the pages that answer a question while reading only
 part of the document?
 
+This is an experiment, not a finished system: it tests whether a decision model
+can navigate a document the way a person would, by opening the contents, picking
+the likeliest section, reading, and moving on until the answer is found. Every
+part of it, from the prompts and stop rule to how pages are batched, can be
+improved.
+
 **Short answer.** Yes. On 20 questions over 4 long PDFs, all three approaches
 returned pages that support the gold answer almost every time. They differ in
 what that costs:
@@ -151,6 +157,12 @@ is what makes the walk complete on two-page questions, and it has a cost: in 20
 of 60 runs DFS never became sure enough and walked the whole document, which is
 why it reads 62 pages on average rather than a single section. On one-page
 questions it found the answer in every run.
+
+Those full walks cost about 1.5× checking every page on the same question
+(1.1–2×). DFS reads one section at a time, so its page batches are smaller and
+re-read more neighbouring pages at section edges, and the stop question adds
+about 17% of its tokens. Merging small neighbouring sections into full batches
+would narrow the gap.
 
 ## What this does and does not show
 

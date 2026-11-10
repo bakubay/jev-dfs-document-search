@@ -137,7 +137,9 @@ not prove an answer is absent from the original PDF. Parsing, grounding, missing
 text, images and model mistakes remain limitations. The grounding heuristic
 uses heading matches and printed/physical-page offsets; it is not universal.
 
-This is a quick trial, not a claim of the best retrieval architecture: 20
+This is an experiment in using decision models to navigate documents the way a
+person would, not a finished system or a claim of the best retrieval
+architecture; every part of it can be improved. It covers 20
 questions on 4 documents, with no baseline outside the tree (such as embedding
 search). Quality is scored against each question's gold answer, accepting other
 pages that give the same answer; those alternatives were checked by the
