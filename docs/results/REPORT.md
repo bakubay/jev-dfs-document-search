@@ -76,11 +76,31 @@ the annotated answer is page 47. One recorded run of each:
 Sol took the same path as DFS. The difference is speed and cost: each Sol step
 took about 3 s, each JEV request 0.2–0.7 s.
 
-## Results
+## How we evaluated
 
-20 questions over 4 PDFs: three annual reports (Amazon 2017, Best Buy 2023,
-Activision Blizzard 2019) and one coffee-machine manual, 75–198 pages each.
-11 questions are answered on one page; 9 need two (mostly ratios).
+- **Documents:** 4 PDFs from
+  [PageIndex-OSS-Benchmark](https://github.com/VectifyAI/PageIndex-OSS-Benchmark),
+  chosen because each has a real printed table of contents: three annual reports
+  (Amazon 2017, Best Buy 2023, Activision Blizzard 2019) and one coffee-machine
+  manual, 75–198 pages each.
+- **Questions:** 20 questions on those PDFs, each with a gold answer and
+  annotated evidence pages. Eight are the benchmark's text-lookup questions; the
+  other twelve are existing MMLongBench-Doc-V2 questions on the same PDFs, which
+  add tables and answers computed from two pages. 11 questions are answered on
+  one page; 9 need two (mostly ratios). All are answerable from the text.
+  Listed in [`evaluation/cohort.json`](../../evaluation/cohort.json).
+- **What is scored:** each approach returns pages; no answer is written. The
+  gold answer and pages are used only after retrieval finishes. The main measure
+  is whether the returned pages support the gold answer; annotated-page recall,
+  precision, pages read, requests, cost and time are also recorded.
+- **Repeats:** each JEV approach ran every question 3 times; Sol 1–2 times.
+  Questions are weighted equally, so repeats measure variation, not extra
+  questions.
+- **Cost:** token counts × list prices pinned in `evaluation/pricing.py`
+  (JEV $0.042 per million input tokens; Sol $2 per million input and $10 per
+  million output tokens).
+
+## Results
 
 | Approach | Answer supported | Page recall | Pages read | Requests | Cost / question | Time / question | Pages returned | Precision |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|
@@ -158,9 +178,6 @@ questions it found the answer in every run.
 - PDFs parsed with Datalab; the printed table of contents is matched to physical
   pages. Pages the table of contents does not cover become their own branches,
   so every page is reachable.
-- 20 questions with gold answers and annotated evidence pages from
-  MMLongBench-Doc-V2, 8 of them also in the PageIndex OSS benchmark
-  (`evaluation/cohort.json`).
 - Reproduce: `python -m evaluation.run_repeated --output-dir <dir> --parallel 4`,
   then `python -m reporting.build_cohort_report --runs <dir> --output … --summary …`
   (see `evaluation/README.md`).

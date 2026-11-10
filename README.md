@@ -34,7 +34,10 @@ step, results and where each approach misses. Also: a
 [30-second video](docs/assets/jev-three-ways.mp4) and the
 [interactive report with every request and reply](docs/results/report.html).
 
-20 annotated questions over 4 PDFs (three annual reports, one manual):
+20 questions with gold answers over 4 PDFs from
+[PageIndex-OSS-Benchmark](https://github.com/VectifyAI/PageIndex-OSS-Benchmark)
+(three annual reports, one manual); 8 are the benchmark's own questions and 12
+come from MMLongBench-Doc-V2 on the same PDFs:
 
 | Approach | Answer supported | Pages read | Requests | Cost / question | Time / question |
 |---|---:|---:|---:|---:|---:|
