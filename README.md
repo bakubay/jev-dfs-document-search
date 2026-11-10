@@ -11,7 +11,7 @@ Two baselines isolate what each part contributes:
 
 | Approach | What it is | What the comparison shows |
 |---|---|---|
-| **JEV DFS** | JEV ranks the ToC children; Python walks them depth first, checking page windows. Every sibling stays reachable. Stops when the selected pages pass a joint "is this enough?" check. | The method under test. |
+| **JEV DFS** | JEV ranks the ToC children; Python walks them depth first, checking page windows. Stops as soon as JEV judges nothing the question needs is missing; otherwise it keeps going until every page is checked. Best case: one section. Worst case: an exhaustive search in a smarter order. | The method under test. |
 | **Exhaustive JEV** | The same page checks over every page, keeping the best-scoring pages. No tree, no stop decision. | What the tree saves: does skipping most pages lose evidence? |
 | **Sol agent** | An OpenAI model walks the same tree itself (descend / read / backtrack / finish). No JEV. | What JEV adds: is it a better driver for the walk than a general LLM? |
 
@@ -70,7 +70,8 @@ preparation/
 evaluation/      the 20-question set, runner, repeats, recall/precision and cost
 reporting/       offline HTML report builder
 tests/           deterministic tests; no live model calls
-docs/results/    current summary and interactive report
+docs/results/    report, summary and interactive report
+docs/experiments/ how the shipped settings were chosen
 ```
 
 Start reading **`JevDFSRetriever._scan_leaf()` in [retrieval/jev.py](retrieval/jev.py)**:
@@ -133,9 +134,12 @@ not prove an answer is absent from the original PDF. Parsing, grounding, missing
 text, images and model mistakes remain limitations. The grounding heuristic
 uses heading matches and printed/physical-page offsets; it is not universal.
 
-This is a quick trial, not a claim of the best retrieval architecture. The study
-uses a convenience sample and exact annotated-page recall, which can miss valid
-alternative evidence. See the evidence review before drawing quality conclusions.
+This is a quick trial, not a claim of the best retrieval architecture: 20
+questions on 4 documents, with no baseline outside the tree (such as embedding
+search). Quality is scored against each question's gold answer, accepting other
+pages that give the same answer; those alternatives were checked by the
+assistant, not independent reviewers
+([`evaluation/evidence-review.json`](evaluation/evidence-review.json)).
 
 ## Attribution
 
