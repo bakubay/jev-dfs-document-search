@@ -38,20 +38,17 @@ step, results and where each approach misses. Also: a
 
 | Approach | Recall | 1-page answers | 2-page answers | Pages read | Requests | Cost / question | Time / question |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| **JEV DFS**, stop at 0.85 (default) | **98.3%** | **100%** | **96%** | 62 | 15.5 | $0.0045 | 4.8 s |
-| **JEV DFS**, stop at 0.7 | 87.5% | **100%** | 72% | **30** | 7 | **$0.0024** | **2.4 s** |
+| **JEV DFS** | **98.3%** | **100%** | **96%** | 62 | 15.5 | **$0.0045** | **4.8 s** |
 | Exhaustive JEV | **98.3%** | **100%** | **96%** | 116 | 16 | $0.0056 | 5.3 s |
-| Sol agent¹ | 82.5% | 91% | 72% | 10 | 3 | $0.056 | 12.5 s |
+| Sol agent¹ | 82.5% | 91% | 72% | **10** | **3** | $0.056 | 12.5 s |
 
-When the answer is on one page, the tree walk finds it every time, like checking
-every page, while reading a quarter to half of the pages. When the answer needs
-two pages (mostly ratios), one setting decides how sure JEV must be that nothing
-is missing before it stops: strict, it matches checking every page while reading
-about half; loose, it reads a quarter but misses some second inputs. Sol, walking
-the same tree, finds less, is 2.5–5× slower and costs 10–20× more.
+The tree walk finds as much as checking every page while reading about half the
+pages; one-page answers were found every time. Sol, walking the same tree, finds
+less, is about 2.5× slower and costs about 12× more.
 
 ¹ Sol: 32 runs from a separate session; 2 runs that failed on network or credit
 errors are left out. Details and limits are in the report.
+How the settings were chosen: [`docs/experiments/`](docs/experiments/README.md).
 
 ## Code map
 
