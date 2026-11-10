@@ -1,5 +1,5 @@
 {
-  "status": "Post-run source inspection by the assistant; not independent human adjudication and not a revised benchmark score. Original annotations and retrieval runs remain unchanged.",
+  "status": "Alternative page sets checked by the assistant against each question's gold answer (the value computes, or the same statement appears, from those pages). Not independent human adjudication. Original annotations and runs are unchanged.",
   "reviews": [
     {
       "question_id": "mlb2-bbe12dd39bef",
@@ -152,26 +152,45 @@
     {
       "question_id": "mlb2-65206bcc55cf",
       "doc_id": "ACTIVISIONBLIZZARD_2019_10K.pdf",
-      "kind": "Possible genuine evidence gap",
-      "note": "Some returned bundles include operating income but omit p114, where the separate interest expense of 90 is stated. The net interest-and-other-income line is a different number. A high sufficiency score alone does not establish that the denominator was retrieved; these runs need closer review.",
-      "alternative_page_sets": [],
+      "kind": "Repeated financial inputs",
+      "note": "Gold answer 17.85 = operating income 1,607 / interest expense 90. Operating income is on p41 and p70; the interest expense of 90 is on p114 and, as 86 interest plus 4 amortization, on p98. The net interest-and-other line (-26) on p37/p70 is a different number and does not supply the denominator.",
+      "alternative_page_sets": [
+        [
+          41,
+          98
+        ],
+        [
+          70,
+          98
+        ],
+        [
+          41,
+          114
+        ]
+      ],
       "source_excerpts": [
         {
-          "page": 37,
-          "anchor": "Interest and other expense",
-          "excerpt": " |                 | 1,988 27  |\n| Interest and other expense (income), net                             |                                         | (26)  | —    |                 | 71 1      |\n| Loss on extinguishment of debt (2)                                   |                                         | —     | —    |                 | 40 1      |\n| Income before income tax expense                                     |                                         | 1,633 | 25   |                 | 1,877 25  |\n| Income tax expense                                                   |                                         | 130   | 2    |                 | 29 —      |\n| Net income                                                           | \\$                                     ",
-          "page_text_sha256": "b759ce25da7ff3319a8f4ecd83b040f8f2cedfdad2644aadd315fa5ff808448b"
+          "page": 41,
+          "anchor": "| Consolidated operating income",
+          "excerpt": "| Consolidated operating income                             ",
+          "page_text_sha256": "978f025748a9ab5971d4d09f4722df329663362c1ce2fef72395b1d652096ecf"
         },
         {
           "page": 70,
-          "anchor": "Operating income",
-          "excerpt": "         | 5,512    | 5,708    |\n| Operating income                                                     | 1,607                            | 1,988    | 1,309    |\n| Interest and other expense (income), net (<a href=\"#\">Note 18</a>)   | (26)                             | 71       | 146      |\n| Loss on extinguishment of debt                                       | —                                | 40       | 12       |\n| Income before income tax expense                                     | 1,633                            | 1,877    | 1,151    |\n| Income tax expense                                                   | 130                              | 29       | 878      |\n| Net income                                                           | \\$ 1,503                     ",
+          "anchor": "| Operating income",
+          "excerpt": "| Operating income                                          ",
           "page_text_sha256": "e18bce25f4a75da977d5366a99aa43e5754a30b1e9b3484b10387360235b9d7e"
         },
         {
+          "page": 98,
+          "anchor": "For the years ended December 31, 2019, 2018, and 2017: interest expense",
+          "excerpt": "For the years ended December 31, 2019, 2018, and 2017: interest expense was \\$86 million, \\$134 million, and \\$150 million, respectively; amortization of the debt discount and deferred financing costs was \\$4 million, \\$6 million, and \\$12 million, respectivel",
+          "page_text_sha256": "f5987fd1e582d81f56416a2d2954e9ce5a26b43378c8211bb887bdf55aa82bf5"
+        },
+        {
           "page": 114,
-          "anchor": "Interest expense from debt",
-          "excerpt": "           | \\$ (65) | \\$ (24) |\n| Interest expense from debt and amortization of debt discount and deferred financing costs | 90                               | 140     | 162     |\n| Unrealized gain on equity investment                                                      | (38)                             | —       | —       |\n| Other expense (income), net                                                               | 1                                | (4)     | 8       |\n| Interest and other expense (income), net                                                  | \\$ (26)                          | \\$ 71   | \\$ 146  |",
+          "anchor": "| Interest expense from debt",
+          "excerpt": "| Interest expense from debt and amortization of debt discount and deferred financing costs | 90                               | 140     | 1",
           "page_text_sha256": "be00327ca8eeb6277246766c22fc72ae8cb980ae3d438518e5dfbb144694004b"
         }
       ]

@@ -2,13 +2,13 @@
 
 Completed **152/180** planned runs (up to three repetitions per question and approach).
 
-Each approach gets a question and a prepared PDF and must return the source pages that answer it. Recall is the share of annotated answer pages returned; precision is the share of returned pages that are annotated answer pages. Pages read counts every page whose text a model saw.
+Each approach gets a question and a prepared PDF and must return the source pages that answer it. Answer supported is the share of runs whose pages contain everything needed for the gold answer: every annotated page, or a reviewed alternative page set (below). Page recall is the share of annotated answer pages returned; precision is the share of returned pages that are annotated answer pages. Pages read counts every page whose text a model saw.
 
-| Approach | Mean recall | All answer pages returned | Pages read | Median calls | Mean est. cost | Median time | Pages returned | Precision | Failures |
-|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| JEV DFS | 98.3% | 58/60 | 62 | 15.5 | $0.00447 | 4.79s | 5.3 | 36% | 0 |
-| Exhaustive JEV | 98.3% | 58/60 | 116 | 16 | $0.00558 | 5.32s | 7.3 | 20% | 0 |
-| Sol agent | 82.5% | 22/32 | 10 | 3 | $0.05614 | 12.54s | 1.4 | 88% | 2 |
+| Approach | Answer supported | Mean page recall | All annotated pages returned | Pages read | Median calls | Mean est. cost | Median time | Pages returned | Precision | Failures |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| JEV DFS | 98.3% | 98.3% | 58/60 | 62 | 15.5 | $0.00447 | 4.79s | 5.3 | 36% | 0 |
+| Exhaustive JEV | 100.0% | 98.3% | 58/60 | 116 | 16 | $0.00558 | 5.32s | 7.3 | 20% | 0 |
+| Sol agent | 100.0% | 82.5% | 22/32 | 10 | 3 | $0.05614 | 12.54s | 1.4 | 88% | 2 |
 
 Questions are weighted equally; repetitions measure variation, not extra questions. Runs that failed on network or credit errors are excluded from the quality and time columns and counted under Failures. Every approach sends one request at a time, so time follows the work done. Time is query to returned pages, from error-free runs. Cost uses the pinned rates in evaluation/pricing.py.
 
@@ -41,9 +41,9 @@ Runs come from more than one run folder, each checked against its own frozen pla
 - Recall counts annotated pages only. Annotations can miss valid alternative pages, and extra returned pages are not penalized by recall, so read it together with pages returned and precision.
 - Four PDFs (three financial reports and one manual) and twenty answerable questions: a convenience sample, not a representative one. Latency is client-observed and includes network time.
 
-## Review annotation misses before drawing quality conclusions
+## Alternative evidence
 
-The original scores above are unchanged. Source inspection found repeated or alternative evidence for several questions. This review is by the assistant, not independent human adjudication; it does not provide an adjusted accuracy score.
+Source inspection found repeated or alternative evidence for several questions. Each alternative page set below was checked against the gold answer; these sets count toward Answer supported. Page recall still uses the original annotations. The review is by the assistant, not independent human adjudication.
 
 - **AMAZON_2017_10K.pdf / Repeated source text:** The cost-of-sales components on annotated p44 are also stated on p27. Returning p27 can satisfy the evidence need while receiving zero exact annotated-page recall.
 - **AMAZON_2017_10K.pdf / Annotated set is not minimal:** PDF p40 contains cash of 20,522 and liabilities of 57,883 + 24,743 + 20,975. Those inputs yield approximately 0.198; annotated p50 is not necessary for that calculation.
@@ -51,6 +51,6 @@ The original scores above are unchanged. Source inspection found repeated or alt
 - **User_Manual_1500S_Classic_EN.pdf / Annotated set is not minimal:** The reference includes p24 and p25, but p25 explicitly identifies preparation using the manual insert and says max. 16 g. That page alone contains the requested fact.
 - **ACTIVISIONBLIZZARD_2019_10K.pdf / Repeated financial inputs:** The reference uses product-development/R&D spending on p47 and total assets on p69. Spending 998 also appears on p70 and assets 19,845 also appear on p30. These listed alternative page pairs contain the inputs for approximately 5.03%.
 - **BESTBUY_2023_10K.pdf / Equivalent inputs requiring arithmetic:** The annotated p39 states net goodwill 1,383. PDF p53 supplies total gross goodwill 2,058 and cumulative impairment 675, which yield 1,383. This is useful alternative evidence, although it requires arithmetic rather than a direct lookup.
-- **ACTIVISIONBLIZZARD_2019_10K.pdf / Possible genuine evidence gap:** Some returned bundles include operating income but omit p114, where the separate interest expense of 90 is stated. The net interest-and-other-income line is a different number. A high sufficiency score alone does not establish that the denominator was retrieved; these runs need closer review.
+- **ACTIVISIONBLIZZARD_2019_10K.pdf / Repeated financial inputs:** Gold answer 17.85 = operating income 1,607 / interest expense 90. Operating income is on p41 and p70; the interest expense of 90 is on p114 and, as 86 interest plus 4 amortization, on p98. The net interest-and-other line (-26) on p37/p70 is a different number and does not supply the denominator.
 
 Open the standalone HTML's source-review details to inspect excerpts and the original run payloads.

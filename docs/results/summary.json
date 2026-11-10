@@ -1,5 +1,5 @@
 {
-  "built_on": "2026-11-10T13:28:42.021439+08:00",
+  "built_on": "2026-11-10T14:41:06.913317+08:00",
   "manifest": {
     "schema_version": 1,
     "cohort": "toc-evidence-20q",
@@ -2667,7 +2667,8 @@
           "source_page_appearances": 262,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-2",
@@ -2724,7 +2725,8 @@
           "source_page_appearances": 111,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-3",
@@ -2777,7 +2779,8 @@
           "source_page_appearances": 140,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-4",
@@ -2838,7 +2841,8 @@
           "source_page_appearances": 8,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-5",
@@ -2894,7 +2898,8 @@
           "source_page_appearances": 262,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-6",
@@ -2961,7 +2966,8 @@
           "source_page_appearances": 278,
           "single_target_windows": 6
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-7",
@@ -3022,7 +3028,8 @@
           "source_page_appearances": 12,
           "single_target_windows": 4
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-8",
@@ -3079,7 +3086,8 @@
           "source_page_appearances": 140,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-9",
@@ -3131,7 +3139,8 @@
           "source_page_appearances": 99,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-10",
@@ -3191,7 +3200,8 @@
           "source_page_appearances": 3,
           "single_target_windows": 1
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-11",
@@ -3252,7 +3262,8 @@
           "source_page_appearances": 6,
           "single_target_windows": 2
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-12",
@@ -3313,7 +3324,8 @@
           "source_page_appearances": 85,
           "single_target_windows": 6
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-13",
@@ -3367,7 +3379,8 @@
           "source_page_appearances": 111,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-14",
@@ -3424,7 +3437,8 @@
           "source_page_appearances": 262,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-15",
@@ -3481,7 +3495,8 @@
           "source_page_appearances": 99,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-16",
@@ -3545,7 +3560,8 @@
           "source_page_appearances": 19,
           "single_target_windows": 1
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-17",
@@ -3612,7 +3628,8 @@
           "source_page_appearances": 117,
           "single_target_windows": 7
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-18",
@@ -3676,7 +3693,8 @@
           "source_page_appearances": 19,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-19",
@@ -3738,7 +3756,8 @@
           "source_page_appearances": 5,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-20",
@@ -3795,7 +3814,8 @@
           "source_page_appearances": 99,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-21",
@@ -3852,7 +3872,8 @@
           "source_page_appearances": 140,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-22",
@@ -3914,7 +3935,8 @@
           "source_page_appearances": 19,
           "single_target_windows": 1
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-23",
@@ -3981,7 +4003,8 @@
           "source_page_appearances": 80,
           "single_target_windows": 8
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-24",
@@ -4038,7 +4061,8 @@
           "source_page_appearances": 140,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-25",
@@ -4104,7 +4128,8 @@
           "source_page_appearances": 16,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-26",
@@ -4161,7 +4186,8 @@
           "source_page_appearances": 262,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-27",
@@ -4218,7 +4244,8 @@
           "source_page_appearances": 111,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-28",
@@ -4275,7 +4302,8 @@
           "source_page_appearances": 99,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-29",
@@ -4341,7 +4369,8 @@
           "source_page_appearances": 230,
           "single_target_windows": 41
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-30",
@@ -4398,7 +4427,8 @@
           "source_page_appearances": 111,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-31",
@@ -4465,7 +4495,8 @@
           "source_page_appearances": 72,
           "single_target_windows": 3
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-32",
@@ -4522,7 +4553,8 @@
           "source_page_appearances": 140,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-33",
@@ -4579,7 +4611,8 @@
           "source_page_appearances": 111,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-34",
@@ -4636,7 +4669,8 @@
           "source_page_appearances": 262,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-35",
@@ -4703,7 +4737,8 @@
           "source_page_appearances": 147,
           "single_target_windows": 16
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-36",
@@ -4770,7 +4805,8 @@
           "source_page_appearances": 278,
           "single_target_windows": 7
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-37",
@@ -4827,7 +4863,8 @@
           "source_page_appearances": 99,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-38",
@@ -4891,7 +4928,8 @@
           "source_page_appearances": 8,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-39",
@@ -4956,7 +4994,8 @@
           "source_page_appearances": 278,
           "single_target_windows": 6
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-40",
@@ -5023,7 +5062,8 @@
           "source_page_appearances": 278,
           "single_target_windows": 6
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-41",
@@ -5080,7 +5120,8 @@
           "source_page_appearances": 99,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-42",
@@ -5137,7 +5178,8 @@
           "source_page_appearances": 99,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-43",
@@ -5193,7 +5235,8 @@
           "source_page_appearances": 111,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-44",
@@ -5254,7 +5297,8 @@
           "source_page_appearances": 6,
           "single_target_windows": 2
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-45",
@@ -5309,7 +5353,8 @@
           "source_page_appearances": 140,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-46",
@@ -5366,7 +5411,8 @@
           "source_page_appearances": 140,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-47",
@@ -5423,7 +5469,8 @@
           "source_page_appearances": 262,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-48",
@@ -5490,7 +5537,8 @@
           "source_page_appearances": 117,
           "single_target_windows": 7
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-49",
@@ -5554,7 +5602,8 @@
           "source_page_appearances": 8,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-50",
@@ -5621,7 +5670,8 @@
           "source_page_appearances": 230,
           "single_target_windows": 41
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-51",
@@ -5675,7 +5725,8 @@
           "source_page_appearances": 111,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-52",
@@ -5732,7 +5783,8 @@
           "source_page_appearances": 262,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-53",
@@ -5797,7 +5849,8 @@
           "source_page_appearances": 11,
           "single_target_windows": 1
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-54",
@@ -5860,7 +5913,8 @@
           "source_page_appearances": 9,
           "single_target_windows": 1
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-55",
@@ -5927,7 +5981,8 @@
           "source_page_appearances": 278,
           "single_target_windows": 6
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-56",
@@ -5984,7 +6039,8 @@
           "source_page_appearances": 99,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-57",
@@ -6041,7 +6097,8 @@
           "source_page_appearances": 140,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-58",
@@ -6106,7 +6163,8 @@
           "source_page_appearances": 278,
           "single_target_windows": 6
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-59",
@@ -6163,7 +6221,8 @@
           "source_page_appearances": 111,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-60",
@@ -6227,7 +6286,8 @@
           "source_page_appearances": 19,
           "single_target_windows": 1
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-61",
@@ -6284,7 +6344,8 @@
           "source_page_appearances": 262,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-62",
@@ -6341,7 +6402,8 @@
           "source_page_appearances": 262,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-63",
@@ -6406,7 +6468,8 @@
           "source_page_appearances": 19,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-64",
@@ -6472,7 +6535,8 @@
           "source_page_appearances": 16,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-65",
@@ -6533,7 +6597,8 @@
           "source_page_appearances": 85,
           "single_target_windows": 6
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-66",
@@ -6596,7 +6661,8 @@
           "source_page_appearances": 19,
           "single_target_windows": 1
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-67",
@@ -6656,7 +6722,8 @@
           "source_page_appearances": 3,
           "single_target_windows": 1
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-68",
@@ -6711,7 +6778,8 @@
           "source_page_appearances": 140,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-69",
@@ -6778,7 +6846,8 @@
           "source_page_appearances": 64,
           "single_target_windows": 3
         }
-      }
+      },
+      "supported": false
     },
     {
       "id": "run-70",
@@ -6834,7 +6903,8 @@
           "source_page_appearances": 262,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-71",
@@ -6891,7 +6961,8 @@
           "source_page_appearances": 99,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-72",
@@ -6943,7 +7014,8 @@
           "source_page_appearances": 99,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-73",
@@ -7000,7 +7072,8 @@
           "source_page_appearances": 111,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-74",
@@ -7067,7 +7140,8 @@
           "source_page_appearances": 72,
           "single_target_windows": 3
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-75",
@@ -7129,7 +7203,8 @@
           "source_page_appearances": 5,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-76",
@@ -7186,7 +7261,8 @@
           "source_page_appearances": 111,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-77",
@@ -7247,7 +7323,8 @@
           "source_page_appearances": 9,
           "single_target_windows": 3
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-78",
@@ -7314,7 +7391,8 @@
           "source_page_appearances": 278,
           "single_target_windows": 6
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-79",
@@ -7371,7 +7449,8 @@
           "source_page_appearances": 140,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-80",
@@ -7432,7 +7511,8 @@
           "source_page_appearances": 8,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-81",
@@ -7493,7 +7573,8 @@
           "source_page_appearances": 85,
           "single_target_windows": 6
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-82",
@@ -7554,7 +7635,8 @@
           "source_page_appearances": 9,
           "single_target_windows": 3
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-83",
@@ -7611,7 +7693,8 @@
           "source_page_appearances": 111,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-84",
@@ -7668,7 +7751,8 @@
           "source_page_appearances": 140,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-85",
@@ -7725,7 +7809,8 @@
           "source_page_appearances": 111,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-86",
@@ -7792,7 +7877,8 @@
           "source_page_appearances": 278,
           "single_target_windows": 6
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-87",
@@ -7849,7 +7935,8 @@
           "source_page_appearances": 140,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-88",
@@ -7903,7 +7990,8 @@
           "source_page_appearances": 140,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-89",
@@ -7960,7 +8048,8 @@
           "source_page_appearances": 262,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-90",
@@ -8017,7 +8106,8 @@
           "source_page_appearances": 140,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-91",
@@ -8074,7 +8164,8 @@
           "source_page_appearances": 111,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-92",
@@ -8131,7 +8222,8 @@
           "source_page_appearances": 262,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-93",
@@ -8188,7 +8280,8 @@
           "source_page_appearances": 99,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-94",
@@ -8245,7 +8338,8 @@
           "source_page_appearances": 262,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-95",
@@ -8312,7 +8406,8 @@
           "source_page_appearances": 278,
           "single_target_windows": 6
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-96",
@@ -8374,7 +8469,8 @@
           "source_page_appearances": 5,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-97",
@@ -8431,7 +8527,8 @@
           "source_page_appearances": 140,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-98",
@@ -8488,7 +8585,8 @@
           "source_page_appearances": 99,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-99",
@@ -8552,7 +8650,8 @@
           "source_page_appearances": 19,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-100",
@@ -8606,7 +8705,8 @@
           "source_page_appearances": 111,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-101",
@@ -8658,7 +8758,8 @@
           "source_page_appearances": 99,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-102",
@@ -8721,7 +8822,8 @@
           "source_page_appearances": 19,
           "single_target_windows": 1
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-103",
@@ -8788,7 +8890,8 @@
           "source_page_appearances": 147,
           "single_target_windows": 16
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-104",
@@ -8845,7 +8948,8 @@
           "source_page_appearances": 111,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-105",
@@ -8905,7 +9009,8 @@
           "source_page_appearances": 3,
           "single_target_windows": 1
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-106",
@@ -8970,7 +9075,8 @@
           "source_page_appearances": 278,
           "single_target_windows": 6
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-107",
@@ -9037,7 +9143,8 @@
           "source_page_appearances": 72,
           "single_target_windows": 3
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-108",
@@ -9104,7 +9211,8 @@
           "source_page_appearances": 117,
           "single_target_windows": 7
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-109",
@@ -9168,7 +9276,8 @@
           "source_page_appearances": 8,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-110",
@@ -9230,7 +9339,8 @@
           "source_page_appearances": 19,
           "single_target_windows": 1
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-111",
@@ -9297,7 +9407,8 @@
           "source_page_appearances": 147,
           "single_target_windows": 16
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-112",
@@ -9364,7 +9475,8 @@
           "source_page_appearances": 16,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-113",
@@ -9425,7 +9537,8 @@
           "source_page_appearances": 8,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-114",
@@ -9482,7 +9595,8 @@
           "source_page_appearances": 262,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-115",
@@ -9538,7 +9652,8 @@
           "source_page_appearances": 262,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-116",
@@ -9605,7 +9720,8 @@
           "source_page_appearances": 278,
           "single_target_windows": 6
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-117",
@@ -9666,7 +9782,8 @@
           "source_page_appearances": 6,
           "single_target_windows": 2
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-118",
@@ -9723,7 +9840,8 @@
           "source_page_appearances": 99,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-119",
@@ -9780,7 +9898,8 @@
           "source_page_appearances": 99,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-120",
@@ -9847,7 +9966,8 @@
           "source_page_appearances": 228,
           "single_target_windows": 40
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-121",
@@ -9898,7 +10018,8 @@
           "source_page_appearances": 0,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-122",
@@ -9948,7 +10069,8 @@
           "source_page_appearances": 0,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-123",
@@ -9998,7 +10120,8 @@
           "source_page_appearances": 0,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-124",
@@ -10049,7 +10172,8 @@
           "source_page_appearances": 0,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-125",
@@ -10099,7 +10223,8 @@
           "source_page_appearances": 0,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-126",
@@ -10150,7 +10275,8 @@
           "source_page_appearances": 0,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-127",
@@ -10200,7 +10326,8 @@
           "source_page_appearances": 0,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-128",
@@ -10250,7 +10377,8 @@
           "source_page_appearances": 0,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-129",
@@ -10301,7 +10429,8 @@
           "source_page_appearances": 0,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-130",
@@ -10352,7 +10481,8 @@
           "source_page_appearances": 0,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-131",
@@ -10402,7 +10532,8 @@
           "source_page_appearances": 0,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-132",
@@ -10452,7 +10583,8 @@
           "source_page_appearances": 0,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-133",
@@ -10502,7 +10634,8 @@
           "source_page_appearances": 0,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-134",
@@ -10552,7 +10685,8 @@
           "source_page_appearances": 0,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-135",
@@ -10603,7 +10737,8 @@
           "source_page_appearances": 0,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-136",
@@ -10653,7 +10788,8 @@
           "source_page_appearances": 0,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-137",
@@ -10703,7 +10839,8 @@
           "source_page_appearances": 0,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-138",
@@ -10754,7 +10891,8 @@
           "source_page_appearances": 0,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-139",
@@ -10804,7 +10942,8 @@
           "source_page_appearances": 0,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-140",
@@ -10854,7 +10993,8 @@
           "source_page_appearances": 0,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-141",
@@ -10904,7 +11044,8 @@
           "source_page_appearances": 0,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-142",
@@ -10954,7 +11095,8 @@
           "source_page_appearances": 0,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-143",
@@ -11004,7 +11146,8 @@
           "source_page_appearances": 0,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-144",
@@ -11055,7 +11198,8 @@
           "source_page_appearances": 0,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-145",
@@ -11105,7 +11249,8 @@
           "source_page_appearances": 0,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-146",
@@ -11155,7 +11300,8 @@
           "source_page_appearances": 0,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-147",
@@ -11205,7 +11351,8 @@
           "source_page_appearances": 0,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-148",
@@ -11255,7 +11402,8 @@
           "source_page_appearances": 0,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-149",
@@ -11306,7 +11454,8 @@
           "source_page_appearances": 0,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-150",
@@ -11357,7 +11506,8 @@
           "source_page_appearances": 0,
           "single_target_windows": 0
         }
-      }
+      },
+      "supported": true
     },
     {
       "id": "run-151",
@@ -11394,7 +11544,8 @@
       "record_sha256": "6a86f14e67fd93e288913ca65f38902b614b9c7729d66aca942ac51f7415c8de",
       "recorded_at": "2026-11-09T15:29:36.199735+00:00",
       "timing": {},
-      "batches": {}
+      "batches": {},
+      "supported": false
     },
     {
       "id": "run-152",
@@ -11428,7 +11579,8 @@
       "record_sha256": "2df5bb6f54e1251641bd29b76faccefc1999ee1b1a4100e2e092270a203ae898",
       "recorded_at": "2026-11-09T15:29:48.662184+00:00",
       "timing": {},
-      "batches": {}
+      "batches": {},
+      "supported": false
     }
   ],
   "missing": [
@@ -11682,6 +11834,7 @@
       "questions": 20,
       "runs": 60,
       "median_question_seconds": 4.7893698750121985,
+      "supported_rate": 0.9833333333333333,
       "mean_recall": 0.9833333333333334,
       "full_recall_runs": 58,
       "mean_returned_pages": 5.266666666666667,
@@ -11702,6 +11855,7 @@
       "questions": 20,
       "runs": 60,
       "median_question_seconds": 5.319528687512502,
+      "supported_rate": 1,
       "mean_recall": 0.9833333333333333,
       "full_recall_runs": 58,
       "mean_returned_pages": 7.35,
@@ -11721,6 +11875,7 @@
       "questions": 20,
       "runs": 32,
       "median_question_seconds": 12.541533041221555,
+      "supported_rate": 1,
       "mean_recall": 0.825,
       "full_recall_runs": 22,
       "mean_returned_pages": 1.35,
@@ -11744,6 +11899,7 @@
         "questions": 5,
         "runs": 15,
         "median_question_seconds": 2.8559118330013007,
+        "supported_rate": 1,
         "mean_recall": 0.9666666666666667,
         "full_recall_runs": 14,
         "mean_returned_pages": 4.6,
@@ -11764,6 +11920,7 @@
         "questions": 5,
         "runs": 15,
         "median_question_seconds": 5.0386421250295825,
+        "supported_rate": 1,
         "mean_recall": 1.0,
         "full_recall_runs": 15,
         "mean_returned_pages": 7.333333333333333,
@@ -11783,6 +11940,7 @@
         "questions": 5,
         "runs": 8,
         "median_question_seconds": 14.513987665995955,
+        "supported_rate": 1,
         "mean_recall": 0.7,
         "full_recall_runs": 5,
         "mean_returned_pages": 1,
@@ -11804,6 +11962,7 @@
         "questions": 5,
         "runs": 15,
         "median_question_seconds": 2.572119750024285,
+        "supported_rate": 1,
         "mean_recall": 1.0,
         "full_recall_runs": 15,
         "mean_returned_pages": 4.866666666666666,
@@ -11824,6 +11983,7 @@
         "questions": 5,
         "runs": 15,
         "median_question_seconds": 4.73103029205231,
+        "supported_rate": 1,
         "mean_recall": 0.9333333333333333,
         "full_recall_runs": 13,
         "mean_returned_pages": 7,
@@ -11843,6 +12003,7 @@
         "questions": 5,
         "runs": 9,
         "median_question_seconds": 10.439141270995606,
+        "supported_rate": 1,
         "mean_recall": 0.9,
         "full_recall_runs": 6,
         "mean_returned_pages": 1.2,
@@ -11865,6 +12026,7 @@
         "questions": 5,
         "runs": 15,
         "median_question_seconds": 15.452994291030336,
+        "supported_rate": 0.9333333333333333,
         "mean_recall": 0.9666666666666667,
         "full_recall_runs": 14,
         "mean_returned_pages": 7.6,
@@ -11885,6 +12047,7 @@
         "questions": 5,
         "runs": 15,
         "median_question_seconds": 10.034642541024368,
+        "supported_rate": 1,
         "mean_recall": 1.0,
         "full_recall_runs": 15,
         "mean_returned_pages": 7.8,
@@ -11904,6 +12067,7 @@
         "questions": 5,
         "runs": 8,
         "median_question_seconds": 37.12190633395221,
+        "supported_rate": 1,
         "mean_recall": 0.8,
         "full_recall_runs": 5,
         "mean_returned_pages": 1.8,
@@ -11926,6 +12090,7 @@
         "questions": 5,
         "runs": 15,
         "median_question_seconds": 2.2426947909989394,
+        "supported_rate": 1,
         "mean_recall": 1.0,
         "full_recall_runs": 15,
         "mean_returned_pages": 4.0,
@@ -11946,6 +12111,7 @@
         "questions": 5,
         "runs": 15,
         "median_question_seconds": 5.4297627919586375,
+        "supported_rate": 1,
         "mean_recall": 1.0,
         "full_recall_runs": 15,
         "mean_returned_pages": 7.266666666666667,
@@ -11965,6 +12131,7 @@
         "questions": 5,
         "runs": 7,
         "median_question_seconds": 9.85224691699841,
+        "supported_rate": 1,
         "mean_recall": 0.9,
         "full_recall_runs": 6,
         "mean_returned_pages": 1.4,
@@ -11981,7 +12148,7 @@
     ]
   },
   "evidence_review": {
-    "status": "Post-run source inspection by the assistant; not independent human adjudication and not a revised benchmark score. Original annotations and retrieval runs remain unchanged.",
+    "status": "Alternative page sets checked by the assistant against each question's gold answer (the value computes, or the same statement appears, from those pages). Not independent human adjudication. Original annotations and runs are unchanged.",
     "reviews": [
       {
         "question_id": "mlb2-bbe12dd39bef",
@@ -12134,26 +12301,45 @@
       {
         "question_id": "mlb2-65206bcc55cf",
         "doc_id": "ACTIVISIONBLIZZARD_2019_10K.pdf",
-        "kind": "Possible genuine evidence gap",
-        "note": "Some returned bundles include operating income but omit p114, where the separate interest expense of 90 is stated. The net interest-and-other-income line is a different number. A high sufficiency score alone does not establish that the denominator was retrieved; these runs need closer review.",
-        "alternative_page_sets": [],
+        "kind": "Repeated financial inputs",
+        "note": "Gold answer 17.85 = operating income 1,607 / interest expense 90. Operating income is on p41 and p70; the interest expense of 90 is on p114 and, as 86 interest plus 4 amortization, on p98. The net interest-and-other line (-26) on p37/p70 is a different number and does not supply the denominator.",
+        "alternative_page_sets": [
+          [
+            41,
+            98
+          ],
+          [
+            70,
+            98
+          ],
+          [
+            41,
+            114
+          ]
+        ],
         "source_excerpts": [
           {
-            "page": 37,
-            "anchor": "Interest and other expense",
-            "excerpt": " |                 | 1,988 27  |\n| Interest and other expense (income), net                             |                                         | (26)  | —    |                 | 71 1      |\n| Loss on extinguishment of debt (2)                                   |                                         | —     | —    |                 | 40 1      |\n| Income before income tax expense                                     |                                         | 1,633 | 25   |                 | 1,877 25  |\n| Income tax expense                                                   |                                         | 130   | 2    |                 | 29 —      |\n| Net income                                                           | \\$                                     ",
-            "page_text_sha256": "b759ce25da7ff3319a8f4ecd83b040f8f2cedfdad2644aadd315fa5ff808448b"
+            "page": 41,
+            "anchor": "| Consolidated operating income",
+            "excerpt": "| Consolidated operating income                             ",
+            "page_text_sha256": "978f025748a9ab5971d4d09f4722df329663362c1ce2fef72395b1d652096ecf"
           },
           {
             "page": 70,
-            "anchor": "Operating income",
-            "excerpt": "         | 5,512    | 5,708    |\n| Operating income                                                     | 1,607                            | 1,988    | 1,309    |\n| Interest and other expense (income), net (<a href=\"#\">Note 18</a>)   | (26)                             | 71       | 146      |\n| Loss on extinguishment of debt                                       | —                                | 40       | 12       |\n| Income before income tax expense                                     | 1,633                            | 1,877    | 1,151    |\n| Income tax expense                                                   | 130                              | 29       | 878      |\n| Net income                                                           | \\$ 1,503                     ",
+            "anchor": "| Operating income",
+            "excerpt": "| Operating income                                          ",
             "page_text_sha256": "e18bce25f4a75da977d5366a99aa43e5754a30b1e9b3484b10387360235b9d7e"
           },
           {
+            "page": 98,
+            "anchor": "For the years ended December 31, 2019, 2018, and 2017: interest expense",
+            "excerpt": "For the years ended December 31, 2019, 2018, and 2017: interest expense was \\$86 million, \\$134 million, and \\$150 million, respectively; amortization of the debt discount and deferred financing costs was \\$4 million, \\$6 million, and \\$12 million, respectivel",
+            "page_text_sha256": "f5987fd1e582d81f56416a2d2954e9ce5a26b43378c8211bb887bdf55aa82bf5"
+          },
+          {
             "page": 114,
-            "anchor": "Interest expense from debt",
-            "excerpt": "           | \\$ (65) | \\$ (24) |\n| Interest expense from debt and amortization of debt discount and deferred financing costs | 90                               | 140     | 162     |\n| Unrealized gain on equity investment                                                      | (38)                             | —       | —       |\n| Other expense (income), net                                                               | 1                                | (4)     | 8       |\n| Interest and other expense (income), net                                                  | \\$ (26)                          | \\$ 71   | \\$ 146  |",
+            "anchor": "| Interest expense from debt",
+            "excerpt": "| Interest expense from debt and amortization of debt discount and deferred financing costs | 90                               | 140     | 1",
             "page_text_sha256": "be00327ca8eeb6277246766c22fc72ae8cb980ae3d438518e5dfbb144694004b"
           }
         ]

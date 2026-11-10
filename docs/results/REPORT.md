@@ -4,19 +4,22 @@
 as a tree, walk it, and find the pages that answer a question while reading only
 part of the document?
 
-**Short answer.** Yes. On 20 questions over 4 long PDFs:
+**Short answer.** Yes. On 20 questions over 4 long PDFs, all three approaches
+returned pages that support the gold answer almost every time. They differ in
+what that costs:
 
-- **The JEV tree walk finds as much as checking every page** (98.3% of answer
-  pages) while reading about half the pages. When the answer is on one page it
-  found it every time, in every repeat.
-- **An LLM agent (Sol) walking the same tree** found less (82.5%), took about
-  2.5× longer and cost about 12× more.
+| | Answer supported | Pages read | Cost / question | Time / question |
+|---|---:|---:|---:|---:|
+| **JEV DFS** (tree walk) | 98% | 62 | **$0.0045** | **4.8 s** |
+| Exhaustive JEV (every page) | 100% | 116 | $0.0056 | 5.3 s |
+| Sol agent (LLM walks the tree) | 100% | **10** | $0.056 | 12.5 s |
 
-| Recall | Answer on 1 page (11 questions) | Answer needs 2 pages (9 questions) | Pages read |
-|---|---:|---:|---:|
-| JEV DFS | **100%** | **96%** | 62 |
-| Exhaustive JEV | **100%** | **96%** | 116 |
-| Sol agent | 91% | 72% | 10 |
+- **Against Sol:** JEV DFS finds the answer in the same tree about 2.6× faster
+  and about 12× cheaper, with no LLM choosing the path.
+- **Against checking every page:** JEV DFS reads about half the pages and
+  returns fewer pages that are not needed.
+- **Sol** returns the fewest pages (1.4 per question) and reads the least, but
+  each step is a slow, expensive LLM call.
 
 [30-second video of one question](../assets/jev-three-ways.mp4) ·
 [interactive report with every request and reply](report.html) ·
@@ -48,9 +51,9 @@ never judged complete the walk reaches every page.
 **Exhaustive JEV** (what the tree saves): the same page checks over every page,
 then keep the best-scoring pages. No ranking and no stop decision.
 
-**Sol agent** (what JEV adds): an OpenAI model walks the same tree itself. Each
-turn it chooses descend, read, back up or finish, and it decides when to stop.
-No JEV.
+**Sol agent** (what JEV replaces): an OpenAI model walks the same tree itself.
+Each turn it chooses descend, read, back up or finish, and it decides when to
+stop. No JEV.
 
 **What JEV is asked.** For each page, read with the page before and after as
 context: *does this page state evidence needed for part of the question?* Pages
@@ -70,64 +73,77 @@ the annotated answer is page 47. One recorded run of each:
 | Exhaustive JEV | 14 windows covering all 85 pages → page 47 scores 0.93 → keep the top 8 | 14 | 85 | **47** + 7 others | 5.0 s | $0.0050 |
 | Sol agent | descend Part II → descend Item 8 → read Notes from page 42 → finish with page 47 | 4 | 8 | **47** | 13.3 s | $0.033 |
 
-Sol took the same path as DFS. The difference is speed: each Sol step took about
-3 s, each JEV request 0.2–0.7 s.
+Sol took the same path as DFS. The difference is speed and cost: each Sol step
+took about 3 s, each JEV request 0.2–0.7 s.
 
 ## Results
 
 20 questions over 4 PDFs: three annual reports (Amazon 2017, Best Buy 2023,
 Activision Blizzard 2019) and one coffee-machine manual, 75–198 pages each.
+11 questions are answered on one page; 9 need two (mostly ratios).
 
-| Approach | Recall | Pages read | Requests | Cost / question | Time / question | Pages returned | Precision |
-|---|---:|---:|---:|---:|---:|---:|---:|
-| JEV DFS | **98.3%** | 62 | 15.5 | **$0.0045** | **4.8 s** | 5.3 | 36% |
-| Exhaustive JEV | **98.3%** | 116 | 16 | $0.0056 | 5.3 s | 7.3 | 20% |
-| Sol agent¹ | 82.5% | **10** | **3** | $0.056 | 12.5 s | **1.4** | **88%** |
+| Approach | Answer supported | Page recall | Pages read | Requests | Cost / question | Time / question | Pages returned | Precision |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| JEV DFS | 98% (59/60) | 98% | 62 | 15.5 | **$0.0045** | **4.8 s** | 5.3 | 36% |
+| Exhaustive JEV | **100%** (60/60) | 98% | 116 | 16 | $0.0056 | 5.3 s | 7.3 | 20% |
+| Sol agent¹ | **100%** (30/30) | 83% | **10** | **3** | $0.056 | 12.5 s | **1.4** | **88%** |
 
-- **Recall:** share of the annotated answer pages that were returned.
-- **Precision:** share of returned pages that are annotated answer pages.
+- **Answer supported:** share of runs whose returned pages contain everything
+  needed for the question's gold answer. That is either every annotated page, or
+  another page set checked to give the same answer (see below).
+- **Page recall:** share of the annotated pages that were returned.
+- **Precision:** share of returned pages that are annotated pages.
 - **Pages read:** pages whose text a model saw, including neighbour context.
 - Questions are weighted equally; time and requests are medians. Each JEV
-  approach ran 3 times per question (60 runs, no failures). Cost uses list prices
-  pinned in `evaluation/pricing.py`.
+  approach ran 3 times per question. Cost uses list prices pinned in
+  `evaluation/pricing.py`.
 
-¹ Sol: 32 completed runs covering all 20 questions (10 of them twice). Two more
-runs failed for reasons outside the method (a timeout during a network outage,
-and running out of OpenAI credit) and are left out. Sol's times come from a
-different session than the JEV runs.
+¹ Sol: 30 completed runs covering all 20 questions (10 of them twice). Two more
+runs failed for reasons outside the method (a network timeout, and running out of
+OpenAI credit) and are left out. Sol's times come from a different session than
+the JEV runs.
 
-**What the tree saves.** DFS finds as much as checking every page while reading
-about half the pages, and returns fewer pages, more of which are answer pages
-(36% vs 20%). On one-page answers it usually reads a single section.
+### Why page recall undercounts
 
-**What JEV adds.** On the same tree, DFS finds more than Sol (98.3% vs 82.5%),
-is about 2.5× faster and costs about 12× less. Sol returns very few pages and
-almost all of them are right, but it misses more answers (see below).
+The annotations mark where annotators found each answer, not every place it can
+be found. Annual reports repeat figures: operating income appears in the income
+statement and in the discussion of results, and interest expense appears in two
+notes. Sol picks the smallest set of pages that answers the question, so it often
+returns a different but equally valid page. For example:
 
-## Where each approach misses
+| Question | Gold answer | Annotated pages | Sol returned | From Sol's pages |
+|---|---|---|---|---|
+| Best Buy return on capital employed | 0.263 | 25, 39 | 39, 40 | 1,795 ÷ (15,803 − 8,979) = 0.263 |
+| Activision R&D ÷ assets | 5.03% | 47, 69 | 30, 47 | 998 ÷ 19,845 = 5.03% |
+| Activision interest coverage | 17.85 | 70, 114 | 41, 98 | 1,607 ÷ (86 + 4) = 17.86 |
+| Amazon cash ÷ total liabilities | 0.198 | 40, 50 | 40 | every input is on page 40 |
+| Amazon cost of sales components | list | 44 | 27 | the same sentence appears on page 27 |
 
-| Approach | Missed answer pages | Why |
-|---|---:|---|
-| JEV DFS | 2 | judged nothing was missing and stopped before reaching the page |
-| Exhaustive JEV | 2 | the page scored as useful but did not fit in the 8-page limit |
-| Sol agent | 9 | 8: never opened the section containing it; 1: read it but did not select it |
+Each accepted page set, with the source excerpt, is recorded in
+[`evaluation/evidence-review.json`](../../evaluation/evidence-review.json), and
+the report builder checks every excerpt against the page text.
 
-All misses are on two-page questions, mostly ratios (cash ÷ total liabilities,
-R&D ÷ assets, interest coverage, return on capital employed). The tree walk
-reliably finds the right branch; the hard part is knowing that the evidence is
-complete. DFS pays for that care: in 20 of its 60 runs it never became sure
-enough and walked the whole document. Sol has no such check; it decides when to
-finish itself and often finishes after finding one input.
+### Where JEV DFS misses
+
+One of 60 runs: Activision interest coverage. DFS returned operating income but
+no page with the interest expense, and judged nothing was missing. The stop check
+is what makes the walk complete on two-page questions, and it has a cost: in 20
+of 60 runs DFS never became sure enough and walked the whole document, which is
+why it reads 62 pages on average rather than a single section. On one-page
+questions it found the answer in every run.
 
 ## What this does and does not show
 
 - It shows that, on these documents, a fast judge can steer a table-of-contents
-  walk to the evidence while reading a fraction of the pages.
+  walk to the evidence as reliably as an LLM agent, at a fraction of the time and
+  cost.
 - It does not show the best retrieval method in general. There is no baseline
-  without the tree (for example, embedding search), no human baseline, and only
-  20 questions on 4 documents with clean, real tables of contents.
-- Recall uses the annotated pages. Some questions have valid evidence on other
-  pages, which counts as a miss here; see `evaluation/evidence-review.json`.
+  without the tree (for example, embedding search), and only 20 questions on 4
+  documents with clean, real tables of contents.
+- The alternative page sets were checked by the assistant against the gold
+  answers, not by independent reviewers.
+- Answers are not generated. "Answer supported" means the returned pages contain
+  the inputs, not that a model would compute the answer correctly from them.
 - Times run from the question to the returned pages, with each retrieval sending
   one request at a time. They include network and API latency, which varied
   between sessions; costs and pages read are the more stable comparison.
@@ -142,8 +158,9 @@ finish itself and often finishes after finding one input.
 - PDFs parsed with Datalab; the printed table of contents is matched to physical
   pages. Pages the table of contents does not cover become their own branches,
   so every page is reachable.
-- Questions from MMLongBench-Doc-V2 and PageIndex-OSS-Benchmark, with their
-  annotated evidence pages (`evaluation/cohort.json`).
+- 20 questions with gold answers and annotated evidence pages from
+  MMLongBench-Doc-V2, 8 of them also in the PageIndex OSS benchmark
+  (`evaluation/cohort.json`).
 - Reproduce: `python -m evaluation.run_repeated --output-dir <dir> --parallel 4`,
   then `python -m reporting.build_cohort_report --runs <dir> --output … --summary …`
   (see `evaluation/README.md`).

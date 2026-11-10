@@ -87,6 +87,16 @@ def mean_or_none(values):
     return mean(values) if values else None
 
 
+def mark_supported(rows, reviews):
+    """A run supports the answer if it returned every annotated page, or a page
+    set from the evidence review that also yields the gold answer."""
+    alternatives = {r["question_id"]: [set(s) for s in r["alternative_page_sets"]] for r in reviews}
+    for row in rows:
+        returned = set(row["returned"])
+        row["supported"] = (not row["failure"] and (row["recall"] == 1 or any(
+            s <= returned for s in alternatives.get(row["question_id"], []))))
+
+
 def summarize_rows(rows):
     """Question is the unit; repeats measure variation, not extra questions."""
     result = []
@@ -103,6 +113,7 @@ def summarize_rows(rows):
         q_medians = [median(r["seconds"] for r in rs) for rs in groups.values()]
         result.append({"strategy": strategy, "name": label, "questions": len(groups), "runs": len(chosen),
                        "median_question_seconds": median(q_medians) if q_medians else None,
+                       "supported_rate": mean(mean(r.get("supported", False) for r in rs) for rs in groups.values()),
                        "mean_recall": mean(mean(r["recall"] for r in rs) for rs in groups.values()),
                        "full_recall_runs": sum(r["recall"] == 1 for r in chosen if not r["failure"]),
                        "mean_returned_pages": mean(mean(len(r["returned"]) for r in rs) for rs in groups.values()),
@@ -209,6 +220,7 @@ def load_cohort(folders, allow_partial=False):
             text = texts[excerpt["page"]]
             if hashlib.sha256(text.encode()).hexdigest() != excerpt["page_text_sha256"] or excerpt["excerpt"] not in text:
                 raise ValueError("Evidence-review excerpt differs from the source page")
+    mark_supported(rows, review["reviews"])
     return {"built_on": datetime.now(ZoneInfo("Asia/Hong_Kong")).isoformat(), "manifest": manifest,
             "rows": rows, "payloads": payloads, "text_pool": compress(pool.values), "missing": missing, "planned": planned,
             "origins": origins,
@@ -225,13 +237,13 @@ def write_summary(data, destination):
     destination.with_suffix(".json").write_text(json.dumps(summary, indent=2, ensure_ascii=False) + "\n")
     lines = ["# DFS vs exhaustive vs Sol: twenty questions over four PDFs", "",
              f"Completed **{len(rows)}/{data['planned']}** planned runs (up to three repetitions per question and approach).", "",
-             "Each approach gets a question and a prepared PDF and must return the source pages that answer it. Recall is the share of annotated answer pages returned; precision is the share of returned pages that are annotated answer pages. Pages read counts every page whose text a model saw.", "",
-             "| Approach | Mean recall | All answer pages returned | Pages read | Median calls | Mean est. cost | Median time | Pages returned | Precision | Failures |",
-             "|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|"]
+             "Each approach gets a question and a prepared PDF and must return the source pages that answer it. Answer supported is the share of runs whose pages contain everything needed for the gold answer: every annotated page, or a reviewed alternative page set (below). Page recall is the share of annotated answer pages returned; precision is the share of returned pages that are annotated answer pages. Pages read counts every page whose text a model saw.", "",
+             "| Approach | Answer supported | Mean page recall | All annotated pages returned | Pages read | Median calls | Mean est. cost | Median time | Pages returned | Precision | Failures |",
+             "|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|"]
     for r in data["aggregate"]:
         t = f"{r['median_question_seconds']:.2f}s" if r["median_question_seconds"] is not None else "—"
         p = f"{r['mean_precision']:.0%}" if r["mean_precision"] is not None else "—"
-        lines.append(f"| {r['name']} | {r['mean_recall']:.1%} | {r['full_recall_runs']}/{r['runs']} | {r['mean_read_pages']:.0f} | {r['median_question_calls']:g} | ${r['mean_cost']:.5f} | {t} | {r['mean_returned_pages']:.1f} | {p} | {r['failures']} |")
+        lines.append(f"| {r['name']} | {r['supported_rate']:.1%} | {r['mean_recall']:.1%} | {r['full_recall_runs']}/{r['runs']} | {r['mean_read_pages']:.0f} | {r['median_question_calls']:g} | ${r['mean_cost']:.5f} | {t} | {r['mean_returned_pages']:.1f} | {p} | {r['failures']} |")
     lines += ["", "Questions are weighted equally; repetitions measure variation, not extra questions. Runs that failed on network or credit errors are excluded from the quality and time columns and counted under Failures. Every approach sends one request at a time, so time follows the work done. Time is query to returned pages, from error-free runs. Cost uses the pinned rates in evaluation/pricing.py.", ""]
     if len(data.get("origins", [])) > 1:
         lines += ["Runs come from more than one run folder, each checked against its own frozen plan:", ""]
@@ -248,8 +260,8 @@ def write_summary(data, destination):
               "- JEV asks one judgment per candidate page, read with its neighbors as context; only judged pages are returned. DFS checks one window at a time and stops once JEV judges that nothing the question needs is missing from the selected pages (score ≥ 0.85); exhaustive checks every page. Sol walks the same ToC alone, with no JEV. No approach runs requests in parallel.",
               "- Recall counts annotated pages only. Annotations can miss valid alternative pages, and extra returned pages are not penalized by recall, so read it together with pages returned and precision.",
               "- Four PDFs (three financial reports and one manual) and twenty answerable questions: a convenience sample, not a representative one. Latency is client-observed and includes network time.", ""]
-    lines += ["## Review annotation misses before drawing quality conclusions", "",
-              "The original scores above are unchanged. Source inspection found repeated or alternative evidence for several questions. This review is by the assistant, not independent human adjudication; it does not provide an adjusted accuracy score.", ""]
+    lines += ["## Alternative evidence", "",
+              "Source inspection found repeated or alternative evidence for several questions. Each alternative page set below was checked against the gold answer; these sets count toward Answer supported. Page recall still uses the original annotations. The review is by the assistant, not independent human adjudication.", ""]
     for review in data["evidence_review"]["reviews"]:
         q = next(q for q in data["manifest"]["questions"] if q["id"] == review["question_id"])
         lines += [f"- **{q['doc_id']} / {review['kind']}:** {review['note']}"]

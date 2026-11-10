@@ -2,10 +2,10 @@
 
 How the shipped JEV DFS settings were reached. The main report
 ([`docs/results/REPORT.md`](../results/REPORT.md)) uses only the final setup.
-All runs: the same 20 questions; JEV `jev-1.13.0`; page score cutoff 0.35;
+Recall here is annotated-page recall. All runs: the same 20 questions; JEV `jev-1.13.0`; page score cutoff 0.35;
 8 pages / 12,000 tokens per read and in the returned evidence.
 
-| Run | What changed | DFS recall | 1-page / 2-page | Pages read | Requests | Cost | Time | Read whole doc |
+| Run | What changed | DFS page recall | 1-page / 2-page | Pages read | Requests | Cost | Time | Read whole doc |
 |---|---|---:|---:|---:|---:|---:|---:|---:|
 | A | 8 requests in parallel; stop question *"is the evidence enough?"* ≥ 0.85 | 87.5% | 100% / 72% | 24 | 6 | $0.0019 | 2.4 s¹ | 3 of 35 |
 | B | one request at a time; stop cutoff raised to 0.95 | 99.2% | 100% / 98% | 81 | 38 | $0.0059 | 21.1 s² | 32 of 60 |

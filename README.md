@@ -36,18 +36,20 @@ step, results and where each approach misses. Also: a
 
 20 annotated questions over 4 PDFs (three annual reports, one manual):
 
-| Approach | Recall | 1-page answers | 2-page answers | Pages read | Requests | Cost / question | Time / question |
-|---|---:|---:|---:|---:|---:|---:|---:|
-| **JEV DFS** | **98.3%** | **100%** | **96%** | 62 | 15.5 | **$0.0045** | **4.8 s** |
-| Exhaustive JEV | **98.3%** | **100%** | **96%** | 116 | 16 | $0.0056 | 5.3 s |
-| Sol agent¹ | 82.5% | 91% | 72% | **10** | **3** | $0.056 | 12.5 s |
+| Approach | Answer supported | Pages read | Requests | Cost / question | Time / question |
+|---|---:|---:|---:|---:|---:|
+| **JEV DFS** | 98% | 62 | 15.5 | **$0.0045** | **4.8 s** |
+| Exhaustive JEV | **100%** | 116 | 16 | $0.0056 | 5.3 s |
+| Sol agent¹ | **100%** | **10** | **3** | $0.056 | 12.5 s |
 
-The tree walk finds as much as checking every page while reading about half the
-pages; one-page answers were found every time. Sol, walking the same tree, finds
-less, is about 2.5× slower and costs about 12× more.
+All three return pages that support the gold answer almost every time. The tree
+walk gets there about 2.6× faster and 12× cheaper than an LLM agent on the same
+tree, and reads about half the pages that checking every page does. "Answer
+supported" also accepts other pages that give the same gold answer; the report
+explains why annotated-page recall undercounts.
 
-¹ Sol: 32 runs from a separate session; 2 runs that failed on network or credit
-errors are left out. Details and limits are in the report.
+¹ Sol: 30 completed runs from a separate session; 2 runs that failed on network
+or credit errors are left out. Details and limits are in the report.
 How the settings were chosen: [`docs/experiments/`](docs/experiments/README.md).
 
 ## Code map

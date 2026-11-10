@@ -91,3 +91,13 @@ def test_failed_attempt_is_explicit_and_not_a_success_timing(local_data):
     view = failure_view(record)
     assert "error" in view["steps"][-1]["title"]
     assert view["peak_concurrency"] is None and view["failure_notice"]
+
+
+def test_reviewed_alternative_pages_count_as_supporting_the_answer():
+    from reporting.build_cohort_report import mark_supported
+    rows = [{"question_id": "q", "returned": [39, 40], "recall": .5, "failure": None},
+            {"question_id": "q", "returned": [39], "recall": .5, "failure": None},
+            {"question_id": "q", "returned": [25, 39], "recall": 1, "failure": None},
+            {"question_id": "q", "returned": [], "recall": 0, "failure": "RateLimitError"}]
+    mark_supported(rows, [{"question_id": "q", "alternative_page_sets": [[39, 40]]}])
+    assert [r["supported"] for r in rows] == [True, False, True, False]
