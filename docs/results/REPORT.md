@@ -75,7 +75,7 @@ the annotated answer is page 47. One recorded run of each:
 
 | | Steps | Requests | Pages read | Returned | Time | Cost |
 |---|---|---:|---:|---|---:|---:|
-| JEV DFS | Part II → Item 8 (Financial Statements) → Notes → check pages 41–48 → page 47 scores 0.94 → nothing missing (0.88) → stop | 5 | 8 | 46, **47** | 2.2 s | $0.0006 |
+| JEV DFS | Part II → Item 8 (Financial Statements) → Notes → check pages 42–47 (41–48 read) → page 47 scores 0.94 → nothing missing (0.88) → stop | 5 | 8 | 46, **47** | 2.2 s | $0.0006 |
 | Exhaustive JEV | 14 windows covering all 85 pages → page 47 scores 0.93 → keep the top 8 | 14 | 85 | **47** + 7 others | 5.0 s | $0.0050 |
 | Sol agent | descend Part II → descend Item 8 → read Notes from page 42 → finish with page 47 | 4 | 8 | **47** | 13.3 s | $0.033 |
 
