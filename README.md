@@ -43,16 +43,15 @@ come from MMLongBench-Doc-V2 on the same PDFs:
 |---|---:|---:|---:|---:|---:|
 | **JEV DFS** | 98% | 62 | 15.5 | **$0.0045** | **4.8 s** |
 | Exhaustive JEV | **100%** | 116 | 16 | $0.0056 | 5.3 s |
-| Sol agent¹ | **100%** | **10** | **3** | $0.056 | 12.5 s |
+| Sol agent | **100%** | **10** | **3.5** | $0.058 | 12.4 s |
 
 All three return pages that support the gold answer almost every time. The tree
-walk gets there about 2.6× faster and 12× cheaper than an LLM agent on the same
+walk gets there about 2.6× faster and 13× cheaper than an LLM agent on the same
 tree, and reads about half the pages that checking every page does. "Answer
 supported" also accepts other pages that give the same gold answer; the report
 explains why annotated-page recall undercounts.
 
-¹ Sol: 30 completed runs from a separate session; 2 runs that failed on network
-or credit errors are left out. Details and limits are in the report.
+Each approach ran every question 3 times. Details and limits are in the report.
 How the settings were chosen: [`docs/experiments/`](docs/experiments/README.md).
 
 ## Code map

@@ -18,10 +18,10 @@ what that costs:
 |---|---:|---:|---:|---:|
 | **JEV DFS** (tree walk) | 98% | 62 | **$0.0045** | **4.8 s** |
 | Exhaustive JEV (every page) | 100% | 116 | $0.0056 | 5.3 s |
-| Sol agent (LLM walks the tree) | 100% | **10** | $0.056 | 12.5 s |
+| Sol agent (LLM walks the tree) | 100% | **10** | $0.058 | 12.4 s |
 
 - **Against Sol:** JEV DFS finds the answer in the same tree about 2.6× faster
-  and about 12× cheaper, with no LLM choosing the path.
+  and about 13× cheaper, with no LLM choosing the path.
 - **Against checking every page:** JEV DFS reads about half the pages and
   returns fewer pages that are not needed.
 - **Sol** returns the fewest pages (1.4 per question) and reads the least, but
@@ -77,7 +77,7 @@ the annotated answer is page 47. One recorded run of each:
 |---|---|---:|---:|---|---:|---:|
 | JEV DFS | Part II → Item 8 (Financial Statements) → Notes → check pages 42–47 (41–48 read) → page 47 scores 0.94 → nothing missing (0.88) → stop | 5 | 8 | 46, **47** | 2.2 s | $0.0006 |
 | Exhaustive JEV | 14 windows covering all 85 pages → page 47 scores 0.93 → keep the top 8 | 14 | 85 | **47** + 7 others | 5.0 s | $0.0050 |
-| Sol agent | descend Part II → descend Item 8 → read Notes from page 42 → finish with page 47 | 4 | 8 | **47** | 13.3 s | $0.033 |
+| Sol agent | descend Part II → descend Item 8 → read Notes from page 42 → finish with page 47 | 4 | 8 | **47** | 14.8 s | $0.033 |
 
 Sol took the same path as DFS. The difference is speed and cost: each Sol step
 took about 3 s, each JEV request 0.2–0.7 s.
@@ -99,7 +99,8 @@ took about 3 s, each JEV request 0.2–0.7 s.
   gold answer and pages are used only after retrieval finishes. The main measure
   is whether the returned pages support the gold answer; annotated-page recall,
   precision, pages read, requests, cost and time are also recorded.
-- **Repeats:** each JEV approach ran every question 3 times; Sol 1–2 times.
+- **Repeats:** each approach ran every question 3 times (60 runs each, no
+  failures), four questions at a time.
   Questions are weighted equally, so repeats measure variation, not extra
   questions.
 - **Cost:** token counts × list prices pinned in `evaluation/pricing.py`
@@ -112,7 +113,7 @@ took about 3 s, each JEV request 0.2–0.7 s.
 |---|---:|---:|---:|---:|---:|---:|---:|---:|
 | JEV DFS | 98% (59/60) | 98% | 62 | 15.5 | **$0.0045** | **4.8 s** | 5.3 | 36% |
 | Exhaustive JEV | **100%** (60/60) | 98% | 116 | 16 | $0.0056 | 5.3 s | 7.3 | 20% |
-| Sol agent¹ | **100%** (30/30) | 83% | **10** | **3** | $0.056 | 12.5 s | **1.4** | **88%** |
+| Sol agent | **100%** (60/60) | 88% | **10** | **3.5** | $0.058 | 12.4 s | **1.4** | **92%** |
 
 - **Answer supported:** share of runs whose returned pages contain everything
   needed for the question's gold answer. That is either every annotated page, or
@@ -120,14 +121,8 @@ took about 3 s, each JEV request 0.2–0.7 s.
 - **Page recall:** share of the annotated pages that were returned.
 - **Precision:** share of returned pages that are annotated pages.
 - **Pages read:** pages whose text a model saw, including neighbour context.
-- Questions are weighted equally; time and requests are medians. Each JEV
-  approach ran 3 times per question. Cost uses list prices pinned in
+- Questions are weighted equally; time and requests are medians. Each approach ran 3 times per question. Cost uses list prices pinned in
   `evaluation/pricing.py`.
-
-¹ Sol: 30 completed runs covering all 20 questions (10 of them twice). Two more
-runs failed for reasons outside the method (a network timeout, and running out of
-OpenAI credit) and are left out. Sol's times come from a different session than
-the JEV runs.
 
 ### Why page recall undercounts
 
@@ -141,7 +136,7 @@ returns a different but equally valid page. For example:
 |---|---|---|---|---|
 | Best Buy return on capital employed | 0.263 | 25, 39 | 39, 40 | 1,795 ÷ (15,803 − 8,979) = 0.263 |
 | Activision R&D ÷ assets | 5.03% | 47, 69 | 30, 47 | 998 ÷ 19,845 = 5.03% |
-| Activision interest coverage | 17.85 | 70, 114 | 41, 98 | 1,607 ÷ (86 + 4) = 17.86 |
+| Activision interest coverage | 17.85 | 70, 114 | 70, 98 | 1,607 ÷ (86 + 4) = 17.86 |
 | Amazon cash ÷ total liabilities | 0.198 | 40, 50 | 40 | every input is on page 40 |
 | Amazon cost of sales components | list | 44 | 27 | the same sentence appears on page 27 |
 

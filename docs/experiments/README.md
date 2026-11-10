@@ -41,3 +41,12 @@ $0.006 per question. From run D on it no longer asks a stop question.
 
 Because the cutoff was chosen on these same 20 questions, the shipped numbers
 may be slightly optimistic.
+
+## Sol runs
+
+An earlier Sol run (1–2 runs per question, one question at a time, 2 runs lost
+to a network timeout and exhausted credit) gave the same picture: pages
+supporting the gold answer in every completed run, 83% annotated-page recall,
+$0.056 and 12.5 s per question. The report uses a full rerun with the same
+harness as JEV (3 runs per question, four questions at a time).
+

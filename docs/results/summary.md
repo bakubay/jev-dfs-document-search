@@ -1,6 +1,6 @@
 # DFS vs exhaustive vs Sol: twenty questions over four PDFs
 
-Completed **152/180** planned runs (up to three repetitions per question and approach).
+Completed **180/180** planned runs (up to three repetitions per question and approach).
 
 Each approach gets a question and a prepared PDF and must return the source pages that answer it. Answer supported is the share of runs whose pages contain everything needed for the gold answer: every annotated page, or a reviewed alternative page set (below). Page recall is the share of annotated answer pages returned; precision is the share of returned pages that are annotated answer pages. Pages read counts every page whose text a model saw.
 
@@ -8,14 +8,14 @@ Each approach gets a question and a prepared PDF and must return the source page
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
 | JEV DFS | 98.3% | 98.3% | 58/60 | 62 | 15.5 | $0.00447 | 4.79s | 5.3 | 36% | 0 |
 | Exhaustive JEV | 100.0% | 98.3% | 58/60 | 116 | 16 | $0.00558 | 5.32s | 7.3 | 20% | 0 |
-| Sol agent | 100.0% | 82.5% | 22/32 | 10 | 3 | $0.05614 | 12.54s | 1.4 | 88% | 2 |
+| Sol agent | 100.0% | 87.5% | 46/60 | 10 | 3.5 | $0.05792 | 12.36s | 1.4 | 92% | 0 |
 
 Questions are weighted equally; repetitions measure variation, not extra questions. Runs that failed on network or credit errors are excluded from the quality and time columns and counted under Failures. Every approach sends one request at a time, so time follows the work done. Time is query to returned pages, from error-free runs. Cost uses the pinned rates in evaluation/pricing.py.
 
 Runs come from more than one run folder, each checked against its own frozen plan:
 
 - `retrieval-v7-missing-085-2026-11-10` (retrieval-v7-missing-085): Exhaustive JEV, JEV DFS
-- `retrieval-v3-one-judgment-2026-11-09` (retrieval-v3-one-judgment): Sol agent
+- `sol-final-2026-11-10` (retrieval-v7-missing-085): Sol agent
 
 ## Per document
 
@@ -23,16 +23,16 @@ Runs come from more than one run folder, each checked against its own frozen pla
 |---|---|---:|---:|---:|
 | AMAZON_2017_10K.pdf | JEV DFS | 2.86s | 96.7% | 14/15 |
 | AMAZON_2017_10K.pdf | Exhaustive JEV | 5.04s | 100.0% | 15/15 |
-| AMAZON_2017_10K.pdf | Sol agent | 14.51s | 70.0% | 5/8 |
+| AMAZON_2017_10K.pdf | Sol agent | 12.92s | 83.3% | 11/15 |
 | BESTBUY_2023_10K.pdf | JEV DFS | 2.57s | 100.0% | 15/15 |
 | BESTBUY_2023_10K.pdf | Exhaustive JEV | 4.73s | 93.3% | 13/15 |
-| BESTBUY_2023_10K.pdf | Sol agent | 10.44s | 90.0% | 6/9 |
+| BESTBUY_2023_10K.pdf | Sol agent | 9.97s | 90.0% | 12/15 |
 | ACTIVISIONBLIZZARD_2019_10K.pdf | JEV DFS | 15.45s | 96.7% | 14/15 |
 | ACTIVISIONBLIZZARD_2019_10K.pdf | Exhaustive JEV | 10.03s | 100.0% | 15/15 |
-| ACTIVISIONBLIZZARD_2019_10K.pdf | Sol agent | 37.12s | 80.0% | 5/8 |
+| ACTIVISIONBLIZZARD_2019_10K.pdf | Sol agent | 30.51s | 86.7% | 11/15 |
 | User_Manual_1500S_Classic_EN.pdf | JEV DFS | 2.24s | 100.0% | 15/15 |
 | User_Manual_1500S_Classic_EN.pdf | Exhaustive JEV | 5.43s | 100.0% | 15/15 |
-| User_Manual_1500S_Classic_EN.pdf | Sol agent | 9.85s | 90.0% | 6/7 |
+| User_Manual_1500S_Classic_EN.pdf | Sol agent | 10.53s | 90.0% | 12/15 |
 
 ## Scope
 

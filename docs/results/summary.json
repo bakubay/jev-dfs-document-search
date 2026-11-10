@@ -1,5 +1,5 @@
 {
-  "built_on": "2026-11-10T15:53:04.960477+08:00",
+  "built_on": "2026-11-10T16:00:41.785976+08:00",
   "manifest": {
     "schema_version": 1,
     "cohort": "toc-evidence-20q",
@@ -9972,43 +9972,42 @@
     {
       "id": "run-121",
       "repeat": 1,
-      "question_id": "mlb2-62f288595f8d",
-      "doc_id": "ACTIVISIONBLIZZARD_2019_10K.pdf",
+      "question_id": "pi-oss-303e9cebcd66",
+      "doc_id": "AMAZON_2017_10K.pdf",
       "strategy": "sol_only",
-      "directory": "r1/mlb2-62f288595f8d.sol_only",
-      "result": "r1/mlb2-62f288595f8d.sol_only/mlb2-62f288595f8d.sol_only.json",
-      "seconds": 76.62955166603206,
-      "calls": 17,
+      "directory": "r1/pi-oss-303e9cebcd66.sol_only",
+      "result": "r1/pi-oss-303e9cebcd66.sol_only/pi-oss-303e9cebcd66.sol_only.json",
+      "seconds": 17.439903084014077,
+      "calls": 5,
       "jev_calls": 0,
-      "sol_calls": 17,
-      "cost": 0.302462,
-      "recall": 0.5,
-      "read_recall": 0.5,
-      "section_recall": 0.5,
-      "read": 47,
+      "sol_calls": 5,
+      "cost": 0.052752,
+      "recall": 1.0,
+      "read_recall": 1.0,
+      "section_recall": 1.0,
+      "read": 16,
       "checked": 0,
       "returned": [
-        47,
-        30
+        52
       ],
-      "precision": 0.5,
+      "precision": 1.0,
       "stop": "sufficient_evidence",
       "sufficient": true,
       "failure": null,
       "peak": 1,
-      "first_gold_seconds": 19.228259,
-      "frames": 45,
-      "record_sha256": "df167bfdd7528012d9b355876ae9fc4a7b9993a0854b91bfa1834a8ec7654192",
-      "recorded_at": "2026-11-09T15:13:40.338913+00:00",
+      "first_gold_seconds": 17.43745,
+      "frames": 15,
+      "record_sha256": "49cd2a534f40a56928aed16acc8800be8b256c256a20d4561e805db3c73634b8",
+      "recorded_at": "2026-11-10T07:55:07.799628+00:00",
       "timing": {
         "sol_agent": {
-          "calls": 17,
-          "active_seconds": 76.36005300000001,
-          "summed_seconds": 76.36005300000002
+          "calls": 5,
+          "active_seconds": 17.381641,
+          "summed_seconds": 17.381641
         },
         "outside_calls": {
           "calls": 0,
-          "active_seconds": 0.2694986660320495
+          "active_seconds": 0.0582620840140784
         }
       },
       "batches": {
@@ -10024,42 +10023,42 @@
     {
       "id": "run-122",
       "repeat": 1,
-      "question_id": "pi-oss-a9021020fce3",
-      "doc_id": "AMAZON_2017_10K.pdf",
+      "question_id": "mlb2-66ac018b13d5",
+      "doc_id": "User_Manual_1500S_Classic_EN.pdf",
       "strategy": "sol_only",
-      "directory": "r1/pi-oss-a9021020fce3.sol_only",
-      "result": "r1/pi-oss-a9021020fce3.sol_only/pi-oss-a9021020fce3.sol_only.json",
-      "seconds": 14.538679875025991,
-      "calls": 4,
+      "directory": "r1/mlb2-66ac018b13d5.sol_only",
+      "result": "r1/mlb2-66ac018b13d5.sol_only/mlb2-66ac018b13d5.sol_only.json",
+      "seconds": 33.03212300001178,
+      "calls": 8,
       "jev_calls": 0,
-      "sol_calls": 4,
-      "cost": 0.033152,
+      "sol_calls": 8,
+      "cost": 0.095816,
       "recall": 1.0,
       "read_recall": 1.0,
       "section_recall": 1.0,
-      "read": 8,
+      "read": 7,
       "checked": 0,
       "returned": [
-        48
+        19
       ],
       "precision": 1.0,
       "stop": "sufficient_evidence",
       "sufficient": true,
       "failure": null,
       "peak": 1,
-      "first_gold_seconds": 14.536423,
-      "frames": 12,
-      "record_sha256": "d54a9cc1263862081185a66a459d5f679e1094f8c79651ba18f2810fd6953eda",
-      "recorded_at": "2026-11-09T15:13:59.493294+00:00",
+      "first_gold_seconds": 33.030892,
+      "frames": 24,
+      "record_sha256": "b2d68b130523da74c7fdbc97fe27a5a6d5abd4b8e2aeecfcc5087c7b3ca70cfe",
+      "recorded_at": "2026-11-10T07:55:23.391310+00:00",
       "timing": {
         "sol_agent": {
-          "calls": 4,
-          "active_seconds": 14.499596,
-          "summed_seconds": 14.499596
+          "calls": 8,
+          "active_seconds": 32.990033,
+          "summed_seconds": 32.990033
         },
         "outside_calls": {
           "calls": 0,
-          "active_seconds": 0.03908387502599098
+          "active_seconds": 0.042090000011782536
         }
       },
       "batches": {
@@ -10075,42 +10074,43 @@
     {
       "id": "run-123",
       "repeat": 1,
-      "question_id": "pi-oss-ad5dbad521ca",
-      "doc_id": "BESTBUY_2023_10K.pdf",
+      "question_id": "mlb2-18e011e92e01",
+      "doc_id": "User_Manual_1500S_Classic_EN.pdf",
       "strategy": "sol_only",
-      "directory": "r1/pi-oss-ad5dbad521ca.sol_only",
-      "result": "r1/pi-oss-ad5dbad521ca.sol_only/pi-oss-ad5dbad521ca.sol_only.json",
-      "seconds": 10.27100495796185,
+      "directory": "r1/mlb2-18e011e92e01.sol_only",
+      "result": "r1/mlb2-18e011e92e01.sol_only/mlb2-18e011e92e01.sol_only.json",
+      "seconds": 13.15092350001214,
       "calls": 3,
       "jev_calls": 0,
       "sol_calls": 3,
-      "cost": 0.018828,
+      "cost": 0.04699,
       "recall": 1.0,
       "read_recall": 1.0,
       "section_recall": 1.0,
-      "read": 4,
+      "read": 2,
       "checked": 0,
       "returned": [
-        7
+        56,
+        57
       ],
       "precision": 1.0,
       "stop": "sufficient_evidence",
       "sufficient": true,
       "failure": null,
       "peak": 1,
-      "first_gold_seconds": 10.2686,
-      "frames": 10,
-      "record_sha256": "8f3acb1d26f35b408c1340e4a039a773961c22559b2b1382831484b314fdafef",
-      "recorded_at": "2026-11-09T15:14:17.543621+00:00",
+      "first_gold_seconds": 8.471235,
+      "frames": 11,
+      "record_sha256": "80a3d032a81a20e2b18e87124f29c075dc5619ae0b81130aa927dc88c536c31e",
+      "recorded_at": "2026-11-10T07:55:03.510539+00:00",
       "timing": {
         "sol_agent": {
           "calls": 3,
-          "active_seconds": 10.2499,
-          "summed_seconds": 10.2499
+          "active_seconds": 13.132137000000002,
+          "summed_seconds": 13.132137
         },
         "outside_calls": {
           "calls": 0,
-          "active_seconds": 0.021104957961849635
+          "active_seconds": 0.018786500012138774
         }
       },
       "batches": {
@@ -10126,12 +10126,63 @@
     {
       "id": "run-124",
       "repeat": 1,
+      "question_id": "pi-oss-a9021020fce3",
+      "doc_id": "AMAZON_2017_10K.pdf",
+      "strategy": "sol_only",
+      "directory": "r1/pi-oss-a9021020fce3.sol_only",
+      "result": "r1/pi-oss-a9021020fce3.sol_only/pi-oss-a9021020fce3.sol_only.json",
+      "seconds": 14.782857540994883,
+      "calls": 4,
+      "jev_calls": 0,
+      "sol_calls": 4,
+      "cost": 0.033148,
+      "recall": 1.0,
+      "read_recall": 1.0,
+      "section_recall": 1.0,
+      "read": 8,
+      "checked": 0,
+      "returned": [
+        48
+      ],
+      "precision": 1.0,
+      "stop": "sufficient_evidence",
+      "sufficient": true,
+      "failure": null,
+      "peak": 1,
+      "first_gold_seconds": 14.782122,
+      "frames": 12,
+      "record_sha256": "e7118c3af5c774aa92a97e541690450026d0b0e940707b738257a57b2a9e5ad6",
+      "recorded_at": "2026-11-10T07:55:05.142625+00:00",
+      "timing": {
+        "sol_agent": {
+          "calls": 4,
+          "active_seconds": 14.745816999999999,
+          "summed_seconds": 14.745816999999999
+        },
+        "outside_calls": {
+          "calls": 0,
+          "active_seconds": 0.03704054099488374
+        }
+      },
+      "batches": {
+        "page_windows": {
+          "calls": 0,
+          "targets": 0,
+          "source_page_appearances": 0,
+          "single_target_windows": 0
+        }
+      },
+      "supported": true
+    },
+    {
+      "id": "run-125",
+      "repeat": 1,
       "question_id": "mlb2-1ae2534c2fe8",
       "doc_id": "BESTBUY_2023_10K.pdf",
       "strategy": "sol_only",
       "directory": "r1/mlb2-1ae2534c2fe8.sol_only",
       "result": "r1/mlb2-1ae2534c2fe8.sol_only/mlb2-1ae2534c2fe8.sol_only.json",
-      "seconds": 11.052360875008162,
+      "seconds": 11.795489249983802,
       "calls": 3,
       "jev_calls": 0,
       "sol_calls": 3,
@@ -10150,70 +10201,19 @@
       "sufficient": true,
       "failure": null,
       "peak": 1,
-      "first_gold_seconds": 11.044633,
+      "first_gold_seconds": 11.786635,
       "frames": 10,
-      "record_sha256": "e0ab53b7b1a396ba9f4cbe40c1f0bff2c7c7928fa3aff8e7b6d51b8090f88304",
-      "recorded_at": "2026-11-09T15:14:37.433925+00:00",
+      "record_sha256": "c7b607b04ebb0b31c1de3265d4b2008371eae2622b254b85ae7e5d8f37cd98a8",
+      "recorded_at": "2026-11-10T07:55:16.302564+00:00",
       "timing": {
         "sol_agent": {
           "calls": 3,
-          "active_seconds": 10.997218,
-          "summed_seconds": 10.997218
+          "active_seconds": 11.737396,
+          "summed_seconds": 11.737395999999999
         },
         "outside_calls": {
           "calls": 0,
-          "active_seconds": 0.05514287500816195
-        }
-      },
-      "batches": {
-        "page_windows": {
-          "calls": 0,
-          "targets": 0,
-          "source_page_appearances": 0,
-          "single_target_windows": 0
-        }
-      },
-      "supported": true
-    },
-    {
-      "id": "run-125",
-      "repeat": 1,
-      "question_id": "pi-oss-f8fc68db6b5d",
-      "doc_id": "AMAZON_2017_10K.pdf",
-      "strategy": "sol_only",
-      "directory": "r1/pi-oss-f8fc68db6b5d.sol_only",
-      "result": "r1/pi-oss-f8fc68db6b5d.sol_only/pi-oss-f8fc68db6b5d.sol_only.json",
-      "seconds": 13.326001665962394,
-      "calls": 4,
-      "jev_calls": 0,
-      "sol_calls": 4,
-      "cost": 0.032962,
-      "recall": 1.0,
-      "read_recall": 1.0,
-      "section_recall": 1.0,
-      "read": 8,
-      "checked": 0,
-      "returned": [
-        47
-      ],
-      "precision": 1.0,
-      "stop": "sufficient_evidence",
-      "sufficient": true,
-      "failure": null,
-      "peak": 1,
-      "first_gold_seconds": 13.323527,
-      "frames": 12,
-      "record_sha256": "1b9516fd3bdba1a50298284866611da02e05fa93c19fbfd25f3d9d549a087160",
-      "recorded_at": "2026-11-09T15:14:55.361755+00:00",
-      "timing": {
-        "sol_agent": {
-          "calls": 4,
-          "active_seconds": 13.286841,
-          "summed_seconds": 13.286840999999999
-        },
-        "outside_calls": {
-          "calls": 0,
-          "active_seconds": 0.03916066596239354
+          "active_seconds": 0.05809324998380205
         }
       },
       "batches": {
@@ -10229,43 +10229,42 @@
     {
       "id": "run-126",
       "repeat": 1,
-      "question_id": "mlb2-65206bcc55cf",
-      "doc_id": "ACTIVISIONBLIZZARD_2019_10K.pdf",
+      "question_id": "pi-oss-f8fc68db6b5d",
+      "doc_id": "AMAZON_2017_10K.pdf",
       "strategy": "sol_only",
-      "directory": "r1/mlb2-65206bcc55cf.sol_only",
-      "result": "r1/mlb2-65206bcc55cf.sol_only/mlb2-65206bcc55cf.sol_only.json",
-      "seconds": 41.15751354198437,
-      "calls": 10,
+      "directory": "r1/pi-oss-f8fc68db6b5d.sol_only",
+      "result": "r1/pi-oss-f8fc68db6b5d.sol_only/pi-oss-f8fc68db6b5d.sol_only.json",
+      "seconds": 14.837027084024157,
+      "calls": 4,
       "jev_calls": 0,
-      "sol_calls": 10,
-      "cost": 0.122012,
-      "recall": 0.0,
-      "read_recall": 0.0,
+      "sol_calls": 4,
+      "cost": 0.03301,
+      "recall": 1.0,
+      "read_recall": 1.0,
       "section_recall": 1.0,
-      "read": 34,
+      "read": 8,
       "checked": 0,
       "returned": [
-        41,
-        98
+        47
       ],
-      "precision": 0.0,
+      "precision": 1.0,
       "stop": "sufficient_evidence",
       "sufficient": true,
       "failure": null,
       "peak": 1,
-      "first_gold_seconds": null,
-      "frames": 29,
-      "record_sha256": "0bf84b49ab9cd742f01d08d2947141ab011deae3b5749640e05f692480e3161a",
-      "recorded_at": "2026-11-09T15:15:41.361674+00:00",
+      "first_gold_seconds": 14.834745,
+      "frames": 12,
+      "record_sha256": "7be19b08711ff739120278e8f05e17b8c2c83a8dd3596da2dabde6cf33af0952",
+      "recorded_at": "2026-11-10T07:55:20.833599+00:00",
       "timing": {
         "sol_agent": {
-          "calls": 10,
-          "active_seconds": 41.007655,
-          "summed_seconds": 41.00765500000001
+          "calls": 4,
+          "active_seconds": 14.815406999999997,
+          "summed_seconds": 14.815406999999997
         },
         "outside_calls": {
           "calls": 0,
-          "active_seconds": 0.1498585419843721
+          "active_seconds": 0.02162008402416049
         }
       },
       "batches": {
@@ -10281,42 +10280,43 @@
     {
       "id": "run-127",
       "repeat": 1,
-      "question_id": "mlb2-3c384e7a0537",
-      "doc_id": "AMAZON_2017_10K.pdf",
+      "question_id": "mlb2-65206bcc55cf",
+      "doc_id": "ACTIVISIONBLIZZARD_2019_10K.pdf",
       "strategy": "sol_only",
-      "directory": "r1/mlb2-3c384e7a0537.sol_only",
-      "result": "r1/mlb2-3c384e7a0537.sol_only/mlb2-3c384e7a0537.sol_only.json",
-      "seconds": 14.513987665995955,
-      "calls": 4,
+      "directory": "r1/mlb2-65206bcc55cf.sol_only",
+      "result": "r1/mlb2-65206bcc55cf.sol_only/mlb2-65206bcc55cf.sol_only.json",
+      "seconds": 44.43479612498777,
+      "calls": 13,
       "jev_calls": 0,
-      "sol_calls": 4,
-      "cost": 0.01854,
-      "recall": 0.5,
-      "read_recall": 0.5,
-      "section_recall": 0.5,
-      "read": 1,
+      "sol_calls": 13,
+      "cost": 0.19016,
+      "recall": 1.0,
+      "read_recall": 1.0,
+      "section_recall": 1.0,
+      "read": 42,
       "checked": 0,
       "returned": [
-        40
+        70,
+        114
       ],
       "precision": 1.0,
       "stop": "sufficient_evidence",
       "sufficient": true,
       "failure": null,
       "peak": 1,
-      "first_gold_seconds": 14.51144,
-      "frames": 12,
-      "record_sha256": "64c555a6bf36ceaf0cf9645368fb07fb07f3228c5b6fe897486bd0bb2e72f67c",
-      "recorded_at": "2026-11-09T15:15:56.722454+00:00",
+      "first_gold_seconds": 37.512089,
+      "frames": 36,
+      "record_sha256": "dc9310256950399e44e0358eff76b945d4b529a3eda1497837042d42786ff449",
+      "recorded_at": "2026-11-10T07:55:53.018222+00:00",
       "timing": {
         "sol_agent": {
-          "calls": 4,
-          "active_seconds": 14.496594999999997,
-          "summed_seconds": 14.496594999999997
+          "calls": 13,
+          "active_seconds": 44.258788,
+          "summed_seconds": 44.258788
         },
         "outside_calls": {
           "calls": 0,
-          "active_seconds": 0.017392665995958012
+          "active_seconds": 0.1760081249877672
         }
       },
       "batches": {
@@ -10337,11 +10337,11 @@
       "strategy": "sol_only",
       "directory": "r1/mlb2-d84051dd72bd.sol_only",
       "result": "r1/mlb2-d84051dd72bd.sol_only/mlb2-d84051dd72bd.sol_only.json",
-      "seconds": 7.7017510830191895,
+      "seconds": 7.684663458028808,
       "calls": 2,
       "jev_calls": 0,
       "sol_calls": 2,
-      "cost": 0.034996,
+      "cost": 0.035006,
       "recall": 0.5,
       "read_recall": 1.0,
       "section_recall": 1.0,
@@ -10355,19 +10355,19 @@
       "sufficient": true,
       "failure": null,
       "peak": 1,
-      "first_gold_seconds": 7.699809,
+      "first_gold_seconds": 7.684171,
       "frames": 8,
-      "record_sha256": "acfe970dad68d67a0bcde72c264002e1c786dad914fa1baade0ceda2bfdc6e87",
-      "recorded_at": "2026-11-09T15:16:09.265267+00:00",
+      "record_sha256": "511d9b40341e6d9235dad4b63b72ffd5a467b16e48eef4318546e074e2e0b8d6",
+      "recorded_at": "2026-11-10T07:55:24.754498+00:00",
       "timing": {
         "sol_agent": {
           "calls": 2,
-          "active_seconds": 7.687053000000001,
-          "summed_seconds": 7.687053000000001
+          "active_seconds": 7.670922000000001,
+          "summed_seconds": 7.670922000000001
         },
         "outside_calls": {
           "calls": 0,
-          "active_seconds": 0.014698083019188957
+          "active_seconds": 0.01374145802880733
         }
       },
       "batches": {
@@ -10383,43 +10383,43 @@
     {
       "id": "run-129",
       "repeat": 1,
-      "question_id": "mlb2-3def27336095",
-      "doc_id": "User_Manual_1500S_Classic_EN.pdf",
+      "question_id": "mlb2-4978b2e47a2c",
+      "doc_id": "ACTIVISIONBLIZZARD_2019_10K.pdf",
       "strategy": "sol_only",
-      "directory": "r1/mlb2-3def27336095.sol_only",
-      "result": "r1/mlb2-3def27336095.sol_only/mlb2-3def27336095.sol_only.json",
-      "seconds": 10.055469667015132,
-      "calls": 3,
+      "directory": "r1/mlb2-4978b2e47a2c.sol_only",
+      "result": "r1/mlb2-4978b2e47a2c.sol_only/mlb2-4978b2e47a2c.sol_only.json",
+      "seconds": 30.507300374971237,
+      "calls": 9,
       "jev_calls": 0,
-      "sol_calls": 3,
-      "cost": 0.024878,
+      "sol_calls": 9,
+      "cost": 0.112374,
       "recall": 1.0,
       "read_recall": 1.0,
       "section_recall": 1.0,
-      "read": 3,
+      "read": 22,
       "checked": 0,
       "returned": [
-        88,
-        89
+        70,
+        73
       ],
       "precision": 1.0,
       "stop": "sufficient_evidence",
       "sufficient": true,
       "failure": null,
       "peak": 1,
-      "first_gold_seconds": 10.045472,
-      "frames": 10,
-      "record_sha256": "adeb6f4c694f47aba5a0797c2eaf68f280e82937c1c7b86b1b49eedca0efb31e",
-      "recorded_at": "2026-11-09T15:17:00.884210+00:00",
+      "first_gold_seconds": 30.500958,
+      "frames": 26,
+      "record_sha256": "1842acf0ab12784a324ed7c1549d1702ae6dd7007a3c7ee249c943755cc27b5c",
+      "recorded_at": "2026-11-10T07:55:52.280071+00:00",
       "timing": {
         "sol_agent": {
-          "calls": 3,
-          "active_seconds": 10.026354999999999,
-          "summed_seconds": 10.026354999999999
+          "calls": 9,
+          "active_seconds": 30.395667000000003,
+          "summed_seconds": 30.395667000000003
         },
         "outside_calls": {
           "calls": 0,
-          "active_seconds": 0.029114667015132767
+          "active_seconds": 0.11163337497123393
         }
       },
       "batches": {
@@ -10435,43 +10435,42 @@
     {
       "id": "run-130",
       "repeat": 1,
-      "question_id": "mlb2-5023c270cfa8",
-      "doc_id": "ACTIVISIONBLIZZARD_2019_10K.pdf",
+      "question_id": "mlb2-bbe12dd39bef",
+      "doc_id": "AMAZON_2017_10K.pdf",
       "strategy": "sol_only",
-      "directory": "r1/mlb2-5023c270cfa8.sol_only",
-      "result": "r1/mlb2-5023c270cfa8.sol_only/mlb2-5023c270cfa8.sol_only.json",
-      "seconds": 28.81828166701598,
-      "calls": 8,
+      "directory": "r1/mlb2-bbe12dd39bef.sol_only",
+      "result": "r1/mlb2-bbe12dd39bef.sol_only/mlb2-bbe12dd39bef.sol_only.json",
+      "seconds": 12.915528624958824,
+      "calls": 4,
       "jev_calls": 0,
-      "sol_calls": 8,
-      "cost": 0.063232,
+      "sol_calls": 4,
+      "cost": 0.033176,
       "recall": 1.0,
       "read_recall": 1.0,
       "section_recall": 1.0,
-      "read": 9,
+      "read": 8,
       "checked": 0,
       "returned": [
-        69,
-        70
+        44
       ],
       "precision": 1.0,
       "stop": "sufficient_evidence",
       "sufficient": true,
       "failure": null,
       "peak": 1,
-      "first_gold_seconds": 28.807987,
-      "frames": 21,
-      "record_sha256": "bdab9309f683d18ce96f3d6e111ac5dcdd5d26ed6159f55b012df2a4f1b91b1b",
-      "recorded_at": "2026-11-09T15:17:40.999092+00:00",
+      "first_gold_seconds": 12.914022,
+      "frames": 12,
+      "record_sha256": "da0d802c2d8da80d2c3daee49aee950f5b3a31828d850745df672360476c66f0",
+      "recorded_at": "2026-11-10T07:55:37.184724+00:00",
       "timing": {
         "sol_agent": {
-          "calls": 8,
-          "active_seconds": 28.744356,
-          "summed_seconds": 28.744355999999996
+          "calls": 4,
+          "active_seconds": 12.876975999999999,
+          "summed_seconds": 12.876975999999999
         },
         "outside_calls": {
           "calls": 0,
-          "active_seconds": 0.07392566701598113
+          "active_seconds": 0.03855262495882528
         }
       },
       "batches": {
@@ -10487,42 +10486,42 @@
     {
       "id": "run-131",
       "repeat": 1,
-      "question_id": "mlb2-66ac018b13d5",
-      "doc_id": "User_Manual_1500S_Classic_EN.pdf",
+      "question_id": "pi-oss-a55448348fbb",
+      "doc_id": "BESTBUY_2023_10K.pdf",
       "strategy": "sol_only",
-      "directory": "r1/mlb2-66ac018b13d5.sol_only",
-      "result": "r1/mlb2-66ac018b13d5.sol_only/mlb2-66ac018b13d5.sol_only.json",
-      "seconds": 28.52956091699889,
-      "calls": 7,
+      "directory": "r1/pi-oss-a55448348fbb.sol_only",
+      "result": "r1/pi-oss-a55448348fbb.sol_only/pi-oss-a55448348fbb.sol_only.json",
+      "seconds": 10.203106708999258,
+      "calls": 3,
       "jev_calls": 0,
-      "sol_calls": 7,
-      "cost": 0.079188,
+      "sol_calls": 3,
+      "cost": 0.02689,
       "recall": 1.0,
       "read_recall": 1.0,
       "section_recall": 1.0,
-      "read": 6,
+      "read": 8,
       "checked": 0,
       "returned": [
-        19
+        45
       ],
       "precision": 1.0,
       "stop": "sufficient_evidence",
       "sufficient": true,
       "failure": null,
       "peak": 1,
-      "first_gold_seconds": 28.528301,
-      "frames": 21,
-      "record_sha256": "b721c007b72718c4faea446ea531709e0c339dd765c033e7893b444e268687a2",
-      "recorded_at": "2026-11-09T15:18:26.025549+00:00",
+      "first_gold_seconds": 10.200937,
+      "frames": 10,
+      "record_sha256": "de843da2a82cf526a917a10be498fc6cedc7166b36a47c3ffe6aa4eacb725c18",
+      "recorded_at": "2026-11-10T07:55:35.800425+00:00",
       "timing": {
         "sol_agent": {
-          "calls": 7,
-          "active_seconds": 28.491924,
-          "summed_seconds": 28.491924
+          "calls": 3,
+          "active_seconds": 10.129791,
+          "summed_seconds": 10.129791
         },
         "outside_calls": {
           "calls": 0,
-          "active_seconds": 0.03763691699888838
+          "active_seconds": 0.07331570899925666
         }
       },
       "batches": {
@@ -10538,42 +10537,43 @@
     {
       "id": "run-132",
       "repeat": 1,
-      "question_id": "mlb2-68fe98d0f7fb",
-      "doc_id": "BESTBUY_2023_10K.pdf",
+      "question_id": "mlb2-3def27336095",
+      "doc_id": "User_Manual_1500S_Classic_EN.pdf",
       "strategy": "sol_only",
-      "directory": "r1/mlb2-68fe98d0f7fb.sol_only",
-      "result": "r1/mlb2-68fe98d0f7fb.sol_only/mlb2-68fe98d0f7fb.sol_only.json",
-      "seconds": 10.034558959014248,
+      "directory": "r1/mlb2-3def27336095.sol_only",
+      "result": "r1/mlb2-3def27336095.sol_only/mlb2-3def27336095.sol_only.json",
+      "seconds": 10.532024124986492,
       "calls": 3,
       "jev_calls": 0,
       "sol_calls": 3,
-      "cost": 0.012904,
+      "cost": 0.024902,
       "recall": 1.0,
       "read_recall": 1.0,
       "section_recall": 1.0,
-      "read": 1,
+      "read": 3,
       "checked": 0,
       "returned": [
-        19
+        88,
+        89
       ],
       "precision": 1.0,
       "stop": "sufficient_evidence",
       "sufficient": true,
       "failure": null,
       "peak": 1,
-      "first_gold_seconds": 10.031266,
+      "first_gold_seconds": 10.522907,
       "frames": 10,
-      "record_sha256": "0195f22f75d1a01bea96449c3ff4c72fc49c1f67e6056eb9ccd91601fd3e836b",
-      "recorded_at": "2026-11-09T15:19:08.342810+00:00",
+      "record_sha256": "8ab8c6286083b1f1864f574edfe96e87e5accacadd5610eef09fa85fe418f963",
+      "recorded_at": "2026-11-10T07:55:47.131254+00:00",
       "timing": {
         "sol_agent": {
           "calls": 3,
-          "active_seconds": 10.018888,
-          "summed_seconds": 10.018888
+          "active_seconds": 10.505008999999998,
+          "summed_seconds": 10.505008999999998
         },
         "outside_calls": {
           "calls": 0,
-          "active_seconds": 0.015670959014247643
+          "active_seconds": 0.0270151249864945
         }
       },
       "batches": {
@@ -10594,11 +10594,11 @@
       "strategy": "sol_only",
       "directory": "r1/pi-oss-b728c1d683c6.sol_only",
       "result": "r1/pi-oss-b728c1d683c6.sol_only/pi-oss-b728c1d683c6.sol_only.json",
-      "seconds": 6.7481099999859,
+      "seconds": 6.98925970797427,
       "calls": 2,
       "jev_calls": 0,
       "sol_calls": 2,
-      "cost": 0.032314,
+      "cost": 0.032328,
       "recall": 1.0,
       "read_recall": 1.0,
       "section_recall": 1.0,
@@ -10612,19 +10612,19 @@
       "sufficient": true,
       "failure": null,
       "peak": 1,
-      "first_gold_seconds": 6.746842,
+      "first_gold_seconds": 6.987737,
       "frames": 8,
-      "record_sha256": "c8a32a5f384ef9dfb7779f3c0eba9d127ac5f22e1c0915fd8d4eb400a112ee9a",
-      "recorded_at": "2026-11-09T15:19:19.657606+00:00",
+      "record_sha256": "e64c02febdf5b152f6341fcc070cfa003c2ffe60900553dba8d435675dc26881",
+      "recorded_at": "2026-11-10T07:55:44.945096+00:00",
       "timing": {
         "sol_agent": {
           "calls": 2,
-          "active_seconds": 6.735657,
-          "summed_seconds": 6.735657
+          "active_seconds": 6.976891999999999,
+          "summed_seconds": 6.976891999999999
         },
         "outside_calls": {
           "calls": 0,
-          "active_seconds": 0.012452999985899993
+          "active_seconds": 0.012367707974270559
         }
       },
       "batches": {
@@ -10640,42 +10640,42 @@
     {
       "id": "run-134",
       "repeat": 1,
-      "question_id": "pi-oss-c97407afe5f0",
-      "doc_id": "BESTBUY_2023_10K.pdf",
+      "question_id": "mlb2-3c384e7a0537",
+      "doc_id": "AMAZON_2017_10K.pdf",
       "strategy": "sol_only",
-      "directory": "r1/pi-oss-c97407afe5f0.sol_only",
-      "result": "r1/pi-oss-c97407afe5f0.sol_only/pi-oss-c97407afe5f0.sol_only.json",
-      "seconds": 9.99197400000412,
-      "calls": 3,
+      "directory": "r1/mlb2-3c384e7a0537.sol_only",
+      "result": "r1/mlb2-3c384e7a0537.sol_only/mlb2-3c384e7a0537.sol_only.json",
+      "seconds": 12.07573300000513,
+      "calls": 4,
       "jev_calls": 0,
-      "sol_calls": 3,
-      "cost": 0.02544,
-      "recall": 1.0,
-      "read_recall": 1.0,
-      "section_recall": 1.0,
-      "read": 8,
+      "sol_calls": 4,
+      "cost": 0.01857,
+      "recall": 0.5,
+      "read_recall": 0.5,
+      "section_recall": 0.5,
+      "read": 1,
       "checked": 0,
       "returned": [
-        39
+        40
       ],
       "precision": 1.0,
       "stop": "sufficient_evidence",
       "sufficient": true,
       "failure": null,
       "peak": 1,
-      "first_gold_seconds": 9.983829,
-      "frames": 10,
-      "record_sha256": "767ab3012b9d7c25883753d4c12dde7dcdf47a436ed3a7cd03eb5ddba9efe916",
-      "recorded_at": "2026-11-09T15:19:30.431421+00:00",
+      "first_gold_seconds": 12.074955,
+      "frames": 12,
+      "record_sha256": "054d6e65e5d50bc23b804469e8e3d25a562642161170d7c551ae977e209fd78a",
+      "recorded_at": "2026-11-10T07:55:57.801003+00:00",
       "timing": {
         "sol_agent": {
-          "calls": 3,
-          "active_seconds": 9.943973,
-          "summed_seconds": 9.943973
+          "calls": 4,
+          "active_seconds": 12.061796,
+          "summed_seconds": 12.061796
         },
         "outside_calls": {
           "calls": 0,
-          "active_seconds": 0.04800100000412044
+          "active_seconds": 0.013937000005130429
         }
       },
       "batches": {
@@ -10691,43 +10691,42 @@
     {
       "id": "run-135",
       "repeat": 1,
-      "question_id": "mlb2-18e011e92e01",
-      "doc_id": "User_Manual_1500S_Classic_EN.pdf",
+      "question_id": "pi-oss-ad5dbad521ca",
+      "doc_id": "BESTBUY_2023_10K.pdf",
       "strategy": "sol_only",
-      "directory": "r1/mlb2-18e011e92e01.sol_only",
-      "result": "r1/mlb2-18e011e92e01.sol_only/mlb2-18e011e92e01.sol_only.json",
-      "seconds": 11.117868833011016,
+      "directory": "r1/pi-oss-ad5dbad521ca.sol_only",
+      "result": "r1/pi-oss-ad5dbad521ca.sol_only/pi-oss-ad5dbad521ca.sol_only.json",
+      "seconds": 9.526592542009894,
       "calls": 3,
       "jev_calls": 0,
       "sol_calls": 3,
-      "cost": 0.047046,
+      "cost": 0.018734,
       "recall": 1.0,
       "read_recall": 1.0,
       "section_recall": 1.0,
-      "read": 2,
+      "read": 4,
       "checked": 0,
       "returned": [
-        56,
-        57
+        7
       ],
       "precision": 1.0,
       "stop": "sufficient_evidence",
       "sufficient": true,
       "failure": null,
       "peak": 1,
-      "first_gold_seconds": 6.925527,
-      "frames": 11,
-      "record_sha256": "9a7fe8a3b6dd9a5240a25f864a506d11b9e1d1ca86a865bff26fcb96168ac237",
-      "recorded_at": "2026-11-09T15:19:42.328832+00:00",
+      "first_gold_seconds": 9.522868,
+      "frames": 10,
+      "record_sha256": "e2de7ba8b5bfa0b679a75b11577e5ac9c407eb0149648b2f4f6809038bd9784c",
+      "recorded_at": "2026-11-10T07:55:57.432509+00:00",
       "timing": {
         "sol_agent": {
           "calls": 3,
-          "active_seconds": 11.099079,
-          "summed_seconds": 11.099079
+          "active_seconds": 9.505147999999998,
+          "summed_seconds": 9.505148
         },
         "outside_calls": {
           "calls": 0,
-          "active_seconds": 0.018789833011016555
+          "active_seconds": 0.02144454200989543
         }
       },
       "batches": {
@@ -10743,42 +10742,43 @@
     {
       "id": "run-136",
       "repeat": 1,
-      "question_id": "pi-oss-c8533f45e99f",
+      "question_id": "mlb2-62f288595f8d",
       "doc_id": "ACTIVISIONBLIZZARD_2019_10K.pdf",
       "strategy": "sol_only",
-      "directory": "r1/pi-oss-c8533f45e99f.sol_only",
-      "result": "r1/pi-oss-c8533f45e99f.sol_only/pi-oss-c8533f45e99f.sol_only.json",
-      "seconds": 12.211931707977783,
-      "calls": 3,
+      "directory": "r1/mlb2-62f288595f8d.sol_only",
+      "result": "r1/mlb2-62f288595f8d.sol_only/mlb2-62f288595f8d.sol_only.json",
+      "seconds": 82.23340858297888,
+      "calls": 19,
       "jev_calls": 0,
-      "sol_calls": 3,
-      "cost": 0.018532,
-      "recall": 1.0,
+      "sol_calls": 19,
+      "cost": 0.354746,
+      "recall": 0.5,
       "read_recall": 1.0,
-      "section_recall": 1.0,
-      "read": 2,
+      "section_recall": 0.5,
+      "read": 56,
       "checked": 0,
       "returned": [
-        29
+        70,
+        69
       ],
-      "precision": 1.0,
+      "precision": 0.5,
       "stop": "sufficient_evidence",
       "sufficient": true,
       "failure": null,
       "peak": 1,
-      "first_gold_seconds": 12.209687,
-      "frames": 10,
-      "record_sha256": "bac0fa7b98ff6a4bf4057bca5f110839893b92251fd958c372f02d724c766651",
-      "recorded_at": "2026-11-09T15:19:58.251385+00:00",
+      "first_gold_seconds": 19.416492,
+      "frames": 50,
+      "record_sha256": "80ab5b9fd7da504e54a004efec263cefc8bc63060b59b908baf0f5f652fbb718",
+      "recorded_at": "2026-11-10T07:57:15.293057+00:00",
       "timing": {
         "sol_agent": {
-          "calls": 3,
-          "active_seconds": 12.196109,
-          "summed_seconds": 12.196109
+          "calls": 19,
+          "active_seconds": 81.975577,
+          "summed_seconds": 81.975577
         },
         "outside_calls": {
           "calls": 0,
-          "active_seconds": 0.015822707977783068
+          "active_seconds": 0.25783158297888065
         }
       },
       "batches": {
@@ -10794,42 +10794,42 @@
     {
       "id": "run-137",
       "repeat": 1,
-      "question_id": "mlb2-bbe12dd39bef",
-      "doc_id": "AMAZON_2017_10K.pdf",
+      "question_id": "mlb2-68fe98d0f7fb",
+      "doc_id": "BESTBUY_2023_10K.pdf",
       "strategy": "sol_only",
-      "directory": "r1/mlb2-bbe12dd39bef.sol_only",
-      "result": "r1/mlb2-bbe12dd39bef.sol_only/mlb2-bbe12dd39bef.sol_only.json",
-      "seconds": 28.643055458029266,
+      "directory": "r1/mlb2-68fe98d0f7fb.sol_only",
+      "result": "r1/mlb2-68fe98d0f7fb.sol_only/mlb2-68fe98d0f7fb.sol_only.json",
+      "seconds": 9.383512832981069,
       "calls": 3,
       "jev_calls": 0,
       "sol_calls": 3,
-      "cost": 0.027538,
-      "recall": 0.0,
-      "read_recall": 0.0,
-      "section_recall": 0.0,
-      "read": 8,
+      "cost": 0.012916,
+      "recall": 1.0,
+      "read_recall": 1.0,
+      "section_recall": 1.0,
+      "read": 1,
       "checked": 0,
       "returned": [
-        27
+        19
       ],
-      "precision": 0.0,
+      "precision": 1.0,
       "stop": "sufficient_evidence",
       "sufficient": true,
       "failure": null,
       "peak": 1,
-      "first_gold_seconds": null,
+      "first_gold_seconds": 9.38096,
       "frames": 10,
-      "record_sha256": "6653169b73caf694d72256d06b3565f5d18db093aeba49bfdf68d0bf8f71c0a2",
-      "recorded_at": "2026-11-09T15:20:31.088852+00:00",
+      "record_sha256": "0b70013134a260104f5103a95c0c12281d1fbd1f651e517ed19fdefda061845a",
+      "recorded_at": "2026-11-10T07:56:03.199613+00:00",
       "timing": {
         "sol_agent": {
           "calls": 3,
-          "active_seconds": 28.605733,
-          "summed_seconds": 28.605733
+          "active_seconds": 9.370581999999999,
+          "summed_seconds": 9.370581999999999
         },
         "outside_calls": {
           "calls": 0,
-          "active_seconds": 0.037322458029265704
+          "active_seconds": 0.012930832981069784
         }
       },
       "batches": {
@@ -10845,43 +10845,42 @@
     {
       "id": "run-138",
       "repeat": 1,
-      "question_id": "mlb2-4978b2e47a2c",
-      "doc_id": "ACTIVISIONBLIZZARD_2019_10K.pdf",
+      "question_id": "pi-oss-c97407afe5f0",
+      "doc_id": "BESTBUY_2023_10K.pdf",
       "strategy": "sol_only",
-      "directory": "r1/mlb2-4978b2e47a2c.sol_only",
-      "result": "r1/mlb2-4978b2e47a2c.sol_only/mlb2-4978b2e47a2c.sol_only.json",
-      "seconds": 37.12190633395221,
-      "calls": 9,
+      "directory": "r1/pi-oss-c97407afe5f0.sol_only",
+      "result": "r1/pi-oss-c97407afe5f0.sol_only/pi-oss-c97407afe5f0.sol_only.json",
+      "seconds": 10.392019958992023,
+      "calls": 3,
       "jev_calls": 0,
-      "sol_calls": 9,
-      "cost": 0.110128,
+      "sol_calls": 3,
+      "cost": 0.025402,
       "recall": 1.0,
       "read_recall": 1.0,
       "section_recall": 1.0,
-      "read": 21,
+      "read": 8,
       "checked": 0,
       "returned": [
-        70,
-        73
+        39
       ],
       "precision": 1.0,
       "stop": "sufficient_evidence",
       "sufficient": true,
       "failure": null,
       "peak": 1,
-      "first_gold_seconds": 37.115328,
-      "frames": 26,
-      "record_sha256": "60ac0d53d0cbb5b4e99e01b31c864bbc93d6418b25b98aeefb95885b9f51bb66",
-      "recorded_at": "2026-11-09T15:21:27.916069+00:00",
+      "first_gold_seconds": 10.385374,
+      "frames": 10,
+      "record_sha256": "2c8ce3136cb6e5f4fa49ea4b7319ecef9a475021da04c3acec500a57bd555ba4",
+      "recorded_at": "2026-11-10T07:56:08.724179+00:00",
       "timing": {
         "sol_agent": {
-          "calls": 9,
-          "active_seconds": 37.014366,
-          "summed_seconds": 37.014365999999995
+          "calls": 3,
+          "active_seconds": 10.344217,
+          "summed_seconds": 10.344217
         },
         "outside_calls": {
           "calls": 0,
-          "active_seconds": 0.1075403339522083
+          "active_seconds": 0.04780295899202258
         }
       },
       "batches": {
@@ -10897,42 +10896,42 @@
     {
       "id": "run-139",
       "repeat": 1,
-      "question_id": "pi-oss-303e9cebcd66",
-      "doc_id": "AMAZON_2017_10K.pdf",
+      "question_id": "pi-oss-c8533f45e99f",
+      "doc_id": "ACTIVISIONBLIZZARD_2019_10K.pdf",
       "strategy": "sol_only",
-      "directory": "r1/pi-oss-303e9cebcd66.sol_only",
-      "result": "r1/pi-oss-303e9cebcd66.sol_only/pi-oss-303e9cebcd66.sol_only.json",
-      "seconds": 16.40468791598687,
-      "calls": 5,
+      "directory": "r1/pi-oss-c8533f45e99f.sol_only",
+      "result": "r1/pi-oss-c8533f45e99f.sol_only/pi-oss-c8533f45e99f.sol_only.json",
+      "seconds": 10.758970250026323,
+      "calls": 3,
       "jev_calls": 0,
-      "sol_calls": 5,
-      "cost": 0.052772,
+      "sol_calls": 3,
+      "cost": 0.018352,
       "recall": 1.0,
       "read_recall": 1.0,
       "section_recall": 1.0,
-      "read": 16,
+      "read": 2,
       "checked": 0,
       "returned": [
-        52
+        29
       ],
       "precision": 1.0,
       "stop": "sufficient_evidence",
       "sufficient": true,
       "failure": null,
       "peak": 1,
-      "first_gold_seconds": 16.402128,
-      "frames": 15,
-      "record_sha256": "87717464c077e994f27a648be055168939483b604856ec93ef4ff19c806f00c7",
-      "recorded_at": "2026-11-09T15:22:02.145904+00:00",
+      "first_gold_seconds": 10.757734,
+      "frames": 10,
+      "record_sha256": "869c3573f39061e4e923c8d3d741e8c9cf5e86b83755daa99014b0d40e40ec34",
+      "recorded_at": "2026-11-10T07:56:09.464298+00:00",
       "timing": {
         "sol_agent": {
-          "calls": 5,
-          "active_seconds": 16.340531,
-          "summed_seconds": 16.340531
+          "calls": 3,
+          "active_seconds": 10.745511,
+          "summed_seconds": 10.745511
         },
         "outside_calls": {
           "calls": 0,
-          "active_seconds": 0.0641569159868709
+          "active_seconds": 0.013459250026322422
         }
       },
       "batches": {
@@ -10948,42 +10947,43 @@
     {
       "id": "run-140",
       "repeat": 1,
-      "question_id": "pi-oss-a55448348fbb",
-      "doc_id": "BESTBUY_2023_10K.pdf",
+      "question_id": "mlb2-5023c270cfa8",
+      "doc_id": "ACTIVISIONBLIZZARD_2019_10K.pdf",
       "strategy": "sol_only",
-      "directory": "r1/pi-oss-a55448348fbb.sol_only",
-      "result": "r1/pi-oss-a55448348fbb.sol_only/pi-oss-a55448348fbb.sol_only.json",
-      "seconds": 9.96803520899266,
-      "calls": 3,
+      "directory": "r1/mlb2-5023c270cfa8.sol_only",
+      "result": "r1/mlb2-5023c270cfa8.sol_only/mlb2-5023c270cfa8.sol_only.json",
+      "seconds": 29.603057000029366,
+      "calls": 9,
       "jev_calls": 0,
-      "sol_calls": 3,
-      "cost": 0.026932,
+      "sol_calls": 9,
+      "cost": 0.089028,
       "recall": 1.0,
       "read_recall": 1.0,
       "section_recall": 1.0,
-      "read": 8,
+      "read": 10,
       "checked": 0,
       "returned": [
-        45
+        69,
+        70
       ],
       "precision": 1.0,
       "stop": "sufficient_evidence",
       "sufficient": true,
       "failure": null,
       "peak": 1,
-      "first_gold_seconds": 9.965512,
-      "frames": 10,
-      "record_sha256": "8fee4ce6de88abef4dddf0ba7b3b8eca51a1fd56f883bbcfa3ca1c83a7d8d1b3",
-      "recorded_at": "2026-11-09T15:22:17.214776+00:00",
+      "first_gold_seconds": 29.596704,
+      "frames": 24,
+      "record_sha256": "3a577e542d9382d096d24d67d5fea3aa8ad07e4fa3a3e55e869a93fd81adc088",
+      "recorded_at": "2026-11-10T07:56:33.590260+00:00",
       "timing": {
         "sol_agent": {
-          "calls": 3,
-          "active_seconds": 9.925529000000001,
-          "summed_seconds": 9.925529000000001
+          "calls": 9,
+          "active_seconds": 29.522104999999996,
+          "summed_seconds": 29.522104999999996
         },
         "outside_calls": {
           "calls": 0,
-          "active_seconds": 0.04250620899265911
+          "active_seconds": 0.0809520000293702
         }
       },
       "batches": {
@@ -10999,42 +10999,42 @@
     {
       "id": "run-141",
       "repeat": 2,
-      "question_id": "pi-oss-a55448348fbb",
-      "doc_id": "BESTBUY_2023_10K.pdf",
+      "question_id": "pi-oss-303e9cebcd66",
+      "doc_id": "AMAZON_2017_10K.pdf",
       "strategy": "sol_only",
-      "directory": "r2/pi-oss-a55448348fbb.sol_only",
-      "result": "r2/pi-oss-a55448348fbb.sol_only/pi-oss-a55448348fbb.sol_only.json",
-      "seconds": 10.910247332998551,
-      "calls": 3,
+      "directory": "r2/pi-oss-303e9cebcd66.sol_only",
+      "result": "r2/pi-oss-303e9cebcd66.sol_only/pi-oss-303e9cebcd66.sol_only.json",
+      "seconds": 16.147260166006163,
+      "calls": 5,
       "jev_calls": 0,
-      "sol_calls": 3,
-      "cost": 0.026922,
+      "sol_calls": 5,
+      "cost": 0.0528,
       "recall": 1.0,
       "read_recall": 1.0,
       "section_recall": 1.0,
-      "read": 8,
+      "read": 16,
       "checked": 0,
       "returned": [
-        45
+        52
       ],
       "precision": 1.0,
       "stop": "sufficient_evidence",
       "sufficient": true,
       "failure": null,
       "peak": 1,
-      "first_gold_seconds": 10.908197,
-      "frames": 10,
-      "record_sha256": "53d4a8d0f5d5874a3ea216afd589d3a7eb8d9a382a058e01574ac4f62b4a9b05",
-      "recorded_at": "2026-11-09T15:22:33.123767+00:00",
+      "first_gold_seconds": 16.14498,
+      "frames": 15,
+      "record_sha256": "5e1a0ea87430bffc6e90d9a0f0768be41bcc34ef7489a29d7f2a12a85572f8e4",
+      "recorded_at": "2026-11-10T07:56:25.743351+00:00",
       "timing": {
         "sol_agent": {
-          "calls": 3,
-          "active_seconds": 10.867607,
-          "summed_seconds": 10.867607
+          "calls": 5,
+          "active_seconds": 16.082105000000002,
+          "summed_seconds": 16.082105000000002
         },
         "outside_calls": {
           "calls": 0,
-          "active_seconds": 0.042640332998551855
+          "active_seconds": 0.06515516600616067
         }
       },
       "batches": {
@@ -11050,42 +11050,43 @@
     {
       "id": "run-142",
       "repeat": 2,
-      "question_id": "mlb2-bbe12dd39bef",
-      "doc_id": "AMAZON_2017_10K.pdf",
+      "question_id": "mlb2-3def27336095",
+      "doc_id": "User_Manual_1500S_Classic_EN.pdf",
       "strategy": "sol_only",
-      "directory": "r2/mlb2-bbe12dd39bef.sol_only",
-      "result": "r2/mlb2-bbe12dd39bef.sol_only/mlb2-bbe12dd39bef.sol_only.json",
-      "seconds": 10.596081375028007,
+      "directory": "r2/mlb2-3def27336095.sol_only",
+      "result": "r2/mlb2-3def27336095.sol_only/mlb2-3def27336095.sol_only.json",
+      "seconds": 10.63389975001337,
       "calls": 3,
       "jev_calls": 0,
       "sol_calls": 3,
-      "cost": 0.028392,
-      "recall": 0.0,
-      "read_recall": 0.0,
-      "section_recall": 0.0,
-      "read": 8,
+      "cost": 0.024862,
+      "recall": 1.0,
+      "read_recall": 1.0,
+      "section_recall": 1.0,
+      "read": 3,
       "checked": 0,
       "returned": [
-        27
+        88,
+        89
       ],
-      "precision": 0.0,
+      "precision": 1.0,
       "stop": "sufficient_evidence",
       "sufficient": true,
       "failure": null,
       "peak": 1,
-      "first_gold_seconds": null,
+      "first_gold_seconds": 10.625538,
       "frames": 10,
-      "record_sha256": "cd25e793d9c842b80683e5d7ca2fa52dfdabd135db4fc09d43cbb68ca268ec87",
-      "recorded_at": "2026-11-09T15:22:46.654913+00:00",
+      "record_sha256": "75ce76031dad69e12aa31817b111fffc4e0b715847c408b6607ac02c4d9a0ca3",
+      "recorded_at": "2026-11-10T07:56:21.133617+00:00",
       "timing": {
         "sol_agent": {
           "calls": 3,
-          "active_seconds": 10.556488000000002,
-          "summed_seconds": 10.556488000000002
+          "active_seconds": 10.605813999999999,
+          "summed_seconds": 10.605813999999999
         },
         "outside_calls": {
           "calls": 0,
-          "active_seconds": 0.039593375028005084
+          "active_seconds": 0.028085750013371324
         }
       },
       "batches": {
@@ -11101,42 +11102,42 @@
     {
       "id": "run-143",
       "repeat": 2,
-      "question_id": "pi-oss-c8533f45e99f",
-      "doc_id": "ACTIVISIONBLIZZARD_2019_10K.pdf",
+      "question_id": "mlb2-bbe12dd39bef",
+      "doc_id": "AMAZON_2017_10K.pdf",
       "strategy": "sol_only",
-      "directory": "r2/pi-oss-c8533f45e99f.sol_only",
-      "result": "r2/pi-oss-c8533f45e99f.sol_only/pi-oss-c8533f45e99f.sol_only.json",
-      "seconds": 11.30219712498365,
-      "calls": 3,
+      "directory": "r2/mlb2-bbe12dd39bef.sol_only",
+      "result": "r2/mlb2-bbe12dd39bef.sol_only/mlb2-bbe12dd39bef.sol_only.json",
+      "seconds": 13.670711625018157,
+      "calls": 4,
       "jev_calls": 0,
-      "sol_calls": 3,
-      "cost": 0.018404,
+      "sol_calls": 4,
+      "cost": 0.033098,
       "recall": 1.0,
       "read_recall": 1.0,
       "section_recall": 1.0,
-      "read": 2,
+      "read": 8,
       "checked": 0,
       "returned": [
-        29
+        44
       ],
       "precision": 1.0,
       "stop": "sufficient_evidence",
       "sufficient": true,
       "failure": null,
       "peak": 1,
-      "first_gold_seconds": 11.299546,
-      "frames": 10,
-      "record_sha256": "cf22558414575b0782d4e487a06e9d127fd0fcc974cac018a3d3eba429850312",
-      "recorded_at": "2026-11-09T15:23:39.355031+00:00",
+      "first_gold_seconds": 13.668907,
+      "frames": 12,
+      "record_sha256": "66c04008b53c3efdf260cf2af623ccf9b6570591dab153c5f48a40c0c9892ec9",
+      "recorded_at": "2026-11-10T07:56:35.767534+00:00",
       "timing": {
         "sol_agent": {
-          "calls": 3,
-          "active_seconds": 11.284962,
-          "summed_seconds": 11.284962
+          "calls": 4,
+          "active_seconds": 13.63097,
+          "summed_seconds": 13.63097
         },
         "outside_calls": {
           "calls": 0,
-          "active_seconds": 0.01723512498364954
+          "active_seconds": 0.03974162501815748
         }
       },
       "batches": {
@@ -11152,43 +11153,42 @@
     {
       "id": "run-144",
       "repeat": 2,
-      "question_id": "mlb2-1ae2534c2fe8",
-      "doc_id": "BESTBUY_2023_10K.pdf",
+      "question_id": "mlb2-66ac018b13d5",
+      "doc_id": "User_Manual_1500S_Classic_EN.pdf",
       "strategy": "sol_only",
-      "directory": "r2/mlb2-1ae2534c2fe8.sol_only",
-      "result": "r2/mlb2-1ae2534c2fe8.sol_only/mlb2-1ae2534c2fe8.sol_only.json",
-      "seconds": 11.336653082980774,
-      "calls": 3,
+      "directory": "r2/mlb2-66ac018b13d5.sol_only",
+      "result": "r2/mlb2-66ac018b13d5.sol_only/mlb2-66ac018b13d5.sol_only.json",
+      "seconds": 35.33432141604135,
+      "calls": 10,
       "jev_calls": 0,
-      "sol_calls": 3,
-      "cost": 0.026878,
-      "recall": 0.5,
-      "read_recall": 0.5,
-      "section_recall": 0.5,
-      "read": 8,
+      "sol_calls": 10,
+      "cost": 0.125516,
+      "recall": 1.0,
+      "read_recall": 1.0,
+      "section_recall": 1.0,
+      "read": 11,
       "checked": 0,
       "returned": [
-        39,
-        40
+        19
       ],
-      "precision": 0.5,
+      "precision": 1.0,
       "stop": "sufficient_evidence",
       "sufficient": true,
       "failure": null,
       "peak": 1,
-      "first_gold_seconds": 11.327285,
-      "frames": 10,
-      "record_sha256": "f214b0c860fb5329aeb658c28e1369a77a24b9da9100892f2cedf87575f0ee65",
-      "recorded_at": "2026-11-09T15:23:51.478236+00:00",
+      "first_gold_seconds": 35.333386,
+      "frames": 30,
+      "record_sha256": "ac18ab5c8bd2b323e125a701d70e58dee6a2236c3bcb9f42d05735074d5bb92a",
+      "recorded_at": "2026-11-10T07:57:02.047769+00:00",
       "timing": {
         "sol_agent": {
-          "calls": 3,
-          "active_seconds": 11.280389000000001,
-          "summed_seconds": 11.280389000000001
+          "calls": 10,
+          "active_seconds": 35.281203000000005,
+          "summed_seconds": 35.281203000000005
         },
         "outside_calls": {
           "calls": 0,
-          "active_seconds": 0.05626408298077301
+          "active_seconds": 0.05311841604134315
         }
       },
       "batches": {
@@ -11204,42 +11204,44 @@
     {
       "id": "run-145",
       "repeat": 2,
-      "question_id": "pi-oss-a9021020fce3",
-      "doc_id": "AMAZON_2017_10K.pdf",
+      "question_id": "mlb2-62f288595f8d",
+      "doc_id": "ACTIVISIONBLIZZARD_2019_10K.pdf",
       "strategy": "sol_only",
-      "directory": "r2/pi-oss-a9021020fce3.sol_only",
-      "result": "r2/pi-oss-a9021020fce3.sol_only/pi-oss-a9021020fce3.sol_only.json",
-      "seconds": 13.715958749991842,
-      "calls": 4,
+      "directory": "r2/mlb2-62f288595f8d.sol_only",
+      "result": "r2/mlb2-62f288595f8d.sol_only/mlb2-62f288595f8d.sol_only.json",
+      "seconds": 83.76558975002263,
+      "calls": 20,
       "jev_calls": 0,
-      "sol_calls": 4,
-      "cost": 0.033162,
-      "recall": 1.0,
+      "sol_calls": 20,
+      "cost": 0.369906,
+      "recall": 0.5,
       "read_recall": 1.0,
       "section_recall": 1.0,
-      "read": 8,
+      "read": 61,
       "checked": 0,
       "returned": [
-        48
+        70,
+        69,
+        58
       ],
-      "precision": 1.0,
+      "precision": 0.3333333333333333,
       "stop": "sufficient_evidence",
       "sufficient": true,
       "failure": null,
       "peak": 1,
-      "first_gold_seconds": 13.713995,
-      "frames": 12,
-      "record_sha256": "56d86742ee16480915370c31c940063c2e38775d5f881e6102253eaece78fb9d",
-      "recorded_at": "2026-11-09T15:24:30.270062+00:00",
+      "first_gold_seconds": 14.675003,
+      "frames": 53,
+      "record_sha256": "fdc4c1741fc798299556540f3feb4b793deae0686273323cca9e57ab370252c0",
+      "recorded_at": "2026-11-10T07:57:58.218771+00:00",
       "timing": {
         "sol_agent": {
-          "calls": 4,
-          "active_seconds": 13.675964,
-          "summed_seconds": 13.675964
+          "calls": 20,
+          "active_seconds": 83.52864100000001,
+          "summed_seconds": 83.52864100000001
         },
         "outside_calls": {
           "calls": 0,
-          "active_seconds": 0.03999474999184116
+          "active_seconds": 0.23694875002261995
         }
       },
       "batches": {
@@ -11255,42 +11257,42 @@
     {
       "id": "run-146",
       "repeat": 2,
-      "question_id": "pi-oss-303e9cebcd66",
-      "doc_id": "AMAZON_2017_10K.pdf",
+      "question_id": "pi-oss-b728c1d683c6",
+      "doc_id": "User_Manual_1500S_Classic_EN.pdf",
       "strategy": "sol_only",
-      "directory": "r2/pi-oss-303e9cebcd66.sol_only",
-      "result": "r2/pi-oss-303e9cebcd66.sol_only/pi-oss-303e9cebcd66.sol_only.json",
-      "seconds": 16.47114550002152,
-      "calls": 5,
+      "directory": "r2/pi-oss-b728c1d683c6.sol_only",
+      "result": "r2/pi-oss-b728c1d683c6.sol_only/pi-oss-b728c1d683c6.sol_only.json",
+      "seconds": 7.343364458007272,
+      "calls": 2,
       "jev_calls": 0,
-      "sol_calls": 5,
-      "cost": 0.052766,
+      "sol_calls": 2,
+      "cost": 0.032324,
       "recall": 1.0,
       "read_recall": 1.0,
       "section_recall": 1.0,
-      "read": 16,
+      "read": 3,
       "checked": 0,
       "returned": [
-        52
+        39
       ],
       "precision": 1.0,
       "stop": "sufficient_evidence",
       "sufficient": true,
       "failure": null,
       "peak": 1,
-      "first_gold_seconds": 16.468717,
-      "frames": 15,
-      "record_sha256": "aadfd9a9ff53e2dd108731ebef5090d3593aa442aec53dd1dd90286d73fc87bd",
-      "recorded_at": "2026-11-09T15:24:47.527612+00:00",
+      "first_gold_seconds": 7.341794,
+      "frames": 8,
+      "record_sha256": "a0ed6bddf141e455c2b1960c967190bb746d83d27c66cff29bfc4505cf29c793",
+      "recorded_at": "2026-11-10T07:56:44.071104+00:00",
       "timing": {
         "sol_agent": {
-          "calls": 5,
-          "active_seconds": 16.396031,
-          "summed_seconds": 16.396031
+          "calls": 2,
+          "active_seconds": 7.326401000000001,
+          "summed_seconds": 7.326401000000001
         },
         "outside_calls": {
           "calls": 0,
-          "active_seconds": 0.07511450002152031
+          "active_seconds": 0.016963458007271726
         }
       },
       "batches": {
@@ -11306,42 +11308,42 @@
     {
       "id": "run-147",
       "repeat": 2,
-      "question_id": "pi-oss-ad5dbad521ca",
-      "doc_id": "BESTBUY_2023_10K.pdf",
+      "question_id": "mlb2-d84051dd72bd",
+      "doc_id": "User_Manual_1500S_Classic_EN.pdf",
       "strategy": "sol_only",
-      "directory": "r2/pi-oss-ad5dbad521ca.sol_only",
-      "result": "r2/pi-oss-ad5dbad521ca.sol_only/pi-oss-ad5dbad521ca.sol_only.json",
-      "seconds": 10.747867166996002,
-      "calls": 3,
+      "directory": "r2/mlb2-d84051dd72bd.sol_only",
+      "result": "r2/mlb2-d84051dd72bd.sol_only/mlb2-d84051dd72bd.sol_only.json",
+      "seconds": 7.102159624977503,
+      "calls": 2,
       "jev_calls": 0,
-      "sol_calls": 3,
-      "cost": 0.018814,
-      "recall": 1.0,
+      "sol_calls": 2,
+      "cost": 0.033396,
+      "recall": 0.5,
       "read_recall": 1.0,
       "section_recall": 1.0,
       "read": 4,
       "checked": 0,
       "returned": [
-        7
+        25
       ],
       "precision": 1.0,
       "stop": "sufficient_evidence",
       "sufficient": true,
       "failure": null,
       "peak": 1,
-      "first_gold_seconds": 10.745827,
-      "frames": 10,
-      "record_sha256": "a87523596a94a8026a2ed202b27c3d1b5bc208d2a30533a3e78c1f8813825756",
-      "recorded_at": "2026-11-09T15:25:05.712559+00:00",
+      "first_gold_seconds": 7.101164,
+      "frames": 8,
+      "record_sha256": "161c6052bb287409f55501b3dc2eaf0205c6a4e69826f278d61cad63b0670e0c",
+      "recorded_at": "2026-11-10T07:56:52.019443+00:00",
       "timing": {
         "sol_agent": {
-          "calls": 3,
-          "active_seconds": 10.728779,
-          "summed_seconds": 10.728779000000001
+          "calls": 2,
+          "active_seconds": 7.089195,
+          "summed_seconds": 7.089195
         },
         "outside_calls": {
           "calls": 0,
-          "active_seconds": 0.019088166996002798
+          "active_seconds": 0.012964624977502837
         }
       },
       "batches": {
@@ -11357,42 +11359,42 @@
     {
       "id": "run-148",
       "repeat": 2,
-      "question_id": "pi-oss-b728c1d683c6",
-      "doc_id": "User_Manual_1500S_Classic_EN.pdf",
+      "question_id": "pi-oss-f8fc68db6b5d",
+      "doc_id": "AMAZON_2017_10K.pdf",
       "strategy": "sol_only",
-      "directory": "r2/pi-oss-b728c1d683c6.sol_only",
-      "result": "r2/pi-oss-b728c1d683c6.sol_only/pi-oss-b728c1d683c6.sol_only.json",
-      "seconds": 7.497486417007167,
-      "calls": 2,
+      "directory": "r2/pi-oss-f8fc68db6b5d.sol_only",
+      "result": "r2/pi-oss-f8fc68db6b5d.sol_only/pi-oss-f8fc68db6b5d.sol_only.json",
+      "seconds": 12.30633366695838,
+      "calls": 4,
       "jev_calls": 0,
-      "sol_calls": 2,
-      "cost": 0.032302,
+      "sol_calls": 4,
+      "cost": 0.032976,
       "recall": 1.0,
       "read_recall": 1.0,
       "section_recall": 1.0,
-      "read": 3,
+      "read": 8,
       "checked": 0,
       "returned": [
-        39
+        47
       ],
       "precision": 1.0,
       "stop": "sufficient_evidence",
       "sufficient": true,
       "failure": null,
       "peak": 1,
-      "first_gold_seconds": 7.49603,
-      "frames": 8,
-      "record_sha256": "ac4e6ccefed7e4e1d4953dbc8fc8913a3baf9660e0dbc46c9c10a8eb896b0386",
-      "recorded_at": "2026-11-09T15:25:13.998528+00:00",
+      "first_gold_seconds": 12.304355,
+      "frames": 12,
+      "record_sha256": "d0d408a33d6b4fa2859c84e0815a80255a7ab93a652e713ada52348df87100e7",
+      "recorded_at": "2026-11-10T07:57:05.172782+00:00",
       "timing": {
         "sol_agent": {
-          "calls": 2,
-          "active_seconds": 7.485749,
-          "summed_seconds": 7.485749
+          "calls": 4,
+          "active_seconds": 12.273369,
+          "summed_seconds": 12.273369
         },
         "outside_calls": {
           "calls": 0,
-          "active_seconds": 0.011737417007166684
+          "active_seconds": 0.03296466695837985
         }
       },
       "batches": {
@@ -11408,43 +11410,42 @@
     {
       "id": "run-149",
       "repeat": 2,
-      "question_id": "mlb2-65206bcc55cf",
-      "doc_id": "ACTIVISIONBLIZZARD_2019_10K.pdf",
+      "question_id": "pi-oss-c97407afe5f0",
+      "doc_id": "BESTBUY_2023_10K.pdf",
       "strategy": "sol_only",
-      "directory": "r2/mlb2-65206bcc55cf.sol_only",
-      "result": "r2/mlb2-65206bcc55cf.sol_only/mlb2-65206bcc55cf.sol_only.json",
-      "seconds": 40.50634587503737,
-      "calls": 11,
+      "directory": "r2/pi-oss-c97407afe5f0.sol_only",
+      "result": "r2/pi-oss-c97407afe5f0.sol_only/pi-oss-c97407afe5f0.sol_only.json",
+      "seconds": 9.506789000006393,
+      "calls": 3,
       "jev_calls": 0,
-      "sol_calls": 11,
-      "cost": 0.145566,
+      "sol_calls": 3,
+      "cost": 0.025392,
       "recall": 1.0,
       "read_recall": 1.0,
       "section_recall": 1.0,
-      "read": 42,
+      "read": 8,
       "checked": 0,
       "returned": [
-        70,
-        114
+        39
       ],
       "precision": 1.0,
       "stop": "sufficient_evidence",
       "sufficient": true,
       "failure": null,
       "peak": 1,
-      "first_gold_seconds": 32.510471,
-      "frames": 32,
-      "record_sha256": "1ba8a236ed8e84750544e96696c51aa7acf5563cabf0d6fa31005d4a61b5572f",
-      "recorded_at": "2026-11-09T15:25:55.280365+00:00",
+      "first_gold_seconds": 9.500827,
+      "frames": 10,
+      "record_sha256": "6f090b3b2f68fb55c9603fa06da54f633530212e4bdd3c26e7cbe11be48ea51d",
+      "recorded_at": "2026-11-10T07:57:12.458115+00:00",
       "timing": {
         "sol_agent": {
-          "calls": 11,
-          "active_seconds": 40.32209099999999,
-          "summed_seconds": 40.32209099999999
+          "calls": 3,
+          "active_seconds": 9.466751,
+          "summed_seconds": 9.466751
         },
         "outside_calls": {
           "calls": 0,
-          "active_seconds": 0.18425487503737514
+          "active_seconds": 0.04003800000639224
         }
       },
       "batches": {
@@ -11460,43 +11461,43 @@
     {
       "id": "run-150",
       "repeat": 2,
-      "question_id": "mlb2-3def27336095",
-      "doc_id": "User_Manual_1500S_Classic_EN.pdf",
+      "question_id": "mlb2-5023c270cfa8",
+      "doc_id": "ACTIVISIONBLIZZARD_2019_10K.pdf",
       "strategy": "sol_only",
-      "directory": "r2/mlb2-3def27336095.sol_only",
-      "result": "r2/mlb2-3def27336095.sol_only/mlb2-3def27336095.sol_only.json",
-      "seconds": 9.64902416698169,
-      "calls": 3,
+      "directory": "r2/mlb2-5023c270cfa8.sol_only",
+      "result": "r2/mlb2-5023c270cfa8.sol_only/mlb2-5023c270cfa8.sol_only.json",
+      "seconds": 20.9883719580248,
+      "calls": 6,
       "jev_calls": 0,
-      "sol_calls": 3,
-      "cost": 0.02486,
+      "sol_calls": 6,
+      "cost": 0.051232,
       "recall": 1.0,
       "read_recall": 1.0,
       "section_recall": 1.0,
-      "read": 3,
+      "read": 9,
       "checked": 0,
       "returned": [
-        88,
-        89
+        70,
+        69
       ],
       "precision": 1.0,
       "stop": "sufficient_evidence",
       "sufficient": true,
       "failure": null,
       "peak": 1,
-      "first_gold_seconds": 9.640268,
-      "frames": 10,
-      "record_sha256": "2f847e1b8c4b350a2866e636d2f22d0bbd234862870e08606a5aaf4889704b7d",
-      "recorded_at": "2026-11-09T15:26:08.956300+00:00",
+      "first_gold_seconds": 20.977715,
+      "frames": 17,
+      "record_sha256": "d53f3a6edd2b04bb1ef73f474facecd7d31850fced03167b9bd0b3d990b4b412",
+      "recorded_at": "2026-11-10T07:57:27.251124+00:00",
       "timing": {
         "sol_agent": {
-          "calls": 3,
-          "active_seconds": 9.621309,
-          "summed_seconds": 9.621309
+          "calls": 6,
+          "active_seconds": 20.932405000000003,
+          "summed_seconds": 20.932405
         },
         "outside_calls": {
           "calls": 0,
-          "active_seconds": 0.02771516698168952
+          "active_seconds": 0.05596695802479701
         }
       },
       "batches": {
@@ -11512,303 +11513,1546 @@
     {
       "id": "run-151",
       "repeat": 2,
-      "question_id": "mlb2-62f288595f8d",
-      "doc_id": "ACTIVISIONBLIZZARD_2019_10K.pdf",
+      "question_id": "pi-oss-a55448348fbb",
+      "doc_id": "BESTBUY_2023_10K.pdf",
       "strategy": "sol_only",
-      "directory": "r2/mlb2-62f288595f8d.sol_only",
-      "result": "r2/mlb2-62f288595f8d.sol_only/mlb2-62f288595f8d.sol_only.json",
-      "seconds": 150.32910825003637,
-      "calls": 8,
+      "directory": "r2/pi-oss-a55448348fbb.sol_only",
+      "result": "r2/pi-oss-a55448348fbb.sol_only/pi-oss-a55448348fbb.sol_only.json",
+      "seconds": 10.220758417039178,
+      "calls": 3,
       "jev_calls": 0,
-      "sol_calls": 8,
-      "cost": 0.071774,
-      "recall": 0.5,
-      "read_recall": 0.5,
-      "section_recall": 0.5,
-      "read": 10,
+      "sol_calls": 3,
+      "cost": 0.02778,
+      "recall": 1.0,
+      "read_recall": 1.0,
+      "section_recall": 1.0,
+      "read": 8,
       "checked": 0,
       "returned": [
-        30,
-        47
+        45
       ],
-      "precision": 0.5,
-      "stop": "error",
-      "sufficient": false,
-      "failure": {
-        "type": "APITimeoutError",
-        "message": "Request timed out."
+      "precision": 1.0,
+      "stop": "sufficient_evidence",
+      "sufficient": true,
+      "failure": null,
+      "peak": 1,
+      "first_gold_seconds": 10.218524,
+      "frames": 10,
+      "record_sha256": "14e54f7f0f0fc4b064a6e8fd4b0b9a1c2e90a534664b3ccc49e74c21040eaaa9",
+      "recorded_at": "2026-11-10T07:57:23.679670+00:00",
+      "timing": {
+        "sol_agent": {
+          "calls": 3,
+          "active_seconds": 10.19048,
+          "summed_seconds": 10.19048
+        },
+        "outside_calls": {
+          "calls": 0,
+          "active_seconds": 0.03027841703917744
+        }
       },
-      "peak": null,
-      "first_gold_seconds": 15.219643,
-      "frames": 24,
-      "record_sha256": "6a86f14e67fd93e288913ca65f38902b614b9c7729d66aca942ac51f7415c8de",
-      "recorded_at": "2026-11-09T15:29:36.199735+00:00",
-      "timing": {},
-      "batches": {},
-      "supported": false
+      "batches": {
+        "page_windows": {
+          "calls": 0,
+          "targets": 0,
+          "source_page_appearances": 0,
+          "single_target_windows": 0
+        }
+      },
+      "supported": true
     },
     {
       "id": "run-152",
+      "repeat": 2,
+      "question_id": "pi-oss-a9021020fce3",
+      "doc_id": "AMAZON_2017_10K.pdf",
+      "strategy": "sol_only",
+      "directory": "r2/pi-oss-a9021020fce3.sol_only",
+      "result": "r2/pi-oss-a9021020fce3.sol_only/pi-oss-a9021020fce3.sol_only.json",
+      "seconds": 12.96681474999059,
+      "calls": 4,
+      "jev_calls": 0,
+      "sol_calls": 4,
+      "cost": 0.03316,
+      "recall": 1.0,
+      "read_recall": 1.0,
+      "section_recall": 1.0,
+      "read": 8,
+      "checked": 0,
+      "returned": [
+        48
+      ],
+      "precision": 1.0,
+      "stop": "sufficient_evidence",
+      "sufficient": true,
+      "failure": null,
+      "peak": 1,
+      "first_gold_seconds": 12.964942,
+      "frames": 12,
+      "record_sha256": "a602a12bb222be002e734fc1cef423f80df065598bef4bf19888e236633c1b64",
+      "recorded_at": "2026-11-10T07:57:29.222373+00:00",
+      "timing": {
+        "sol_agent": {
+          "calls": 4,
+          "active_seconds": 12.934651999999998,
+          "summed_seconds": 12.934651999999998
+        },
+        "outside_calls": {
+          "calls": 0,
+          "active_seconds": 0.03216274999059188
+        }
+      },
+      "batches": {
+        "page_windows": {
+          "calls": 0,
+          "targets": 0,
+          "source_page_appearances": 0,
+          "single_target_windows": 0
+        }
+      },
+      "supported": true
+    },
+    {
+      "id": "run-153",
+      "repeat": 2,
+      "question_id": "mlb2-1ae2534c2fe8",
+      "doc_id": "BESTBUY_2023_10K.pdf",
+      "strategy": "sol_only",
+      "directory": "r2/mlb2-1ae2534c2fe8.sol_only",
+      "result": "r2/mlb2-1ae2534c2fe8.sol_only/mlb2-1ae2534c2fe8.sol_only.json",
+      "seconds": 10.982854042027611,
+      "calls": 3,
+      "jev_calls": 0,
+      "sol_calls": 3,
+      "cost": 0.02588,
+      "recall": 0.5,
+      "read_recall": 0.5,
+      "section_recall": 0.5,
+      "read": 8,
+      "checked": 0,
+      "returned": [
+        39,
+        40
+      ],
+      "precision": 0.5,
+      "stop": "sufficient_evidence",
+      "sufficient": true,
+      "failure": null,
+      "peak": 1,
+      "first_gold_seconds": 10.973941,
+      "frames": 10,
+      "record_sha256": "ff0bfd4234936f18b5fe65f5d200f79567793cdb0ce416405c84d7704d412e5f",
+      "recorded_at": "2026-11-10T07:57:35.459949+00:00",
+      "timing": {
+        "sol_agent": {
+          "calls": 3,
+          "active_seconds": 10.945124,
+          "summed_seconds": 10.945124
+        },
+        "outside_calls": {
+          "calls": 0,
+          "active_seconds": 0.03773004202761143
+        }
+      },
+      "batches": {
+        "page_windows": {
+          "calls": 0,
+          "targets": 0,
+          "source_page_appearances": 0,
+          "single_target_windows": 0
+        }
+      },
+      "supported": true
+    },
+    {
+      "id": "run-154",
       "repeat": 2,
       "question_id": "mlb2-68fe98d0f7fb",
       "doc_id": "BESTBUY_2023_10K.pdf",
       "strategy": "sol_only",
       "directory": "r2/mlb2-68fe98d0f7fb.sol_only",
       "result": "r2/mlb2-68fe98d0f7fb.sol_only/mlb2-68fe98d0f7fb.sol_only.json",
-      "seconds": 4.916709957993589,
-      "calls": 1,
+      "seconds": 9.822406084043905,
+      "calls": 3,
       "jev_calls": 0,
-      "sol_calls": 1,
-      "cost": 0.0,
-      "recall": 0.0,
-      "read_recall": 0.0,
-      "section_recall": 0.0,
-      "read": 0,
+      "sol_calls": 3,
+      "cost": 0.012918,
+      "recall": 1.0,
+      "read_recall": 1.0,
+      "section_recall": 1.0,
+      "read": 1,
       "checked": 0,
-      "returned": [],
-      "precision": null,
-      "stop": "error",
-      "sufficient": false,
-      "failure": {
-        "type": "RateLimitError",
-        "message": "Error code: 429 - {'error': {'message': 'You have no credits remaining. Add credits to continue using the API at https://platform.openai.com/settings/organization/billing/.', 'type': 'insufficient_quota', 'param': None, 'code': 'credit_balance_exhausted'}}"
+      "returned": [
+        19
+      ],
+      "precision": 1.0,
+      "stop": "sufficient_evidence",
+      "sufficient": true,
+      "failure": null,
+      "peak": 1,
+      "first_gold_seconds": 9.819144,
+      "frames": 10,
+      "record_sha256": "59a4835e40747dc8329012f14610f0ca8f45af7c814204b68628a83e4b168c50",
+      "recorded_at": "2026-11-10T07:57:37.871940+00:00",
+      "timing": {
+        "sol_agent": {
+          "calls": 3,
+          "active_seconds": 9.808949000000002,
+          "summed_seconds": 9.808949000000002
+        },
+        "outside_calls": {
+          "calls": 0,
+          "active_seconds": 0.013457084043903222
+        }
       },
-      "peak": null,
-      "first_gold_seconds": null,
-      "frames": 3,
-      "record_sha256": "2df5bb6f54e1251641bd29b76faccefc1999ee1b1a4100e2e092270a203ae898",
-      "recorded_at": "2026-11-09T15:29:48.662184+00:00",
-      "timing": {},
-      "batches": {},
-      "supported": false
-    }
-  ],
-  "missing": [
-    {
-      "repeat": 2,
-      "question_id": "pi-oss-f8fc68db6b5d",
-      "doc_id": "AMAZON_2017_10K.pdf",
-      "strategy": "sol_only",
-      "directory": "r2/pi-oss-f8fc68db6b5d.sol_only",
-      "result": "r2/pi-oss-f8fc68db6b5d.sol_only/pi-oss-f8fc68db6b5d.sol_only.json"
+      "batches": {
+        "page_windows": {
+          "calls": 0,
+          "targets": 0,
+          "source_page_appearances": 0,
+          "single_target_windows": 0
+        }
+      },
+      "supported": true
     },
     {
+      "id": "run-155",
       "repeat": 2,
-      "question_id": "pi-oss-c97407afe5f0",
-      "doc_id": "BESTBUY_2023_10K.pdf",
-      "strategy": "sol_only",
-      "directory": "r2/pi-oss-c97407afe5f0.sol_only",
-      "result": "r2/pi-oss-c97407afe5f0.sol_only/pi-oss-c97407afe5f0.sol_only.json"
-    },
-    {
-      "repeat": 2,
-      "question_id": "mlb2-4978b2e47a2c",
+      "question_id": "pi-oss-c8533f45e99f",
       "doc_id": "ACTIVISIONBLIZZARD_2019_10K.pdf",
       "strategy": "sol_only",
-      "directory": "r2/mlb2-4978b2e47a2c.sol_only",
-      "result": "r2/mlb2-4978b2e47a2c.sol_only/mlb2-4978b2e47a2c.sol_only.json"
+      "directory": "r2/pi-oss-c8533f45e99f.sol_only",
+      "result": "r2/pi-oss-c8533f45e99f.sol_only/pi-oss-c8533f45e99f.sol_only.json",
+      "seconds": 10.313009500037879,
+      "calls": 3,
+      "jev_calls": 0,
+      "sol_calls": 3,
+      "cost": 0.01813,
+      "recall": 1.0,
+      "read_recall": 1.0,
+      "section_recall": 1.0,
+      "read": 2,
+      "checked": 0,
+      "returned": [
+        29
+      ],
+      "precision": 1.0,
+      "stop": "sufficient_evidence",
+      "sufficient": true,
+      "failure": null,
+      "peak": 1,
+      "first_gold_seconds": 10.311017,
+      "frames": 10,
+      "record_sha256": "0fc01b31a91cd7e5a5f0c911665a727cb9e7f38e9613155dbe21df2c1567741e",
+      "recorded_at": "2026-11-10T07:57:40.436153+00:00",
+      "timing": {
+        "sol_agent": {
+          "calls": 3,
+          "active_seconds": 10.297412999999999,
+          "summed_seconds": 10.297413
+        },
+        "outside_calls": {
+          "calls": 0,
+          "active_seconds": 0.015596500037879935
+        }
+      },
+      "batches": {
+        "page_windows": {
+          "calls": 0,
+          "targets": 0,
+          "source_page_appearances": 0,
+          "single_target_windows": 0
+        }
+      },
+      "supported": true
     },
     {
-      "repeat": 2,
-      "question_id": "mlb2-66ac018b13d5",
-      "doc_id": "User_Manual_1500S_Classic_EN.pdf",
-      "strategy": "sol_only",
-      "directory": "r2/mlb2-66ac018b13d5.sol_only",
-      "result": "r2/mlb2-66ac018b13d5.sol_only/mlb2-66ac018b13d5.sol_only.json"
-    },
-    {
-      "repeat": 2,
-      "question_id": "mlb2-5023c270cfa8",
-      "doc_id": "ACTIVISIONBLIZZARD_2019_10K.pdf",
-      "strategy": "sol_only",
-      "directory": "r2/mlb2-5023c270cfa8.sol_only",
-      "result": "r2/mlb2-5023c270cfa8.sol_only/mlb2-5023c270cfa8.sol_only.json"
-    },
-    {
-      "repeat": 2,
-      "question_id": "mlb2-3c384e7a0537",
-      "doc_id": "AMAZON_2017_10K.pdf",
-      "strategy": "sol_only",
-      "directory": "r2/mlb2-3c384e7a0537.sol_only",
-      "result": "r2/mlb2-3c384e7a0537.sol_only/mlb2-3c384e7a0537.sol_only.json"
-    },
-    {
-      "repeat": 2,
-      "question_id": "mlb2-d84051dd72bd",
-      "doc_id": "User_Manual_1500S_Classic_EN.pdf",
-      "strategy": "sol_only",
-      "directory": "r2/mlb2-d84051dd72bd.sol_only",
-      "result": "r2/mlb2-d84051dd72bd.sol_only/mlb2-d84051dd72bd.sol_only.json"
-    },
-    {
+      "id": "run-156",
       "repeat": 2,
       "question_id": "mlb2-18e011e92e01",
       "doc_id": "User_Manual_1500S_Classic_EN.pdf",
       "strategy": "sol_only",
       "directory": "r2/mlb2-18e011e92e01.sol_only",
-      "result": "r2/mlb2-18e011e92e01.sol_only/mlb2-18e011e92e01.sol_only.json"
+      "result": "r2/mlb2-18e011e92e01.sol_only/mlb2-18e011e92e01.sol_only.json",
+      "seconds": 11.272880250005983,
+      "calls": 3,
+      "jev_calls": 0,
+      "sol_calls": 3,
+      "cost": 0.047136,
+      "recall": 1.0,
+      "read_recall": 1.0,
+      "section_recall": 1.0,
+      "read": 2,
+      "checked": 0,
+      "returned": [
+        56,
+        57
+      ],
+      "precision": 1.0,
+      "stop": "sufficient_evidence",
+      "sufficient": true,
+      "failure": null,
+      "peak": 1,
+      "first_gold_seconds": 7.206233,
+      "frames": 11,
+      "record_sha256": "16db484965d6eccb08f5eba17a987eb19c11f82f8a9f40633b52a32e46fc3e0f",
+      "recorded_at": "2026-11-10T07:57:47.540712+00:00",
+      "timing": {
+        "sol_agent": {
+          "calls": 3,
+          "active_seconds": 11.257367000000002,
+          "summed_seconds": 11.257367000000002
+        },
+        "outside_calls": {
+          "calls": 0,
+          "active_seconds": 0.015513250005980694
+        }
+      },
+      "batches": {
+        "page_windows": {
+          "calls": 0,
+          "targets": 0,
+          "source_page_appearances": 0,
+          "single_target_windows": 0
+        }
+      },
+      "supported": true
     },
     {
-      "repeat": 3,
-      "question_id": "mlb2-bbe12dd39bef",
+      "id": "run-157",
+      "repeat": 2,
+      "question_id": "mlb2-3c384e7a0537",
       "doc_id": "AMAZON_2017_10K.pdf",
       "strategy": "sol_only",
-      "directory": "r3/mlb2-bbe12dd39bef.sol_only",
-      "result": "r3/mlb2-bbe12dd39bef.sol_only/mlb2-bbe12dd39bef.sol_only.json"
+      "directory": "r2/mlb2-3c384e7a0537.sol_only",
+      "result": "r2/mlb2-3c384e7a0537.sol_only/mlb2-3c384e7a0537.sol_only.json",
+      "seconds": 12.66482879203977,
+      "calls": 4,
+      "jev_calls": 0,
+      "sol_calls": 4,
+      "cost": 0.018572,
+      "recall": 0.5,
+      "read_recall": 0.5,
+      "section_recall": 0.5,
+      "read": 1,
+      "checked": 0,
+      "returned": [
+        40
+      ],
+      "precision": 1.0,
+      "stop": "sufficient_evidence",
+      "sufficient": true,
+      "failure": null,
+      "peak": 1,
+      "first_gold_seconds": 12.662826,
+      "frames": 12,
+      "record_sha256": "9c26314dd1f06bd78865d76211cb93cd75502053f6e7c2fa398b8ea21c96e21f",
+      "recorded_at": "2026-11-10T07:57:51.434622+00:00",
+      "timing": {
+        "sol_agent": {
+          "calls": 4,
+          "active_seconds": 12.650958000000001,
+          "summed_seconds": 12.650958000000001
+        },
+        "outside_calls": {
+          "calls": 0,
+          "active_seconds": 0.013870792039769597
+        }
+      },
+      "batches": {
+        "page_windows": {
+          "calls": 0,
+          "targets": 0,
+          "source_page_appearances": 0,
+          "single_target_windows": 0
+        }
+      },
+      "supported": true
     },
     {
-      "repeat": 3,
-      "question_id": "mlb2-62f288595f8d",
-      "doc_id": "ACTIVISIONBLIZZARD_2019_10K.pdf",
-      "strategy": "sol_only",
-      "directory": "r3/mlb2-62f288595f8d.sol_only",
-      "result": "r3/mlb2-62f288595f8d.sol_only/mlb2-62f288595f8d.sol_only.json"
-    },
-    {
-      "repeat": 3,
-      "question_id": "mlb2-4978b2e47a2c",
-      "doc_id": "ACTIVISIONBLIZZARD_2019_10K.pdf",
-      "strategy": "sol_only",
-      "directory": "r3/mlb2-4978b2e47a2c.sol_only",
-      "result": "r3/mlb2-4978b2e47a2c.sol_only/mlb2-4978b2e47a2c.sol_only.json"
-    },
-    {
-      "repeat": 3,
+      "id": "run-158",
+      "repeat": 2,
       "question_id": "mlb2-65206bcc55cf",
       "doc_id": "ACTIVISIONBLIZZARD_2019_10K.pdf",
       "strategy": "sol_only",
-      "directory": "r3/mlb2-65206bcc55cf.sol_only",
-      "result": "r3/mlb2-65206bcc55cf.sol_only/mlb2-65206bcc55cf.sol_only.json"
+      "directory": "r2/mlb2-65206bcc55cf.sol_only",
+      "result": "r2/mlb2-65206bcc55cf.sol_only/mlb2-65206bcc55cf.sol_only.json",
+      "seconds": 43.888711749983486,
+      "calls": 12,
+      "jev_calls": 0,
+      "sol_calls": 12,
+      "cost": 0.167364,
+      "recall": 0.5,
+      "read_recall": 0.5,
+      "section_recall": 1.0,
+      "read": 34,
+      "checked": 0,
+      "returned": [
+        70,
+        98
+      ],
+      "precision": 0.5,
+      "stop": "sufficient_evidence",
+      "sufficient": true,
+      "failure": null,
+      "peak": 1,
+      "first_gold_seconds": 39.610323,
+      "frames": 33,
+      "record_sha256": "03d59e2af35153632ebe4a6bd397d69bf528be39d74c1e7d97244d7186cf81e9",
+      "recorded_at": "2026-11-10T07:58:25.341117+00:00",
+      "timing": {
+        "sol_agent": {
+          "calls": 12,
+          "active_seconds": 43.734736000000005,
+          "summed_seconds": 43.734736000000005
+        },
+        "outside_calls": {
+          "calls": 0,
+          "active_seconds": 0.15397574998348063
+        }
+      },
+      "batches": {
+        "page_windows": {
+          "calls": 0,
+          "targets": 0,
+          "source_page_appearances": 0,
+          "single_target_windows": 0
+        }
+      },
+      "supported": true
     },
     {
-      "repeat": 3,
-      "question_id": "pi-oss-303e9cebcd66",
-      "doc_id": "AMAZON_2017_10K.pdf",
+      "id": "run-159",
+      "repeat": 2,
+      "question_id": "mlb2-4978b2e47a2c",
+      "doc_id": "ACTIVISIONBLIZZARD_2019_10K.pdf",
       "strategy": "sol_only",
-      "directory": "r3/pi-oss-303e9cebcd66.sol_only",
-      "result": "r3/pi-oss-303e9cebcd66.sol_only/pi-oss-303e9cebcd66.sol_only.json"
+      "directory": "r2/mlb2-4978b2e47a2c.sol_only",
+      "result": "r2/mlb2-4978b2e47a2c.sol_only/mlb2-4978b2e47a2c.sol_only.json",
+      "seconds": 30.084689208015334,
+      "calls": 9,
+      "jev_calls": 0,
+      "sol_calls": 9,
+      "cost": 0.110012,
+      "recall": 1.0,
+      "read_recall": 1.0,
+      "section_recall": 1.0,
+      "read": 21,
+      "checked": 0,
+      "returned": [
+        70,
+        73
+      ],
+      "precision": 1.0,
+      "stop": "sufficient_evidence",
+      "sufficient": true,
+      "failure": null,
+      "peak": 1,
+      "first_gold_seconds": 30.077008,
+      "frames": 26,
+      "record_sha256": "ac582d3743dfb51fcc450bb4718d9392a7be27d5269019911af4d5c1ff311356",
+      "recorded_at": "2026-11-10T07:58:18.593159+00:00",
+      "timing": {
+        "sol_agent": {
+          "calls": 9,
+          "active_seconds": 29.977361999999996,
+          "summed_seconds": 29.977361999999996
+        },
+        "outside_calls": {
+          "calls": 0,
+          "active_seconds": 0.10732720801533802
+        }
+      },
+      "batches": {
+        "page_windows": {
+          "calls": 0,
+          "targets": 0,
+          "source_page_appearances": 0,
+          "single_target_windows": 0
+        }
+      },
+      "supported": true
     },
     {
+      "id": "run-160",
+      "repeat": 2,
+      "question_id": "pi-oss-ad5dbad521ca",
+      "doc_id": "BESTBUY_2023_10K.pdf",
+      "strategy": "sol_only",
+      "directory": "r2/pi-oss-ad5dbad521ca.sol_only",
+      "result": "r2/pi-oss-ad5dbad521ca.sol_only/pi-oss-ad5dbad521ca.sol_only.json",
+      "seconds": 9.870524249970913,
+      "calls": 3,
+      "jev_calls": 0,
+      "sol_calls": 3,
+      "cost": 0.018798,
+      "recall": 1.0,
+      "read_recall": 1.0,
+      "section_recall": 1.0,
+      "read": 4,
+      "checked": 0,
+      "returned": [
+        7
+      ],
+      "precision": 1.0,
+      "stop": "sufficient_evidence",
+      "sufficient": true,
+      "failure": null,
+      "peak": 1,
+      "first_gold_seconds": 9.866488,
+      "frames": 10,
+      "record_sha256": "588d36338c00d59380632aea152301257f0353ce605cd825a37899b098c888a7",
+      "recorded_at": "2026-11-10T07:58:02.189943+00:00",
+      "timing": {
+        "sol_agent": {
+          "calls": 3,
+          "active_seconds": 9.850650000000002,
+          "summed_seconds": 9.850650000000002
+        },
+        "outside_calls": {
+          "calls": 0,
+          "active_seconds": 0.01987424997091125
+        }
+      },
+      "batches": {
+        "page_windows": {
+          "calls": 0,
+          "targets": 0,
+          "source_page_appearances": 0,
+          "single_target_windows": 0
+        }
+      },
+      "supported": true
+    },
+    {
+      "id": "run-161",
       "repeat": 3,
       "question_id": "pi-oss-c97407afe5f0",
       "doc_id": "BESTBUY_2023_10K.pdf",
       "strategy": "sol_only",
       "directory": "r3/pi-oss-c97407afe5f0.sol_only",
-      "result": "r3/pi-oss-c97407afe5f0.sol_only/pi-oss-c97407afe5f0.sol_only.json"
+      "result": "r3/pi-oss-c97407afe5f0.sol_only/pi-oss-c97407afe5f0.sol_only.json",
+      "seconds": 9.968274499988183,
+      "calls": 3,
+      "jev_calls": 0,
+      "sol_calls": 3,
+      "cost": 0.02531,
+      "recall": 1.0,
+      "read_recall": 1.0,
+      "section_recall": 1.0,
+      "read": 8,
+      "checked": 0,
+      "returned": [
+        39
+      ],
+      "precision": 1.0,
+      "stop": "sufficient_evidence",
+      "sufficient": true,
+      "failure": null,
+      "peak": 1,
+      "first_gold_seconds": 9.960382,
+      "frames": 10,
+      "record_sha256": "b8d82b13bf145a7cb384eb3ec09141428b8998662e93a954e2dec7e7898a58df",
+      "recorded_at": "2026-11-10T07:58:09.010710+00:00",
+      "timing": {
+        "sol_agent": {
+          "calls": 3,
+          "active_seconds": 9.928657999999999,
+          "summed_seconds": 9.928657999999999
+        },
+        "outside_calls": {
+          "calls": 0,
+          "active_seconds": 0.03961649998818473
+        }
+      },
+      "batches": {
+        "page_windows": {
+          "calls": 0,
+          "targets": 0,
+          "source_page_appearances": 0,
+          "single_target_windows": 0
+        }
+      },
+      "supported": true
     },
     {
-      "repeat": 3,
-      "question_id": "pi-oss-b728c1d683c6",
-      "doc_id": "User_Manual_1500S_Classic_EN.pdf",
-      "strategy": "sol_only",
-      "directory": "r3/pi-oss-b728c1d683c6.sol_only",
-      "result": "r3/pi-oss-b728c1d683c6.sol_only/pi-oss-b728c1d683c6.sol_only.json"
-    },
-    {
-      "repeat": 3,
-      "question_id": "pi-oss-c8533f45e99f",
-      "doc_id": "ACTIVISIONBLIZZARD_2019_10K.pdf",
-      "strategy": "sol_only",
-      "directory": "r3/pi-oss-c8533f45e99f.sol_only",
-      "result": "r3/pi-oss-c8533f45e99f.sol_only/pi-oss-c8533f45e99f.sol_only.json"
-    },
-    {
-      "repeat": 3,
-      "question_id": "mlb2-5023c270cfa8",
-      "doc_id": "ACTIVISIONBLIZZARD_2019_10K.pdf",
-      "strategy": "sol_only",
-      "directory": "r3/mlb2-5023c270cfa8.sol_only",
-      "result": "r3/mlb2-5023c270cfa8.sol_only/mlb2-5023c270cfa8.sol_only.json"
-    },
-    {
-      "repeat": 3,
-      "question_id": "mlb2-d84051dd72bd",
-      "doc_id": "User_Manual_1500S_Classic_EN.pdf",
-      "strategy": "sol_only",
-      "directory": "r3/mlb2-d84051dd72bd.sol_only",
-      "result": "r3/mlb2-d84051dd72bd.sol_only/mlb2-d84051dd72bd.sol_only.json"
-    },
-    {
-      "repeat": 3,
-      "question_id": "pi-oss-f8fc68db6b5d",
-      "doc_id": "AMAZON_2017_10K.pdf",
-      "strategy": "sol_only",
-      "directory": "r3/pi-oss-f8fc68db6b5d.sol_only",
-      "result": "r3/pi-oss-f8fc68db6b5d.sol_only/pi-oss-f8fc68db6b5d.sol_only.json"
-    },
-    {
-      "repeat": 3,
-      "question_id": "pi-oss-a9021020fce3",
-      "doc_id": "AMAZON_2017_10K.pdf",
-      "strategy": "sol_only",
-      "directory": "r3/pi-oss-a9021020fce3.sol_only",
-      "result": "r3/pi-oss-a9021020fce3.sol_only/pi-oss-a9021020fce3.sol_only.json"
-    },
-    {
-      "repeat": 3,
-      "question_id": "mlb2-66ac018b13d5",
-      "doc_id": "User_Manual_1500S_Classic_EN.pdf",
-      "strategy": "sol_only",
-      "directory": "r3/mlb2-66ac018b13d5.sol_only",
-      "result": "r3/mlb2-66ac018b13d5.sol_only/mlb2-66ac018b13d5.sol_only.json"
-    },
-    {
-      "repeat": 3,
-      "question_id": "mlb2-3c384e7a0537",
-      "doc_id": "AMAZON_2017_10K.pdf",
-      "strategy": "sol_only",
-      "directory": "r3/mlb2-3c384e7a0537.sol_only",
-      "result": "r3/mlb2-3c384e7a0537.sol_only/mlb2-3c384e7a0537.sol_only.json"
-    },
-    {
-      "repeat": 3,
-      "question_id": "mlb2-1ae2534c2fe8",
-      "doc_id": "BESTBUY_2023_10K.pdf",
-      "strategy": "sol_only",
-      "directory": "r3/mlb2-1ae2534c2fe8.sol_only",
-      "result": "r3/mlb2-1ae2534c2fe8.sol_only/mlb2-1ae2534c2fe8.sol_only.json"
-    },
-    {
-      "repeat": 3,
-      "question_id": "pi-oss-ad5dbad521ca",
-      "doc_id": "BESTBUY_2023_10K.pdf",
-      "strategy": "sol_only",
-      "directory": "r3/pi-oss-ad5dbad521ca.sol_only",
-      "result": "r3/pi-oss-ad5dbad521ca.sol_only/pi-oss-ad5dbad521ca.sol_only.json"
-    },
-    {
+      "id": "run-162",
       "repeat": 3,
       "question_id": "mlb2-68fe98d0f7fb",
       "doc_id": "BESTBUY_2023_10K.pdf",
       "strategy": "sol_only",
       "directory": "r3/mlb2-68fe98d0f7fb.sol_only",
-      "result": "r3/mlb2-68fe98d0f7fb.sol_only/mlb2-68fe98d0f7fb.sol_only.json"
+      "result": "r3/mlb2-68fe98d0f7fb.sol_only/mlb2-68fe98d0f7fb.sol_only.json",
+      "seconds": 9.496973583998624,
+      "calls": 3,
+      "jev_calls": 0,
+      "sol_calls": 3,
+      "cost": 0.012892,
+      "recall": 1.0,
+      "read_recall": 1.0,
+      "section_recall": 1.0,
+      "read": 1,
+      "checked": 0,
+      "returned": [
+        19
+      ],
+      "precision": 1.0,
+      "stop": "sufficient_evidence",
+      "sufficient": true,
+      "failure": null,
+      "peak": 1,
+      "first_gold_seconds": 9.494399,
+      "frames": 10,
+      "record_sha256": "f982d89bf1a08fd6cc93e55900b52b329e3773bab3f16dfcaf0992c98ff41ad9",
+      "recorded_at": "2026-11-10T07:58:12.485331+00:00",
+      "timing": {
+        "sol_agent": {
+          "calls": 3,
+          "active_seconds": 9.481743999999999,
+          "summed_seconds": 9.481743999999999
+        },
+        "outside_calls": {
+          "calls": 0,
+          "active_seconds": 0.015229583998625174
+        }
+      },
+      "batches": {
+        "page_windows": {
+          "calls": 0,
+          "targets": 0,
+          "source_page_appearances": 0,
+          "single_target_windows": 0
+        }
+      },
+      "supported": true
     },
     {
-      "repeat": 3,
-      "question_id": "mlb2-18e011e92e01",
-      "doc_id": "User_Manual_1500S_Classic_EN.pdf",
-      "strategy": "sol_only",
-      "directory": "r3/mlb2-18e011e92e01.sol_only",
-      "result": "r3/mlb2-18e011e92e01.sol_only/mlb2-18e011e92e01.sol_only.json"
-    },
-    {
+      "id": "run-163",
       "repeat": 3,
       "question_id": "pi-oss-a55448348fbb",
       "doc_id": "BESTBUY_2023_10K.pdf",
       "strategy": "sol_only",
       "directory": "r3/pi-oss-a55448348fbb.sol_only",
-      "result": "r3/pi-oss-a55448348fbb.sol_only/pi-oss-a55448348fbb.sol_only.json"
+      "result": "r3/pi-oss-a55448348fbb.sol_only/pi-oss-a55448348fbb.sol_only.json",
+      "seconds": 9.911194790969603,
+      "calls": 3,
+      "jev_calls": 0,
+      "sol_calls": 3,
+      "cost": 0.027744,
+      "recall": 1.0,
+      "read_recall": 1.0,
+      "section_recall": 1.0,
+      "read": 8,
+      "checked": 0,
+      "returned": [
+        45
+      ],
+      "precision": 1.0,
+      "stop": "sufficient_evidence",
+      "sufficient": true,
+      "failure": null,
+      "peak": 1,
+      "first_gold_seconds": 9.910436,
+      "frames": 10,
+      "record_sha256": "a7fe1b2361fda99ae1cf3cf6843d3c975e677dccb6bca4abdaf9505ddfdb063b",
+      "recorded_at": "2026-11-10T07:58:19.697216+00:00",
+      "timing": {
+        "sol_agent": {
+          "calls": 3,
+          "active_seconds": 9.868766,
+          "summed_seconds": 9.868766
+        },
+        "outside_calls": {
+          "calls": 0,
+          "active_seconds": 0.04242879096960195
+        }
+      },
+      "batches": {
+        "page_windows": {
+          "calls": 0,
+          "targets": 0,
+          "source_page_appearances": 0,
+          "single_target_windows": 0
+        }
+      },
+      "supported": true
     },
     {
+      "id": "run-164",
       "repeat": 3,
       "question_id": "mlb2-3def27336095",
       "doc_id": "User_Manual_1500S_Classic_EN.pdf",
       "strategy": "sol_only",
       "directory": "r3/mlb2-3def27336095.sol_only",
-      "result": "r3/mlb2-3def27336095.sol_only/mlb2-3def27336095.sol_only.json"
+      "result": "r3/mlb2-3def27336095.sol_only/mlb2-3def27336095.sol_only.json",
+      "seconds": 9.872261708020233,
+      "calls": 3,
+      "jev_calls": 0,
+      "sol_calls": 3,
+      "cost": 0.024914,
+      "recall": 1.0,
+      "read_recall": 1.0,
+      "section_recall": 1.0,
+      "read": 3,
+      "checked": 0,
+      "returned": [
+        88,
+        89
+      ],
+      "precision": 1.0,
+      "stop": "sufficient_evidence",
+      "sufficient": true,
+      "failure": null,
+      "peak": 1,
+      "first_gold_seconds": 9.862937,
+      "frames": 10,
+      "record_sha256": "8061fcc9940f282a0fb748ac1f216731d7bbb6c9cc1c5bd30bc8d99f90ca8827",
+      "recorded_at": "2026-11-10T07:58:23.179966+00:00",
+      "timing": {
+        "sol_agent": {
+          "calls": 3,
+          "active_seconds": 9.851522,
+          "summed_seconds": 9.851522
+        },
+        "outside_calls": {
+          "calls": 0,
+          "active_seconds": 0.020739708020233394
+        }
+      },
+      "batches": {
+        "page_windows": {
+          "calls": 0,
+          "targets": 0,
+          "source_page_appearances": 0,
+          "single_target_windows": 0
+        }
+      },
+      "supported": true
+    },
+    {
+      "id": "run-165",
+      "repeat": 3,
+      "question_id": "pi-oss-ad5dbad521ca",
+      "doc_id": "BESTBUY_2023_10K.pdf",
+      "strategy": "sol_only",
+      "directory": "r3/pi-oss-ad5dbad521ca.sol_only",
+      "result": "r3/pi-oss-ad5dbad521ca.sol_only/pi-oss-ad5dbad521ca.sol_only.json",
+      "seconds": 10.614592375000939,
+      "calls": 3,
+      "jev_calls": 0,
+      "sol_calls": 3,
+      "cost": 0.01886,
+      "recall": 1.0,
+      "read_recall": 1.0,
+      "section_recall": 1.0,
+      "read": 4,
+      "checked": 0,
+      "returned": [
+        7
+      ],
+      "precision": 1.0,
+      "stop": "sufficient_evidence",
+      "sufficient": true,
+      "failure": null,
+      "peak": 1,
+      "first_gold_seconds": 10.612246,
+      "frames": 10,
+      "record_sha256": "8493191784efc99396bdfe21cfe0f5ceedae5c7018a9e995f353da82a20a15f9",
+      "recorded_at": "2026-11-10T07:58:30.020944+00:00",
+      "timing": {
+        "sol_agent": {
+          "calls": 3,
+          "active_seconds": 10.602699000000001,
+          "summed_seconds": 10.602699
+        },
+        "outside_calls": {
+          "calls": 0,
+          "active_seconds": 0.011893375000937567
+        }
+      },
+      "batches": {
+        "page_windows": {
+          "calls": 0,
+          "targets": 0,
+          "source_page_appearances": 0,
+          "single_target_windows": 0
+        }
+      },
+      "supported": true
+    },
+    {
+      "id": "run-166",
+      "repeat": 3,
+      "question_id": "mlb2-65206bcc55cf",
+      "doc_id": "ACTIVISIONBLIZZARD_2019_10K.pdf",
+      "strategy": "sol_only",
+      "directory": "r3/mlb2-65206bcc55cf.sol_only",
+      "result": "r3/mlb2-65206bcc55cf.sol_only/mlb2-65206bcc55cf.sol_only.json",
+      "seconds": 39.777815166977234,
+      "calls": 11,
+      "jev_calls": 0,
+      "sol_calls": 11,
+      "cost": 0.159506,
+      "recall": 1.0,
+      "read_recall": 1.0,
+      "section_recall": 1.0,
+      "read": 33,
+      "checked": 0,
+      "returned": [
+        70,
+        114
+      ],
+      "precision": 1.0,
+      "stop": "sufficient_evidence",
+      "sufficient": true,
+      "failure": null,
+      "peak": 1,
+      "first_gold_seconds": 35.819162,
+      "frames": 30,
+      "record_sha256": "769e0fe00a9ffbb09314456acbd3b7eb4e4ec6793ea90c5eca1112165669d61d",
+      "recorded_at": "2026-11-10T07:59:00.274356+00:00",
+      "timing": {
+        "sol_agent": {
+          "calls": 11,
+          "active_seconds": 39.64870499999999,
+          "summed_seconds": 39.64870499999999
+        },
+        "outside_calls": {
+          "calls": 0,
+          "active_seconds": 0.12911016697724165
+        }
+      },
+      "batches": {
+        "page_windows": {
+          "calls": 0,
+          "targets": 0,
+          "source_page_appearances": 0,
+          "single_target_windows": 0
+        }
+      },
+      "supported": true
+    },
+    {
+      "id": "run-167",
+      "repeat": 3,
+      "question_id": "pi-oss-a9021020fce3",
+      "doc_id": "AMAZON_2017_10K.pdf",
+      "strategy": "sol_only",
+      "directory": "r3/pi-oss-a9021020fce3.sol_only",
+      "result": "r3/pi-oss-a9021020fce3.sol_only/pi-oss-a9021020fce3.sol_only.json",
+      "seconds": 11.761457375017926,
+      "calls": 4,
+      "jev_calls": 0,
+      "sol_calls": 4,
+      "cost": 0.033176,
+      "recall": 1.0,
+      "read_recall": 1.0,
+      "section_recall": 1.0,
+      "read": 8,
+      "checked": 0,
+      "returned": [
+        48
+      ],
+      "precision": 1.0,
+      "stop": "sufficient_evidence",
+      "sufficient": true,
+      "failure": null,
+      "peak": 1,
+      "first_gold_seconds": 11.759604,
+      "frames": 12,
+      "record_sha256": "6c72bc38cb5dc65f53219b6bdd142c84be10f86b6b9104a45e72519aa24f03b7",
+      "recorded_at": "2026-11-10T07:58:35.741547+00:00",
+      "timing": {
+        "sol_agent": {
+          "calls": 4,
+          "active_seconds": 11.724492999999999,
+          "summed_seconds": 11.724492999999999
+        },
+        "outside_calls": {
+          "calls": 0,
+          "active_seconds": 0.036964375017927154
+        }
+      },
+      "batches": {
+        "page_windows": {
+          "calls": 0,
+          "targets": 0,
+          "source_page_appearances": 0,
+          "single_target_windows": 0
+        }
+      },
+      "supported": true
+    },
+    {
+      "id": "run-168",
+      "repeat": 3,
+      "question_id": "pi-oss-303e9cebcd66",
+      "doc_id": "AMAZON_2017_10K.pdf",
+      "strategy": "sol_only",
+      "directory": "r3/pi-oss-303e9cebcd66.sol_only",
+      "result": "r3/pi-oss-303e9cebcd66.sol_only/pi-oss-303e9cebcd66.sol_only.json",
+      "seconds": 16.437519834027626,
+      "calls": 5,
+      "jev_calls": 0,
+      "sol_calls": 5,
+      "cost": 0.052784,
+      "recall": 1.0,
+      "read_recall": 1.0,
+      "section_recall": 1.0,
+      "read": 16,
+      "checked": 0,
+      "returned": [
+        52
+      ],
+      "precision": 1.0,
+      "stop": "sufficient_evidence",
+      "sufficient": true,
+      "failure": null,
+      "peak": 1,
+      "first_gold_seconds": 16.43563,
+      "frames": 15,
+      "record_sha256": "c53f72e85e7239cbd9f909d972bfc0c858952e4273fc775a511e9e7dfab37c3e",
+      "recorded_at": "2026-11-10T07:58:42.565840+00:00",
+      "timing": {
+        "sol_agent": {
+          "calls": 5,
+          "active_seconds": 16.394214000000005,
+          "summed_seconds": 16.394214000000005
+        },
+        "outside_calls": {
+          "calls": 0,
+          "active_seconds": 0.04330583402762045
+        }
+      },
+      "batches": {
+        "page_windows": {
+          "calls": 0,
+          "targets": 0,
+          "source_page_appearances": 0,
+          "single_target_windows": 0
+        }
+      },
+      "supported": true
+    },
+    {
+      "id": "run-169",
+      "repeat": 3,
+      "question_id": "mlb2-3c384e7a0537",
+      "doc_id": "AMAZON_2017_10K.pdf",
+      "strategy": "sol_only",
+      "directory": "r3/mlb2-3c384e7a0537.sol_only",
+      "result": "r3/mlb2-3c384e7a0537.sol_only/mlb2-3c384e7a0537.sol_only.json",
+      "seconds": 12.825482874992304,
+      "calls": 4,
+      "jev_calls": 0,
+      "sol_calls": 4,
+      "cost": 0.018582,
+      "recall": 0.5,
+      "read_recall": 0.5,
+      "section_recall": 0.5,
+      "read": 1,
+      "checked": 0,
+      "returned": [
+        40
+      ],
+      "precision": 1.0,
+      "stop": "sufficient_evidence",
+      "sufficient": true,
+      "failure": null,
+      "peak": 1,
+      "first_gold_seconds": 12.823671,
+      "frames": 12,
+      "record_sha256": "6fd1141a92db837b18922a3256df8fce553c5e7c190e874072a89c0e66490d10",
+      "recorded_at": "2026-11-10T07:58:43.683366+00:00",
+      "timing": {
+        "sol_agent": {
+          "calls": 4,
+          "active_seconds": 12.810323,
+          "summed_seconds": 12.810323
+        },
+        "outside_calls": {
+          "calls": 0,
+          "active_seconds": 0.015159874992303202
+        }
+      },
+      "batches": {
+        "page_windows": {
+          "calls": 0,
+          "targets": 0,
+          "source_page_appearances": 0,
+          "single_target_windows": 0
+        }
+      },
+      "supported": true
+    },
+    {
+      "id": "run-170",
+      "repeat": 3,
+      "question_id": "mlb2-1ae2534c2fe8",
+      "doc_id": "BESTBUY_2023_10K.pdf",
+      "strategy": "sol_only",
+      "directory": "r3/mlb2-1ae2534c2fe8.sol_only",
+      "result": "r3/mlb2-1ae2534c2fe8.sol_only/mlb2-1ae2534c2fe8.sol_only.json",
+      "seconds": 11.341150042018853,
+      "calls": 3,
+      "jev_calls": 0,
+      "sol_calls": 3,
+      "cost": 0.025862,
+      "recall": 0.5,
+      "read_recall": 0.5,
+      "section_recall": 0.5,
+      "read": 8,
+      "checked": 0,
+      "returned": [
+        39,
+        40
+      ],
+      "precision": 0.5,
+      "stop": "sufficient_evidence",
+      "sufficient": true,
+      "failure": null,
+      "peak": 1,
+      "first_gold_seconds": 11.336481,
+      "frames": 10,
+      "record_sha256": "3bf02ba500fc5acb8b82f90ffe04f70b999edff6ff2dd95a91958b912d608fe6",
+      "recorded_at": "2026-11-10T07:58:48.032772+00:00",
+      "timing": {
+        "sol_agent": {
+          "calls": 3,
+          "active_seconds": 11.312045000000001,
+          "summed_seconds": 11.312045000000001
+        },
+        "outside_calls": {
+          "calls": 0,
+          "active_seconds": 0.02910504201885189
+        }
+      },
+      "batches": {
+        "page_windows": {
+          "calls": 0,
+          "targets": 0,
+          "source_page_appearances": 0,
+          "single_target_windows": 0
+        }
+      },
+      "supported": true
+    },
+    {
+      "id": "run-171",
+      "repeat": 3,
+      "question_id": "pi-oss-c8533f45e99f",
+      "doc_id": "ACTIVISIONBLIZZARD_2019_10K.pdf",
+      "strategy": "sol_only",
+      "directory": "r3/pi-oss-c8533f45e99f.sol_only",
+      "result": "r3/pi-oss-c8533f45e99f.sol_only/pi-oss-c8533f45e99f.sol_only.json",
+      "seconds": 10.9381599999615,
+      "calls": 3,
+      "jev_calls": 0,
+      "sol_calls": 3,
+      "cost": 0.018516,
+      "recall": 1.0,
+      "read_recall": 1.0,
+      "section_recall": 1.0,
+      "read": 2,
+      "checked": 0,
+      "returned": [
+        29
+      ],
+      "precision": 1.0,
+      "stop": "sufficient_evidence",
+      "sufficient": true,
+      "failure": null,
+      "peak": 1,
+      "first_gold_seconds": 10.936311,
+      "frames": 10,
+      "record_sha256": "90b575f0e7c7f3d02593a13340d722bfc6aa70da5d9a4855b553970011082e55",
+      "recorded_at": "2026-11-10T07:58:54.348440+00:00",
+      "timing": {
+        "sol_agent": {
+          "calls": 3,
+          "active_seconds": 10.923216,
+          "summed_seconds": 10.923216
+        },
+        "outside_calls": {
+          "calls": 0,
+          "active_seconds": 0.014943999961499088
+        }
+      },
+      "batches": {
+        "page_windows": {
+          "calls": 0,
+          "targets": 0,
+          "source_page_appearances": 0,
+          "single_target_windows": 0
+        }
+      },
+      "supported": true
+    },
+    {
+      "id": "run-172",
+      "repeat": 3,
+      "question_id": "mlb2-4978b2e47a2c",
+      "doc_id": "ACTIVISIONBLIZZARD_2019_10K.pdf",
+      "strategy": "sol_only",
+      "directory": "r3/mlb2-4978b2e47a2c.sol_only",
+      "result": "r3/mlb2-4978b2e47a2c.sol_only/mlb2-4978b2e47a2c.sol_only.json",
+      "seconds": 31.3541697919718,
+      "calls": 9,
+      "jev_calls": 0,
+      "sol_calls": 9,
+      "cost": 0.112536,
+      "recall": 1.0,
+      "read_recall": 1.0,
+      "section_recall": 1.0,
+      "read": 22,
+      "checked": 0,
+      "returned": [
+        70,
+        73
+      ],
+      "precision": 1.0,
+      "stop": "sufficient_evidence",
+      "sufficient": true,
+      "failure": null,
+      "peak": 1,
+      "first_gold_seconds": 31.348186,
+      "frames": 26,
+      "record_sha256": "b9a186415cf91aef96c73b1f67e9442dfc5e009ca61d4b34868ff35013e554ad",
+      "recorded_at": "2026-11-10T07:59:15.955365+00:00",
+      "timing": {
+        "sol_agent": {
+          "calls": 9,
+          "active_seconds": 31.237358,
+          "summed_seconds": 31.237358
+        },
+        "outside_calls": {
+          "calls": 0,
+          "active_seconds": 0.11681179197179858
+        }
+      },
+      "batches": {
+        "page_windows": {
+          "calls": 0,
+          "targets": 0,
+          "source_page_appearances": 0,
+          "single_target_windows": 0
+        }
+      },
+      "supported": true
+    },
+    {
+      "id": "run-173",
+      "repeat": 3,
+      "question_id": "mlb2-5023c270cfa8",
+      "doc_id": "ACTIVISIONBLIZZARD_2019_10K.pdf",
+      "strategy": "sol_only",
+      "directory": "r3/mlb2-5023c270cfa8.sol_only",
+      "result": "r3/mlb2-5023c270cfa8.sol_only/mlb2-5023c270cfa8.sol_only.json",
+      "seconds": 31.979684541001916,
+      "calls": 9,
+      "jev_calls": 0,
+      "sol_calls": 9,
+      "cost": 0.09077,
+      "recall": 1.0,
+      "read_recall": 1.0,
+      "section_recall": 1.0,
+      "read": 10,
+      "checked": 0,
+      "returned": [
+        69,
+        70
+      ],
+      "precision": 1.0,
+      "stop": "sufficient_evidence",
+      "sufficient": true,
+      "failure": null,
+      "peak": 1,
+      "first_gold_seconds": 31.969225,
+      "frames": 24,
+      "record_sha256": "aea72df201d43b0515795845a1913724a87e0e5a40ff1ca6b24b3ec6c4a3b223",
+      "recorded_at": "2026-11-10T07:59:20.840294+00:00",
+      "timing": {
+        "sol_agent": {
+          "calls": 9,
+          "active_seconds": 31.922746000000007,
+          "summed_seconds": 31.922746000000004
+        },
+        "outside_calls": {
+          "calls": 0,
+          "active_seconds": 0.05693854100190876
+        }
+      },
+      "batches": {
+        "page_windows": {
+          "calls": 0,
+          "targets": 0,
+          "source_page_appearances": 0,
+          "single_target_windows": 0
+        }
+      },
+      "supported": true
+    },
+    {
+      "id": "run-174",
+      "repeat": 3,
+      "question_id": "mlb2-bbe12dd39bef",
+      "doc_id": "AMAZON_2017_10K.pdf",
+      "strategy": "sol_only",
+      "directory": "r3/mlb2-bbe12dd39bef.sol_only",
+      "result": "r3/mlb2-bbe12dd39bef.sol_only/mlb2-bbe12dd39bef.sol_only.json",
+      "seconds": 10.30651595897507,
+      "calls": 3,
+      "jev_calls": 0,
+      "sol_calls": 3,
+      "cost": 0.027518,
+      "recall": 0.0,
+      "read_recall": 0.0,
+      "section_recall": 0.0,
+      "read": 8,
+      "checked": 0,
+      "returned": [
+        27
+      ],
+      "precision": 0.0,
+      "stop": "sufficient_evidence",
+      "sufficient": true,
+      "failure": null,
+      "peak": 1,
+      "first_gold_seconds": null,
+      "frames": 10,
+      "record_sha256": "755035da9d266b3bae8f2b7c3f8731914a77b216ac6d037120050ee9c51f3dcf",
+      "recorded_at": "2026-11-10T07:59:05.422097+00:00",
+      "timing": {
+        "sol_agent": {
+          "calls": 3,
+          "active_seconds": 10.268606,
+          "summed_seconds": 10.268606
+        },
+        "outside_calls": {
+          "calls": 0,
+          "active_seconds": 0.0379099589750691
+        }
+      },
+      "batches": {
+        "page_windows": {
+          "calls": 0,
+          "targets": 0,
+          "source_page_appearances": 0,
+          "single_target_windows": 0
+        }
+      },
+      "supported": true
+    },
+    {
+      "id": "run-175",
+      "repeat": 3,
+      "question_id": "mlb2-d84051dd72bd",
+      "doc_id": "User_Manual_1500S_Classic_EN.pdf",
+      "strategy": "sol_only",
+      "directory": "r3/mlb2-d84051dd72bd.sol_only",
+      "result": "r3/mlb2-d84051dd72bd.sol_only/mlb2-d84051dd72bd.sol_only.json",
+      "seconds": 7.466788000019733,
+      "calls": 2,
+      "jev_calls": 0,
+      "sol_calls": 2,
+      "cost": 0.03504,
+      "recall": 0.5,
+      "read_recall": 1.0,
+      "section_recall": 1.0,
+      "read": 7,
+      "checked": 0,
+      "returned": [
+        25
+      ],
+      "precision": 1.0,
+      "stop": "sufficient_evidence",
+      "sufficient": true,
+      "failure": null,
+      "peak": 1,
+      "first_gold_seconds": 7.46381,
+      "frames": 8,
+      "record_sha256": "2bb2490b6e2ac26c25610396bf1aeb811fa5c489f47f5034583d9c806b116159",
+      "recorded_at": "2026-11-10T07:59:08.543101+00:00",
+      "timing": {
+        "sol_agent": {
+          "calls": 2,
+          "active_seconds": 7.451771999999999,
+          "summed_seconds": 7.451771999999999
+        },
+        "outside_calls": {
+          "calls": 0,
+          "active_seconds": 0.015016000019733688
+        }
+      },
+      "batches": {
+        "page_windows": {
+          "calls": 0,
+          "targets": 0,
+          "source_page_appearances": 0,
+          "single_target_windows": 0
+        }
+      },
+      "supported": true
+    },
+    {
+      "id": "run-176",
+      "repeat": 3,
+      "question_id": "pi-oss-b728c1d683c6",
+      "doc_id": "User_Manual_1500S_Classic_EN.pdf",
+      "strategy": "sol_only",
+      "directory": "r3/pi-oss-b728c1d683c6.sol_only",
+      "result": "r3/pi-oss-b728c1d683c6.sol_only/pi-oss-b728c1d683c6.sol_only.json",
+      "seconds": 6.976964792003855,
+      "calls": 2,
+      "jev_calls": 0,
+      "sol_calls": 2,
+      "cost": 0.032292,
+      "recall": 1.0,
+      "read_recall": 1.0,
+      "section_recall": 1.0,
+      "read": 3,
+      "checked": 0,
+      "returned": [
+        39
+      ],
+      "precision": 1.0,
+      "stop": "sufficient_evidence",
+      "sufficient": true,
+      "failure": null,
+      "peak": 1,
+      "first_gold_seconds": 6.976356,
+      "frames": 8,
+      "record_sha256": "b819bfd14fda3be1517cceecc582458b17e31d238bc4b65f3dc38835d7d6ec3e",
+      "recorded_at": "2026-11-10T07:59:13.185543+00:00",
+      "timing": {
+        "sol_agent": {
+          "calls": 2,
+          "active_seconds": 6.965369,
+          "summed_seconds": 6.965369
+        },
+        "outside_calls": {
+          "calls": 0,
+          "active_seconds": 0.011595792003855188
+        }
+      },
+      "batches": {
+        "page_windows": {
+          "calls": 0,
+          "targets": 0,
+          "source_page_appearances": 0,
+          "single_target_windows": 0
+        }
+      },
+      "supported": true
+    },
+    {
+      "id": "run-177",
+      "repeat": 3,
+      "question_id": "mlb2-62f288595f8d",
+      "doc_id": "ACTIVISIONBLIZZARD_2019_10K.pdf",
+      "strategy": "sol_only",
+      "directory": "r3/mlb2-62f288595f8d.sol_only",
+      "result": "r3/mlb2-62f288595f8d.sol_only/mlb2-62f288595f8d.sol_only.json",
+      "seconds": 19.290688915993087,
+      "calls": 5,
+      "jev_calls": 0,
+      "sol_calls": 5,
+      "cost": 0.057374,
+      "recall": 0.5,
+      "read_recall": 0.5,
+      "section_recall": 0.5,
+      "read": 17,
+      "checked": 0,
+      "returned": [
+        47,
+        30
+      ],
+      "precision": 0.5,
+      "stop": "sufficient_evidence",
+      "sufficient": true,
+      "failure": null,
+      "peak": 1,
+      "first_gold_seconds": 19.285658,
+      "frames": 16,
+      "record_sha256": "16344fd28006cbe3f3b84718edb44e080f7b8b8ca549efbd0dfc4b78af665ad4",
+      "recorded_at": "2026-11-10T07:59:28.703913+00:00",
+      "timing": {
+        "sol_agent": {
+          "calls": 5,
+          "active_seconds": 19.222926,
+          "summed_seconds": 19.222926
+        },
+        "outside_calls": {
+          "calls": 0,
+          "active_seconds": 0.06776291599308593
+        }
+      },
+      "batches": {
+        "page_windows": {
+          "calls": 0,
+          "targets": 0,
+          "source_page_appearances": 0,
+          "single_target_windows": 0
+        }
+      },
+      "supported": true
+    },
+    {
+      "id": "run-178",
+      "repeat": 3,
+      "question_id": "mlb2-18e011e92e01",
+      "doc_id": "User_Manual_1500S_Classic_EN.pdf",
+      "strategy": "sol_only",
+      "directory": "r3/mlb2-18e011e92e01.sol_only",
+      "result": "r3/mlb2-18e011e92e01.sol_only/mlb2-18e011e92e01.sol_only.json",
+      "seconds": 12.058660999988206,
+      "calls": 3,
+      "jev_calls": 0,
+      "sol_calls": 3,
+      "cost": 0.046984,
+      "recall": 1.0,
+      "read_recall": 1.0,
+      "section_recall": 1.0,
+      "read": 2,
+      "checked": 0,
+      "returned": [
+        56,
+        57
+      ],
+      "precision": 1.0,
+      "stop": "sufficient_evidence",
+      "sufficient": true,
+      "failure": null,
+      "peak": 1,
+      "first_gold_seconds": 8.061467,
+      "frames": 11,
+      "record_sha256": "cdf9cde0073e6cec86335097f8c9d3ebbec8574d4cc21945d4cd6124961ffbc7",
+      "recorded_at": "2026-11-10T07:59:26.097113+00:00",
+      "timing": {
+        "sol_agent": {
+          "calls": 3,
+          "active_seconds": 12.040490999999998,
+          "summed_seconds": 12.040490999999998
+        },
+        "outside_calls": {
+          "calls": 0,
+          "active_seconds": 0.01816999998820812
+        }
+      },
+      "batches": {
+        "page_windows": {
+          "calls": 0,
+          "targets": 0,
+          "source_page_appearances": 0,
+          "single_target_windows": 0
+        }
+      },
+      "supported": true
+    },
+    {
+      "id": "run-179",
+      "repeat": 3,
+      "question_id": "pi-oss-f8fc68db6b5d",
+      "doc_id": "AMAZON_2017_10K.pdf",
+      "strategy": "sol_only",
+      "directory": "r3/pi-oss-f8fc68db6b5d.sol_only",
+      "result": "r3/pi-oss-f8fc68db6b5d.sol_only/pi-oss-f8fc68db6b5d.sol_only.json",
+      "seconds": 12.696733833989128,
+      "calls": 4,
+      "jev_calls": 0,
+      "sol_calls": 4,
+      "cost": 0.032926,
+      "recall": 1.0,
+      "read_recall": 1.0,
+      "section_recall": 1.0,
+      "read": 8,
+      "checked": 0,
+      "returned": [
+        47
+      ],
+      "precision": 1.0,
+      "stop": "sufficient_evidence",
+      "sufficient": true,
+      "failure": null,
+      "peak": 1,
+      "first_gold_seconds": 12.694564,
+      "frames": 12,
+      "record_sha256": "26332c24ac6a9fd8049ac25a8ae0811f71ff6a10c79a1a21d74ce85f1dcd6ad1",
+      "recorded_at": "2026-11-10T07:59:29.447055+00:00",
+      "timing": {
+        "sol_agent": {
+          "calls": 4,
+          "active_seconds": 12.658229000000002,
+          "summed_seconds": 12.658229
+        },
+        "outside_calls": {
+          "calls": 0,
+          "active_seconds": 0.0385048339891263
+        }
+      },
+      "batches": {
+        "page_windows": {
+          "calls": 0,
+          "targets": 0,
+          "source_page_appearances": 0,
+          "single_target_windows": 0
+        }
+      },
+      "supported": true
+    },
+    {
+      "id": "run-180",
+      "repeat": 3,
+      "question_id": "mlb2-66ac018b13d5",
+      "doc_id": "User_Manual_1500S_Classic_EN.pdf",
+      "strategy": "sol_only",
+      "directory": "r3/mlb2-66ac018b13d5.sol_only",
+      "result": "r3/mlb2-66ac018b13d5.sol_only/mlb2-66ac018b13d5.sol_only.json",
+      "seconds": 26.29398683301406,
+      "calls": 7,
+      "jev_calls": 0,
+      "sol_calls": 7,
+      "cost": 0.079198,
+      "recall": 1.0,
+      "read_recall": 1.0,
+      "section_recall": 1.0,
+      "read": 6,
+      "checked": 0,
+      "returned": [
+        19
+      ],
+      "precision": 1.0,
+      "stop": "sufficient_evidence",
+      "sufficient": true,
+      "failure": null,
+      "peak": 1,
+      "first_gold_seconds": 26.293054,
+      "frames": 21,
+      "record_sha256": "998ca2ab471fec6970c08e5aa31e4d585c2c3e1b411164d96928ebf692799a7d",
+      "recorded_at": "2026-11-10T07:59:47.929595+00:00",
+      "timing": {
+        "sol_agent": {
+          "calls": 7,
+          "active_seconds": 26.259316,
+          "summed_seconds": 26.259316
+        },
+        "outside_calls": {
+          "calls": 0,
+          "active_seconds": 0.034670833014061486
+        }
+      },
+      "batches": {
+        "page_windows": {
+          "calls": 0,
+          "targets": 0,
+          "source_page_appearances": 0,
+          "single_target_windows": 0
+        }
+      },
+      "supported": true
     }
   ],
+  "missing": [],
   "planned": 180,
   "origins": [
     {
@@ -11820,8 +13064,8 @@
       ]
     },
     {
-      "folder": "retrieval-v3-one-judgment-2026-11-09",
-      "experiment": "retrieval-v3-one-judgment",
+      "folder": "sol-final-2026-11-10",
+      "experiment": "retrieval-v7-missing-085",
       "strategies": [
         "sol_only"
       ]
@@ -11873,21 +13117,20 @@
       "strategy": "sol_only",
       "name": "Sol agent",
       "questions": 20,
-      "runs": 32,
-      "median_question_seconds": 12.541533041221555,
+      "runs": 60,
+      "median_question_seconds": 12.361744896013988,
       "supported_rate": 1,
-      "mean_recall": 0.825,
-      "full_recall_runs": 22,
-      "mean_returned_pages": 1.35,
-      "mean_read_pages": 10.4,
-      "mean_precision": 0.875,
-      "median_question_calls": 3.0,
-      "mean_cost": 0.05614475,
-      "total_cost": 1.590666,
-      "failures": 2,
+      "mean_recall": 0.875,
+      "full_recall_runs": 46,
+      "mean_returned_pages": 1.3666666666666667,
+      "mean_read_pages": 10.316666666666666,
+      "mean_precision": 0.9222222222222223,
+      "median_question_calls": 3.5,
+      "mean_cost": 0.057921766666666666,
+      "total_cost": 3.4753060000000002,
+      "failures": 0,
       "stops": {
-        "sufficient_evidence": 30,
-        "error": 2
+        "sufficient_evidence": 60
       }
     }
   ],
@@ -11938,20 +13181,20 @@
         "strategy": "sol_only",
         "name": "Sol agent",
         "questions": 5,
-        "runs": 8,
-        "median_question_seconds": 14.513987665995955,
+        "runs": 15,
+        "median_question_seconds": 12.915528624958824,
         "supported_rate": 1,
-        "mean_recall": 0.7,
-        "full_recall_runs": 5,
+        "mean_recall": 0.8333333333333334,
+        "full_recall_runs": 11,
         "mean_returned_pages": 1,
         "mean_read_pages": 8.2,
-        "mean_precision": 0.8,
+        "mean_precision": 0.9333333333333333,
         "median_question_calls": 4,
-        "mean_cost": 0.0330786,
-        "total_cost": 0.279284,
+        "mean_cost": 0.03374986666666667,
+        "total_cost": 0.506248,
         "failures": 0,
         "stops": {
-          "sufficient_evidence": 8
+          "sufficient_evidence": 15
         }
       }
     ],
@@ -12001,21 +13244,20 @@
         "strategy": "sol_only",
         "name": "Sol agent",
         "questions": 5,
-        "runs": 9,
-        "median_question_seconds": 10.439141270995606,
+        "runs": 15,
+        "median_question_seconds": 9.968274499988183,
         "supported_rate": 1,
         "mean_recall": 0.9,
-        "full_recall_runs": 6,
+        "full_recall_runs": 12,
         "mean_returned_pages": 1.2,
         "mean_read_pages": 5.8,
         "mean_precision": 0.9,
         "median_question_calls": 3,
-        "mean_cost": 0.0222032,
-        "total_cost": 0.18368800000000002,
-        "failures": 1,
+        "mean_cost": 0.022156533333333332,
+        "total_cost": 0.332348,
+        "failures": 0,
         "stops": {
-          "sufficient_evidence": 8,
-          "error": 1
+          "sufficient_evidence": 15
         }
       }
     ],
@@ -12065,21 +13307,20 @@
         "strategy": "sol_only",
         "name": "Sol agent",
         "questions": 5,
-        "runs": 8,
-        "median_question_seconds": 37.12190633395221,
+        "runs": 15,
+        "median_question_seconds": 30.507300374971237,
         "supported_rate": 1,
-        "mean_recall": 0.8,
-        "full_recall_runs": 5,
-        "mean_returned_pages": 1.8,
-        "mean_read_pages": 23.4,
-        "mean_precision": 0.8,
+        "mean_recall": 0.8666666666666667,
+        "full_recall_runs": 11,
+        "mean_returned_pages": 1.8666666666666667,
+        "mean_read_pages": 22.866666666666667,
+        "mean_precision": 0.8555555555555555,
         "median_question_calls": 9,
-        "mean_cost": 0.1256158,
-        "total_cost": 0.85211,
-        "failures": 1,
+        "mean_cost": 0.1280004,
+        "total_cost": 1.920006,
+        "failures": 0,
         "stops": {
-          "sufficient_evidence": 7,
-          "error": 1
+          "sufficient_evidence": 15
         }
       }
     ],
@@ -12129,20 +13370,20 @@
         "strategy": "sol_only",
         "name": "Sol agent",
         "questions": 5,
-        "runs": 7,
-        "median_question_seconds": 9.85224691699841,
+        "runs": 15,
+        "median_question_seconds": 10.532024124986492,
         "supported_rate": 1,
         "mean_recall": 0.9,
-        "full_recall_runs": 6,
+        "full_recall_runs": 12,
         "mean_returned_pages": 1.4,
-        "mean_read_pages": 4.2,
+        "mean_read_pages": 4.4,
         "mean_precision": 1.0,
-        "median_question_calls": 3.0,
-        "mean_cost": 0.0436814,
-        "total_cost": 0.275584,
+        "median_question_calls": 3,
+        "mean_cost": 0.04778026666666667,
+        "total_cost": 0.716704,
         "failures": 0,
         "stops": {
-          "sufficient_evidence": 7
+          "sufficient_evidence": 15
         }
       }
     ]
