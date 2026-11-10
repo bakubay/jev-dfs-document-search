@@ -148,7 +148,12 @@ assistant, not independent reviewers
 
 ## Attribution
 
-PageIndex is the principal inspiration. This work began from VectifyAI's
-open-source JEV search example and tests direct traversal of parser output and
+[PageIndex](https://github.com/VectifyAI/PageIndex) is the principal
+inspiration. This work began from VectifyAI's
+[jev-doc-search](https://github.com/VectifyAI/jev-doc-search) (long-document
+search with JEV and PageIndex) and tests direct traversal of parser output and
 real ToC entries. It does not use generated section summaries or the PageIndex
 package. The original [Apache 2.0 license](LICENSE) is preserved.
+
+Evaluation data: [PageIndex-OSS-Benchmark](https://github.com/VectifyAI/PageIndex-OSS-Benchmark)
+and [MMLongBench-Doc-V2](https://github.com/VectifyAI/MMLongBench-Doc-V2).

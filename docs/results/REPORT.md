@@ -193,3 +193,16 @@ would narrow the gap.
 - Reproduce: `python -m evaluation.run_repeated --output-dir <dir> --parallel 4`,
   then `python -m reporting.build_cohort_report --runs <dir> --output … --summary …`
   (see `evaluation/README.md`).
+
+## References
+
+- [PageIndex](https://github.com/VectifyAI/PageIndex) (VectifyAI): document
+  tree index for reasoning-based retrieval; the inspiration for walking the
+  table of contents.
+- [jev-doc-search](https://github.com/VectifyAI/jev-doc-search) (VectifyAI):
+  long-document search with JEV and PageIndex; this project started from it
+  (Apache 2.0).
+- [PageIndex-OSS-Benchmark](https://github.com/VectifyAI/PageIndex-OSS-Benchmark):
+  source of the 4 PDFs and 8 of the questions.
+- [MMLongBench-Doc-V2](https://github.com/VectifyAI/MMLongBench-Doc-V2): source
+  of the other 12 questions, gold answers and annotated evidence pages.
