@@ -5,11 +5,11 @@ import hashlib
 from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 
-SPECS = {'route': ('retrieval/tree.py', 'OrderedDFSSearcher._rank_targets'),
+SPECS = {'route': ('retrieval/jev.py', 'JevDFSRetriever._rank'),
  'dfs': ('retrieval/jev.py', 'JevDFSRetriever._scan_leaf'),
  'exhaustive': ('retrieval/jev.py', 'JevExhaustiveRetriever.search'),
- 'windows': ('retrieval/jev.py', 'JevDFSRetriever._check_combined_windows'),
- 'judgments': ('retrieval/jev.py', 'JevDFSRetriever._check_combined_window'),
+ 'windows': ('retrieval/jev.py', 'JevDFSRetriever._check_pages'),
+ 'judgments': ('retrieval/jev.py', 'JevDFSRetriever._check_window'),
  'pack': ('retrieval/jev.py', 'JevDFSRetriever._pack_evidence'),
  'assess': ('retrieval/jev.py', 'JevDFSRetriever._assess_evidence'),
  'audit': ('retrieval/jev.py', 'JevDFSRetriever.search'),
@@ -19,34 +19,12 @@ SPECS = {'route': ('retrieval/tree.py', 'OrderedDFSSearcher._rank_targets'),
  'select': ('retrieval/sol.py', 'SolRetriever._select'),
  'tree': ('retrieval/tree.py', 'build_toc_tree'),
  'timer': ('retrieval/run.py', 'run_retrieval'),
- 'jev_timer': ('retrieval/tree.py', 'OrderedDFSSearcher._system_one'),
+ 'jev_timer': ('retrieval/jev.py', 'JevDFSRetriever._system_one'),
  'runner': ('evaluation/run.py', 'main'),
  'metrics': ('evaluation/metrics.py', 'score_retrieval'),
  'limits': ('retrieval/windows.py', 'pack_page_windows'),
- 'backtrack': ('retrieval/tree.py', 'OrderedDFSSearcher._search_target'),
- 'navigate': ('retrieval/tree.py', 'OrderedDFSSearcher._search_node')}
-
-# File/symbol map for recorded pre-cleanup runs; no legacy runtime is imported.
-RECORDED_SPECS = {'route': ('datalab_dfs_search.py', 'OrderedDFSSearcher._rank_targets'),
- 'dfs': ('retrieval/combined.py', 'CombinedDFSRetriever._scan_leaf'),
- 'exhaustive': ('retrieval/combined.py', 'CombinedExhaustiveRetriever.search'),
- 'windows': ('retrieval/combined.py', 'CombinedDFSRetriever._check_combined_windows'),
- 'judgments': ('retrieval/combined.py', 'CombinedDFSRetriever._check_combined_window'),
- 'pack': ('retrieval/jev.py', 'JevDFSRetriever._pack_evidence'),
- 'assess': ('retrieval/jev.py', 'JevDFSRetriever._assess_evidence'),
- 'audit': ('retrieval/jev.py', 'JevDFSRetriever.search'),
- 'sol': ('retrieval/sol.py', 'SolRetriever.search'),
- 'sol_call': ('retrieval/sol.py', 'act_with_sol'),
- 'read': ('evaluation/sol_only_agent.py', 'SolOnlySearcher._read'),
- 'select': ('retrieval/sol.py', 'SolRetriever._select'),
- 'tree': ('datalab_dfs_search.py', 'build_toc_tree'),
- 'timer': ('retrieval/run_case.py', 'run_retrieval'),
- 'jev_timer': ('datalab_dfs_search.py', 'OrderedDFSSearcher._system_one'),
- 'runner': ('experiments/run_combined.py', 'main'),
- 'metrics': ('retrieval/metrics.py', 'score_retrieval'),
- 'limits': ('page_windows.py', 'pack_page_windows'),
- 'backtrack': ('datalab_dfs_search.py', 'OrderedDFSSearcher._search_target'),
- 'navigate': ('datalab_dfs_search.py', 'OrderedDFSSearcher._search_node')}
+ 'backtrack': ('retrieval/jev.py', 'JevDFSRetriever._search_children'),
+ 'navigate': ('retrieval/jev.py', 'JevDFSRetriever._search_children')}
 
 def snippet(file, symbol, root=ROOT):
     text = (root / file).read_text()
@@ -58,14 +36,12 @@ def snippet(file, symbol, root=ROOT):
             "sha256": hashlib.sha256(text.encode()).hexdigest()}
 
 def recorded_sources(hashes, folder):
-    """Never attach today's code to yesterday's trace without matching hashes."""
-    candidates = [ROOT, folder / "source-snapshot", folder.parent / "source-snapshot"]
-    for root in candidates:
+    """Show the code that produced the runs: the run's snapshot, or today's code if identical."""
+    for root in (folder / "source-snapshot", ROOT):
         if all((root / name).is_file() and hashlib.sha256((root / name).read_bytes()).hexdigest() == digest
                for name, digest in hashes.items()):
-            specs = RECORDED_SPECS if "retrieval/combined.py" in hashes else SPECS
-            return {key: snippet(*spec, root=root) for key, spec in specs.items()}
-    raise ValueError("Recorded source differs or is unavailable. Keep the original source-snapshot beside the run folder.")
+            return {key: snippet(*spec, root=root) for key, spec in SPECS.items()}
+    raise ValueError("Recorded source differs or is unavailable. Keep the source-snapshot beside the run folder.")
 
 
 def union_duration(intervals):
@@ -117,8 +93,7 @@ def derive_run(record):
             purpose = req["purpose"]
             phase = "route" if purpose == "rank_toc_children" else "select" if purpose == "assess_retrieved_evidence" else "read"
             title = {"rank_toc_children": "JEV → rank branches", "assess_retrieved_evidence": "JEV → enough evidence?",
-                     "screen_page_window": "JEV → screen pages", "verify_page_window": "JEV → verify pages",
-                     "check_page_window": "JEV → check pages once"}[purpose]
+                     "check_page_window": "JEV → check pages"}[purpose]
             state = start["input"]
             calls.append({"purpose": purpose, "start": req["elapsed_seconds"] - req["latency_seconds"],
                           "end": req["elapsed_seconds"], "event_time": finish["elapsed_seconds"],
@@ -174,8 +149,7 @@ def derive_run(record):
                 break
             if e["type"] == "jev_window_completed":
                 read.update(e["source_pages"])
-                if e["phase"] in ("verify", "combined"):
-                    verified.update(e["target_pages"])
+                verified.update(e["target_pages"])
             elif e["type"] == "sol_read_completed":
                 read.update(e["pages"])
             elif e["type"] == "evidence_selected":
@@ -190,11 +164,8 @@ def derive_run(record):
         step["path"] = step["path"] or path
         step["menus"] = menus
     windows = [e for e in trace if e["type"] == "jev_window_completed"]
-    batches = {}
-    for phase in ("screen", "verify", "combined"):
-        ws = [w for w in windows if w["phase"] == phase]
-        batches[phase] = {"calls": len(ws), "targets": sum(len(w["target_pages"]) for w in ws),
-                          "source_page_appearances": sum(len(w["source_pages"]) for w in ws),
-                          "single_target_windows": sum(len(w["target_pages"]) == 1 for w in ws)}
+    batches = {"page_windows": {"calls": len(windows), "targets": sum(len(w["target_pages"]) for w in windows),
+                                "source_page_appearances": sum(len(w["source_pages"]) for w in windows),
+                                "single_target_windows": sum(len(w["target_pages"]) == 1 for w in windows)}}
     return {"calls": calls, "steps": steps, "timing": timing, "peak_concurrency": peak,
             "batches": batches, "record": record}

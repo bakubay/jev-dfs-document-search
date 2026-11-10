@@ -4,7 +4,7 @@ from types import SimpleNamespace as Obj
 
 import pytest
 
-from retrieval.tree import OrderedDFSSearcher, PageRecord, TocNode
+from retrieval.tree import PageRecord, TocNode
 from retrieval.common import EvidenceBudget
 from retrieval.jev import JevDFSRetriever, JevExhaustiveRetriever
 from evaluation.metrics import score_retrieval
@@ -25,9 +25,9 @@ class Jev:
         if "next_section" in questions:
             keys = list(questions["next_section"].criteria)
             answers = {"next_section": Obj(probabilities={k: float(i == 0) for i, k in enumerate(keys)}, confidence=1)}
-        elif "sufficient_evidence" in questions:
-            value = float("nan") if self.invalid else (.99 if self.required <= set(state["source_pages"]) else .1)
-            answers = {"sufficient_evidence": Obj(noul=value)}
+        elif "evidence_missing" in questions:
+            value = float("nan") if self.invalid else (.01 if self.required <= set(state["source_pages"]) else .9)
+            answers = {"evidence_missing": Obj(noul=value)}
         else:
             answers = {key: Obj(noul=.9 if int(key[1:].split("_")[0]) in self.useful else .01) for key in questions}
         return Obj(answers=answers, usage=Obj(input_tokens=10, output_tokens=2))
@@ -39,7 +39,7 @@ def jev_search(cls=JevDFSRetriever, client=None, **kwargs):
     tree = [TocNode("first", "First", 2, 2, 5),
             TocNode("later", "Later", 6, 6, 11, [TocNode("child", "Nested", 8, 8, 11)])]
     return cls(typesafe=client or Jev(), pages=pages, tree=tree,
-               question="Find both facts", workers=2, **kwargs)
+               question="Find both facts", **kwargs)
 
 
 @pytest.mark.parametrize("cls", [JevDFSRetriever, JevExhaustiveRetriever])
@@ -51,7 +51,6 @@ def test_no_evidence_checks_every_page_without_a_writer(cls, monkeypatch):
     assert result.stop_reason == "all_text_checked"
     assert result.coverage["verified_pages"] == list(range(1, 13))
     assert not result.sufficient and result.evidence_pages == {}
-    assert result.coverage["all_physical_pages_verified"]
     assert all(e["type"] not in {"draft_started", "candidate_answer", "answer_evaluation"} for e in search.trace)
     assert not any("source_pages" in s for s in search.typesafe.states)  # No pointless empty-bundle assessment.
 
@@ -73,7 +72,7 @@ def test_partial_evidence_accumulates_across_branches_before_stop():
 def test_dfs_stops_early_but_exhaustive_finishes_all_windows():
     dfs = jev_search(client=Jev(useful={2}, required={2})).search()
     exhaustive = jev_search(JevExhaustiveRetriever, Jev(useful={2}, required={2})).search()
-    assert dfs.sufficient and exhaustive.sufficient
+    assert dfs.sufficient and exhaustive.stop_reason == "all_text_checked"
     assert len(dfs.coverage["verified_pages"]) < 12
     assert len(exhaustive.coverage["verified_pages"]) == 12
 
@@ -82,7 +81,7 @@ def test_output_budget_does_not_prune_pending_pages():
     search = jev_search(client=Jev(useful=range(1, 13), required={99}), evidence_budget=EvidenceBudget(3, 1000))
     result = search.search()
     assert len(result.evidence_pages) <= 3
-    assert result.coverage["all_physical_pages_verified"]
+    assert result.coverage["verified_pages"] == list(range(1, 13))
     assert any(e.get("omitted_candidate_pages_due_to_output_budget") for e in search.trace)
 
 
@@ -97,7 +96,6 @@ def test_failed_windows_stay_unchecked():
     search = jev_search(client=Jev(fail="p2_evidence"))
     result, _, failure = run_retrieval(search)
     assert failure and 2 not in result.coverage["verified_pages"]
-    assert not result.coverage["all_physical_pages_verified"]
 
 
 def test_empty_and_missing_pages_are_reported_without_full_page_claim():
@@ -108,8 +106,8 @@ def test_empty_and_missing_pages_are_reported_without_full_page_claim():
     result = search.search()
     assert result.coverage["empty_pages"] == [1]
     assert result.coverage["missing_pages"] == [7]
-    assert result.coverage["all_nonempty_pages_verified"]
-    assert not result.coverage["all_physical_pages_verified"]
+    assert result.coverage["verified_pages"] == [2, 3, 4, 5, 6, 8, 9, 10, 11]
+    assert not result.coverage["remaining_text_pages"]
 
 
 def action(kind, target=None, selected=(), start=None):
@@ -123,8 +121,8 @@ def sol_search(actor, **kwargs):
                         question="Find evidence", api_key="unused", model="fake", actor=actor, **kwargs)
 
 
-def test_sol_returns_full_selected_pages_with_no_answer_or_jev(monkeypatch):
-    monkeypatch.setattr(OrderedDFSSearcher, "_system_one", lambda *a, **k: pytest.fail("No JEV in Sol retrieval"))
+def test_sol_returns_full_selected_pages_with_no_answer_or_jev():
+    # conftest already fails any TypeSafeClient call.
     moves = iter([action("read", "node_all"), action("finish", selected=[3])])
     search = sol_search(lambda **k: next(moves))
     result = search.search()

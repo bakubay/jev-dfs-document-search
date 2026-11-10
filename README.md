@@ -1,45 +1,65 @@
 ![A scout traverses a document graph toward evidence.](docs/assets/jev-dfs-header.png)
 
-# ToC evidence retrieval with JEV
+# Walking the table of contents with JEV
 
-A small experiment inspired by [PageIndex](https://github.com/VectifyAI/PageIndex)
-and its [JEV document search](https://github.com/VectifyAI/jev-doc-search).
-Can we reuse a PDF's real table of contents and parsed pages, then use fast
-decision models to find evidence without generating a separate summary tree?
+**Claim being tested:** a fast judgment model like JEV can treat a PDF's real
+table of contents as a tree, walk it depth first, and find the evidence pages
+for a question while reading only a small part of the document. The idea comes
+from tree indexes such as PageIndex.
 
-This repository contains **three retrieval methods**. Each receives a question
-and the same prepared document, then returns original source pages. Answer
-generation is downstream and is not implemented here.
+Two baselines isolate what each part contributes:
 
-| Method | Navigation and reading | When it stops |
+| Approach | What it is | What the comparison shows |
 |---|---|---|
-| JEV DFS | JEV ranks immediate ToC children; Python searches them depth first and checks bounded page windows. Every sibling stays available. | Selected evidence passes a joint sufficiency check, or all remaining nonempty pages have been checked. |
-| Exhaustive JEV | The same page checks run across the whole document with up to eight concurrent workers. No ToC ranking. | All windows finish; code selects and assesses evidence once. |
-| Sol agent | Sol chooses descend, read, backtrack, finish or stop actions. Python supplies raw pages. No JEV calls. | Sol finishes, abstains, or reaches its step/context budget. |
+| **JEV DFS** | JEV ranks the ToC children; Python walks them depth first, checking page windows. Every sibling stays reachable. Stops when the selected pages pass a joint "is this enough?" check. | The method under test. |
+| **Exhaustive JEV** | The same page checks over every page, keeping the best-scoring pages. No tree, no stop decision. | What the tree saves: does skipping most pages lose evidence? |
+| **Sol agent** | An OpenAI model walks the same tree itself (descend / read / backtrack / finish). No JEV. | What JEV adds: is it a better driver for the walk than a general LLM? |
 
-Both JEV methods ask four independent judgments per target page in **one call
-per window**. Evidence selection is followed by a separate joint check because
-its input depends on the completed page judgments. Read windows and returned
-evidence are each capped at **8 complete pages / 12,000 text tokens**; neighbors
-count toward the limits. Page text is never truncated to fit.
+Same inputs and limits for all three: the same parsed pages and ToC, at most
+**8 complete pages / 12,000 text tokens** per read and in the returned
+evidence, page text never truncated. **Every approach sends one request at a
+time**, so time per question follows the work done, not scheduling. No answers
+are generated here.
 
-## Start here
+JEV asks **one judgment per page**: does this page, read with the page before
+and after as context, state evidence for part of the question? Only the judged
+page can be returned; a neighbor is returned only on its own score. DFS stops
+once JEV judges that nothing the question needs is still missing from the
+selected pages (score ≥ **0.85**).
 
-- [One-question timeline](docs/traces/jev-simple-execution-trace.html): actual requests, replies, code actions and timing for the coffee example.
-- [Study and all replays](docs/traces/jev-retrieval-study.html): four PDFs, twenty annotated questions, three methods, three repeats.
-- [Results and limitations](docs/results/retrieval-repeated-2026-11-08/summary.md).
+## Results
 
-The HTML files work offline. They are recorded snapshots, not live searches.
-Their source snippets match the code at recording time, before this repository
-was consolidated. The file map below describes the current implementation.
+**[Read the report](docs/results/REPORT.md)**: approaches, one question step by
+step, results and where each approach misses. Also: a
+[30-second video](docs/assets/jev-three-ways.mp4) and the
+[interactive report with every request and reply](docs/results/report.html).
+
+20 annotated questions over 4 PDFs (three annual reports, one manual):
+
+| Approach | Recall | 1-page answers | 2-page answers | Pages read | Requests | Cost / question | Time / question |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| **JEV DFS**, stop at 0.85 (default) | **98.3%** | **100%** | **96%** | 62 | 15.5 | $0.0045 | 4.8 s |
+| **JEV DFS**, stop at 0.7 | 87.5% | **100%** | 72% | **30** | 7 | **$0.0024** | **2.4 s** |
+| Exhaustive JEV | **98.3%** | **100%** | **96%** | 116 | 16 | $0.0056 | 5.3 s |
+| Sol agent¹ | 82.5% | 91% | 72% | 10 | 3 | $0.056 | 12.5 s |
+
+When the answer is on one page, the tree walk finds it every time, like checking
+every page, while reading a quarter to half of the pages. When the answer needs
+two pages (mostly ratios), one setting decides how sure JEV must be that nothing
+is missing before it stops: strict, it matches checking every page while reading
+about half; loose, it reads a quarter but misses some second inputs. Sol, walking
+the same tree, finds less, is 2.5–5× slower and costs 10–20× more.
+
+¹ Sol: 32 runs from a separate session; 2 runs that failed on network or credit
+errors are left out. Details and limits are in the report.
 
 ## Code map
 
 ```text
 retrieval/
-  jev.py          JEV DFS + exhaustive JEV; page questions, evidence selection, stopping
+  jev.py          JEV DFS + exhaustive JEV; ranking, descent, backtracking, page checks, stopping
   sol.py          Sol prompt, action loop, page reads and evidence selection
-  tree.py         document types, ToC construction, ranking, descent and backtracking
+  tree.py         document types, ToC construction, child targets incl. uncovered gaps
   windows.py      complete-page batching shared by both providers
   common.py       evidence budgets, result type and coverage accounting
   config.py       model default and local .env loading
@@ -48,16 +68,16 @@ retrieval/
 preparation/
   parse.py        Datalab PDF parsing
   ground_toc.py   extract the real ToC and map it to physical PDF pages
-evaluation/      dataset preparation, three-method runner, repeats, recall and cost
-reporting/       builders for the two retained HTML views
+evaluation/      the 20-question set, runner, repeats, recall/precision and cost
+reporting/       offline HTML report builder
 tests/           deterministic tests; no live model calls
-docs/            latest study, frozen question manifest and two HTML snapshots
+docs/results/    current summary and interactive report
 ```
 
 Start reading **`JevDFSRetriever._scan_leaf()` in [retrieval/jev.py](retrieval/jev.py)**:
 check windows → pack useful evidence → assess sufficiency → continue if needed.
-`OrderedDFSSearcher._search_node()` in [retrieval/tree.py](retrieval/tree.py)
-handles the surrounding branch traversal. For Sol, start at `SolRetriever.search()`
+`JevDFSRetriever._search_children()` in the same file handles the surrounding
+rank → descend → backtrack loop. For Sol, start at `SolRetriever.search()`
 in [retrieval/sol.py](retrieval/sol.py).
 
 ## Setup and one search
@@ -89,15 +109,15 @@ requests/replies, usage and elapsed time. Prepared inputs are `pages.jsonl` and
 
 ## Compare the methods
 
-See [evaluation/README.md](evaluation/README.md) for dataset preparation, paired
-runs, repeated experiments and offline report rebuilding.
+See [evaluation/README.md](evaluation/README.md) for running the 20-question
+comparison and rebuilding the report.
 
 ```bash
 python -m pytest -q
 ```
 
 Tests cover branch recovery, uncovered pages, joint evidence across sections,
-parallel windows, page/token limits, failed requests, invalid agent actions,
+one-request-at-a-time windows, neighbor handling, page/token limits, failed requests, invalid agent actions,
 returned-page recall and faithful trace reconstruction. No API keys are needed.
 
 ## What this experiment can and cannot establish
@@ -106,17 +126,17 @@ Timing runs from the question to returned evidence, including navigation and
 stopping decisions. It excludes parsing, ground-truth scoring and answer writing.
 Client-observed API time includes network, provider and SDK overhead.
 
-DFS may spend extra calls navigating weak ToC labels. Parallel exhaustive checks
-can finish sooner despite reading more pages. Model sufficiency is a judgment,
+DFS may spend extra calls navigating weak ToC labels. Exhaustive checks could be
+parallelized in deployment; they are not here, so the comparison measures work
+rather than scheduling. Model sufficiency is a judgment,
 not a guarantee; thresholds are experimental. Exhausting all parsed text does
 not prove an answer is absent from the original PDF. Parsing, grounding, missing
 text, images and model mistakes remain limitations. The grounding heuristic
 uses heading matches and printed/physical-page offsets; it is not universal.
 
 This is a quick trial, not a claim of the best retrieval architecture. The study
-uses a convenience cohort and exact annotated-page recall, which can miss valid
-alternative evidence. See the retained study's evidence review before drawing
-quality conclusions.
+uses a convenience sample and exact annotated-page recall, which can miss valid
+alternative evidence. See the evidence review before drawing quality conclusions.
 
 ## Attribution
 

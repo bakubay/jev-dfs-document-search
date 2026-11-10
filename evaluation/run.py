@@ -34,14 +34,13 @@ def main():
     parser.add_argument("--strategies", nargs="+", choices=STRATEGIES, default=list(STRATEGIES))
     parser.add_argument("--output-dir", type=Path, required=True)
     parser.add_argument("--env-file", type=Path, default=ROOT / ".env")
-    parser.add_argument("--workers", type=int, default=8)
     parser.add_argument("--max-navigation-steps", type=int, default=32)
     parser.add_argument("--openai-model", default=None)
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--dry-run", action="store_true")
     args = parser.parse_args()
-    if min(args.workers, args.max_navigation_steps) < 1:
-        parser.error("Workers and steps must be positive")
+    if args.max_navigation_steps < 1:
+        parser.error("Steps must be positive")
     questions = {q["id"]: q for q in json.loads(args.manifest.read_text())["questions"]}
     if set(args.question_ids) - questions.keys():
         parser.error("Unknown question ID")
@@ -81,7 +80,7 @@ def main():
         extra = {"api_key": os.environ["OPENAI_API_KEY"], "model": model,
                  "max_navigation_steps": args.max_navigation_steps} if sol else {}
         search = STRATEGIES[strategy](typesafe=client, pages=pages, tree=tree, question=question["question"],
-                                      workers=args.workers, evidence_budget=EvidenceBudget(), **extra)
+                                      evidence_budget=EvidenceBudget(), **extra)
         result, elapsed, failure = run_retrieval(search)
         if client is not None:
             client.close()
@@ -93,14 +92,13 @@ def main():
             "recorded_at": datetime.now(timezone.utc).isoformat(), "strategy": strategy, "question": question,
             "configuration": {
                 "jev_model": None if sol else MODEL, "sol_model": model if sol else None,
-                "workers": args.workers, "max_navigation_steps": args.max_navigation_steps if sol else None,
+                "concurrency": 1, "max_navigation_steps": args.max_navigation_steps if sol else None,
                 "sufficiency_threshold": None if sol else search.sufficiency_threshold,
                 "recall_threshold": None if sol else search.recall_threshold,
                 "max_pages_per_read": search.max_pages_per_read, "max_read_tokens": search.max_read_tokens,
                 "output_budget": asdict(search.evidence_budget),
-                "verification_wave_candidates": None if sol else search.max_verify_per_leaf,
-                "page_check_policy": "raw_page_agent" if sol else "combined_four_judgments",
-                "page_scheduling": "agent_selected" if sol else "document_wide_single_pass" if strategy == "exhaustive" else "leaf_local_physical_waves",
+                "page_check_policy": "raw_page_agent" if sol else "one_judgment_per_page",
+                "page_scheduling": "agent_selected" if sol else "document_wide_single_pass" if strategy == "exhaustive" else "leaf_local_windows",
                 "grounded_pages_sha256": hashlib.sha256((grounded / "pages.jsonl").read_bytes()).hexdigest(),
                 "toc_sha256": hashlib.sha256((grounded / "toc_entries.json").read_bytes()).hexdigest(),
                 "source_sha256": hashes,

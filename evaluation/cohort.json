@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "cohort": "retrieval-repeated-2026-11-08",
-  "experiment": "retrieval-v2-combined",
+  "cohort": "toc-evidence-20q",
+  "experiment": "retrieval-v7-missing-085",
   "selected_on": "2026-11-08",
   "selection_policy": {
     "documents": "Four already parsed PageIndex-OSS PDFs with visible ToCs: 3 financial reports and 1 manual, 75–198 pages; convenience cohort, not representative sampling.",
@@ -27,7 +27,6 @@
   ],
   "repeats": 3,
   "seed": 20261108,
-  "workers": 8,
   "models": {
     "jev": "jev-1.13.0",
     "sol": "gpt-6.1-sol"
@@ -39,7 +38,6 @@
     "max_pages": 8,
     "max_tokens": 12000
   },
-  "page_judgments_per_target": 4,
   "documents": [
     {
       "doc_id": "AMAZON_2017_10K.pdf",
@@ -56,7 +54,6 @@
       "pdf_sha256": "f8af08ff6c4147351ec3a6e5e2c74e104678ce68fb0d6d476b1e43f685c09a3f",
       "pages_sha256": "c2c804626818121dfef8bc0e52b9fc14d683b8b7014e26db8de00f1fec1bdc61",
       "toc_sha256": "6a396552122d66d1ac961829af0fceaddbfec2c1ebd2d3b0a5acd290c1429fac",
-      "preflight_combined_windows": 14,
       "tree": [
         {
           "id": "toc-0000",
@@ -344,7 +341,6 @@
       "pdf_sha256": "7ca465d31a08be29e8c08d756644d33d818c7254a1215720f265227005cda696",
       "pages_sha256": "baee300c46df4a4bb57b8d692075e949f4e8370039b1d4482a84059b7ba48066",
       "toc_sha256": "d668de5777dd95e72c1828095286e8aad9865d46f526520b76a37a4278422519",
-      "preflight_combined_windows": 13,
       "tree": [
         {
           "id": "toc-0000",
@@ -591,7 +587,6 @@
       "pdf_sha256": "017f1bbc1e37f2945a41fa2b5cf39d822e1e9d435a2c2b9c6b1cc76cd114a2df",
       "pages_sha256": "d2671fae573fe803f9c7a2aa8d4fa9a801ad0fa38ff2cbc0fe39cfcff3958c79",
       "toc_sha256": "51755979623a9f80869a1903ff2dfec712856568eb55f91bd29d4602e72102d2",
-      "preflight_combined_windows": 33,
       "tree": [
         {
           "id": "toc-0000",
@@ -822,7 +817,6 @@
       "pdf_sha256": "ba6a07e262b070f963cf1f4ef3372074d08e5820a833f130e67d597af211359c",
       "pages_sha256": "257d64c2f1b22531b0e28483e68519ac76f7ba024b9a321b7a207db48326eb06",
       "toc_sha256": "05eed80341d8cec3f21b0e8bf1b6645b2c0755c403a22e8ab7cb4312ca7f30f8",
-      "preflight_combined_windows": 18,
       "tree": [
         {
           "id": "toc-0000",

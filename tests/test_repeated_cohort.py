@@ -1,4 +1,4 @@
-"""Frozen selection, balanced repeats and no selective resume/rerun."""
+"""The frozen question set, balanced repeats and no selective resume/rerun."""
 
 from collections import Counter
 from copy import deepcopy
@@ -23,7 +23,7 @@ def test_balanced_deterministic_repeats():
 
 
 def test_resume_accepts_saved_failure_but_rejects_source_change():
-    plan = {"experiment": "retrieval-v2-combined", "source_sha256": {"a.py": "hash"}}
+    plan = {"experiment": "test-experiment", "source_sha256": {"a.py": "hash"}}
     case = {"question_id": "q", "strategy": "jev_dfs"}
     record = {"experiment": plan["experiment"], "question": {"id": "q"}, "strategy": "jev_dfs",
               "configuration": {"source_sha256": {"a.py": "hash"}}, "failure": {"type": "Error"}}
@@ -34,12 +34,15 @@ def test_resume_accepts_saved_failure_but_rejects_source_change():
         validate_record(bad, plan, case)
 
 
-def test_manifest_has_twenty_original_labels_and_valid_preflight():
-    manifest = json.loads((ROOT / "docs/results/retrieval-repeated-2026-11-08/manifest.json").read_text())
+def test_cohort_has_twenty_labeled_questions_for_the_current_experiment():
+    from retrieval import EXPERIMENT_VERSION
+    manifest = json.loads((ROOT / "evaluation/cohort.json").read_text())
+    assert manifest["experiment"] == EXPERIMENT_VERSION
     assert len(manifest["documents"]) == 4 and len(manifest["questions"]) == 20
     assert set(Counter(q["doc_id"] for q in manifest["questions"]).values()) == {5}
     assert sum(q["in_pageindex_oss_subset"] for q in manifest["questions"]) == 8
     for q in manifest["questions"]:
         assert q["evidence_pages"] and set(map(int, q["reference_page_text_sha256"])) == set(q["evidence_pages"])
     for doc in manifest["documents"]:
-        assert doc["preflight_combined_windows"] and doc["root_options"] > 1
+        assert doc["root_options"] > 1
+

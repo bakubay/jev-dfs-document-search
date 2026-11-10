@@ -20,13 +20,12 @@ def main():
     parser.add_argument("--method", choices=("jev_dfs", "exhaustive", "sol_only"), default="jev_dfs")
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--env-file", type=Path, default=Path(__file__).resolve().parents[1] / ".env")
-    parser.add_argument("--workers", type=int, default=8)
     parser.add_argument("--max-navigation-steps", type=int, default=32)
     args = parser.parse_args()
     if args.output.exists():
         parser.error("Output exists; choose a new path")
-    if min(args.workers, args.max_navigation_steps) < 1:
-        parser.error("Worker and navigation budgets must be positive")
+    if args.max_navigation_steps < 1:
+        parser.error("Navigation budget must be positive")
     pages, tree = load_grounded_document(args.grounded_dir)
     load_local_env(args.env_file)
     sol = args.method == "sol_only"
@@ -42,7 +41,7 @@ def main():
                 max_navigation_steps=args.max_navigation_steps)
         else:
             cls = JevDFSRetriever if args.method == "jev_dfs" else JevExhaustiveRetriever
-            search = cls(typesafe=client, pages=pages, tree=tree, question=args.question, workers=args.workers)
+            search = cls(typesafe=client, pages=pages, tree=tree, question=args.question)
         result, elapsed, failure = run_retrieval(search)
         record = {"method": args.method, "question": args.question,
                   "retrieval": result.to_dict(), "elapsed_seconds": elapsed, "failure": failure,

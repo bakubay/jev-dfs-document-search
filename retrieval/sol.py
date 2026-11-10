@@ -12,7 +12,7 @@ from typing import Literal
 from openai import OpenAI
 from pydantic import BaseModel, ConfigDict, Field, StrictInt
 
-from retrieval.tree import OrderedDFSSearcher, PageRecord, SearchTarget, TocNode
+from retrieval.tree import ENCODER, PageRecord, SearchTarget, TocNode, child_targets
 from retrieval.windows import MAX_READ_PAGES, MAX_READ_TOKENS, pack_page_windows
 from retrieval.common import EvidenceBudget, RetrievalResult, coverage
 
@@ -87,7 +87,7 @@ class SolRetriever:
 
     def __init__(self, *, pages: dict[int, PageRecord], tree: list[TocNode],
                  question: str, api_key: str, model: str, typesafe=None,
-                 workers: int = 8, max_navigation_steps: int = 32,
+                 max_navigation_steps: int = 32,
                  actor: Callable[..., AgentResult] = act_with_sol,
                  max_pages_per_read: int = MAX_READ_PAGES, max_read_tokens: int = MAX_READ_TOKENS,
                  max_context_tokens: int = 24_000, evidence_budget=None):
@@ -100,9 +100,7 @@ class SolRetriever:
         self.max_navigation_steps = max_navigation_steps
         self.max_pages_per_read, self.max_read_tokens = max_pages_per_read, max_read_tokens
         self.max_context_tokens = max_context_tokens
-        # Reuse deterministic ToC/gap construction only. Never call this object's search.
-        self.topology = OrderedDFSSearcher(typesafe=None, pages=pages, tree=tree, question=question)
-        self.encoder = self.topology.encoder
+        self.encoder = ENCODER
         self.trace: list[dict[str, Any]] = []
         self.request_trace: list[dict[str, Any]] = []
         self.history: list[dict[str, Any]] = []
@@ -132,7 +130,7 @@ class SolRetriever:
 
     def coverage(self):
         state = coverage(self.pages, read=self.seen)
-        state["exhausted"] = state["all_nonempty_pages_read"]
+        state["exhausted"] = not state["remaining_text_pages"]
         return state
 
     def _pending(self, start, end):
@@ -140,11 +138,7 @@ class SolRetriever:
                 if p in self.pages and self.pages[p].markdown.strip() and p not in self.seen]
 
     def _children(self, node):
-        return self.topology._targets_for(
-            parent=node, children=node.children if node else self.tree,
-            range_start=node.start_page if node else min(self.pages),
-            range_end=(node.end_page or node.start_page) if node else max(self.pages),
-            parent_label=node.title if node else "Document root")
+        return child_targets(node, self.tree, self.pages)
 
     def _state(self, frames):
         path, targets = frames[-1]

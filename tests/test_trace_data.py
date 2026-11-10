@@ -6,7 +6,7 @@ from reporting.trace_data import ROOT, derive_run, snippet, union_duration, reco
 
 @pytest.fixture(scope="module")
 def records():
-    paths = sorted((ROOT / "evaluation-results/retrieval-repeated-2026-11-08/r1").glob("*/*.json"))
+    paths = sorted((ROOT / "evaluation-results/retrieval-v3-one-judgment-2026-11-09/r1").glob("*/*.json"))
     records = [json.loads(p.read_text()) for p in paths if p.name != "schedule.json"]
     if not records:
         pytest.skip("Live records are local, not vendored")

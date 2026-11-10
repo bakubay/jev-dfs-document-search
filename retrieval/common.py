@@ -35,20 +35,16 @@ class RetrievalResult:
         return asdict(self)
 
 
-def coverage(pages, *, read=(), screened=(), verified=(), exhausted=False):
+def coverage(pages, *, read=(), verified=(), exhausted=False):
+    """read: pages whose text a model saw. verified: pages JEV judged as a target."""
     expected = set(range(1, max(pages) + 1))
     empty = {p for p, row in pages.items() if not row.markdown.strip()}
     nonempty = set(pages) - empty
-    read, screened, verified = set(read), set(screened), set(verified)
+    read = set(read)
     return {
         "total_pages": len(expected), "nonempty_pages": len(nonempty),
-        "read_pages": sorted(read), "screened_pages": sorted(screened),
-        "verified_pages": sorted(verified), "empty_pages": sorted(empty),
-        "missing_pages": sorted(expected - set(pages)),
+        "read_pages": sorted(read), "verified_pages": sorted(set(verified)),
+        "empty_pages": sorted(empty), "missing_pages": sorted(expected - set(pages)),
         "remaining_text_pages": sorted(nonempty - read),
-        "all_nonempty_pages_read": nonempty <= read,
-        "all_nonempty_pages_verified": nonempty <= verified,
-        "all_physical_pages_read": expected <= read,
-        "all_physical_pages_verified": expected <= verified,
         "exhausted": exhausted,
     }

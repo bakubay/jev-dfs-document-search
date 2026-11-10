@@ -35,19 +35,35 @@ def test_shared_source_text_round_trip_is_exact():
 
 def test_repeats_do_not_become_independent_questions_and_failures_remain():
     rows = [{"question_id": q, "strategy": "jev_dfs", "seconds": t, "calls": 4, "cost": .01,
-             "recall": recall, "failure": failed, "stop": "error" if failed else "sufficient_evidence"}
-            for q, t, recall, failed in [("a", 1, 1, None), ("a", 2, 1, None), ("a", 3, 1, None),
-                                        ("b", 10, 0, {"type": "APIError"})]]
+             "recall": recall, "failure": failed, "stop": "error" if failed else "sufficient_evidence",
+             "returned": returned, "precision": prec, "read": 10}
+            for q, t, recall, failed, returned, prec in [
+                ("a", 1, 1, None, [1, 2], .5), ("a", 2, 1, None, [1, 2], .5), ("a", 3, 1, None, [1, 2], .5),
+                ("b", 10, 0, {"type": "APIError"}, [], None)]]
     summary = summarize_rows(rows)[0]
-    assert summary["questions"] == 2 and summary["runs"] == 4
-    assert summary["mean_recall"] == .5  # Equal question weight despite partial repeats.
+    assert summary["questions"] == 1 and summary["runs"] == 4  # b only failed: no evidence about quality
+    assert summary["mean_recall"] == 1
     assert summary["median_question_seconds"] == 2  # Error duration is not a success latency.
     assert summary["full_recall_runs"] == 3 and summary["failures"] == 1
+    assert summary["mean_returned_pages"] == 2
+    assert summary["mean_precision"] == .5
+    assert summary["mean_read_pages"] == 10
+
+
+def test_combining_folders_takes_each_approach_from_one_folder(tmp_path):
+    folder = ROOT / "evaluation-results/retrieval-v3-one-judgment-2026-11-09"
+    if not (folder / "run-plan.json").is_file():
+        pytest.skip("Repeated live records are local")
+    data = load_cohort([(folder, {"sol_only"}), (folder, {"jev_dfs"})], allow_partial=True)
+    assert {r["strategy"] for r in data["rows"]} == {"sol_only", "jev_dfs"}
+    assert len(set(data["payloads"])) == len(data["rows"])
+    with pytest.raises(ValueError, match="appears in both"):
+        load_cohort([(folder, {"sol_only"}), (folder, {"sol_only"})], allow_partial=True)
 
 
 @pytest.fixture(scope="module")
 def local_data():
-    folder = ROOT / "evaluation-results/retrieval-repeated-2026-11-08"
+    folder = ROOT / "evaluation-results/retrieval-v3-one-judgment-2026-11-09"
     if not (folder / "run-plan.json").is_file():
         pytest.skip("Repeated live records are local")
     return load_cohort(folder, allow_partial=True)
@@ -55,7 +71,7 @@ def local_data():
 
 def test_embedded_records_equal_original_and_all_frames_have_sources(local_data):
     pool = json.loads(gzip.decompress(base64.b64decode(local_data["text_pool"])))
-    root = ROOT / "evaluation-results/retrieval-repeated-2026-11-08"
+    root = ROOT / "evaluation-results/retrieval-v3-one-judgment-2026-11-09"
     for row in local_data["rows"]:
         decoded = json.loads(gzip.decompress(base64.b64decode(local_data["payloads"][row["id"]])))
         payload = restore(decoded, pool)
@@ -69,7 +85,7 @@ def test_embedded_records_equal_original_and_all_frames_have_sources(local_data)
 
 def test_failed_attempt_is_explicit_and_not_a_success_timing(local_data):
     row = local_data["rows"][0]
-    record = json.loads((ROOT / "evaluation-results/retrieval-repeated-2026-11-08" / row["result"]).read_text())
+    record = json.loads((ROOT / "evaluation-results/retrieval-v3-one-judgment-2026-11-09" / row["result"]).read_text())
     record = deepcopy(record)
     record["failure"] = {"type": "APIError", "message": "No response"}
     view = failure_view(record)

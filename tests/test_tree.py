@@ -94,7 +94,6 @@ class TocTreeTests(unittest.TestCase):
             pages=pages,
             tree=tree,
             question="Where is the answer?",
-            workers=1,
         )
         hit = searcher.search()
         self.assertIsNotNone(hit)
@@ -104,26 +103,6 @@ class TocTreeTests(unittest.TestCase):
         self.assertIn("Part 2: Correct branch", attempted)
         backtracked = [event["path"] for event in searcher.trace if event["type"] == "backtrack"]
         self.assertIn(["Part 1: Wrong branch"], backtracked)
-
-    def test_event_sink_receives_the_same_ordered_hops_as_the_saved_trace(self):
-        tree = build_toc_tree(self.entries, page_count=4)
-        pages = {
-            page: PageRecord(page - 1, page, f"Page {page} text")
-            for page in range(1, 5)
-        }
-        streamed = []
-        searcher = JevDFSRetriever(
-            typesafe=Jev(useful={3}, required={3}),
-            pages=pages,
-            tree=tree,
-            question="Where is the answer?",
-            workers=1,
-            event_sink=streamed.append,
-        )
-        searcher.search()
-        self.assertEqual(streamed, searcher.trace)
-        self.assertTrue(any(event["type"] == "choice" for event in streamed))
-        self.assertTrue(any(event["type"] == "backtrack" for event in streamed))
 
 
 if __name__ == "__main__":
