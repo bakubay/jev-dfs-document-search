@@ -45,7 +45,7 @@ def jev_search(cls=JevDFSRetriever, client=None, **kwargs):
 @pytest.mark.parametrize("cls", [JevDFSRetriever, JevExhaustiveRetriever])
 def test_no_evidence_checks_every_page_without_a_writer(cls, monkeypatch):
     import openai
-    monkeypatch.setattr(openai.OpenAI, "__init__", lambda *a, **k: pytest.fail("No OpenAI in JEV retrieval"))
+    monkeypatch.setattr(openai.OpenAI, "__init__", lambda *a, **k: pytest.fail("No OpenAI in Jev retrieval"))
     search = jev_search(cls)
     result = search.search()
     assert result.stop_reason == "all_text_checked"

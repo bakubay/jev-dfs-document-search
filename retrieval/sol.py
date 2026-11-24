@@ -1,4 +1,4 @@
-"""Sol navigates and selects evidence. There is no answer action or JEV client."""
+"""Sol navigates and selects evidence. There is no answer action or Jev client."""
 
 from __future__ import annotations
 
@@ -92,7 +92,7 @@ class SolRetriever:
                  max_pages_per_read: int = MAX_READ_PAGES, max_read_tokens: int = MAX_READ_TOKENS,
                  max_context_tokens: int = 24_000, evidence_budget=None):
         if typesafe is not None:
-            raise ValueError("The Sol-only baseline must not receive a JEV client")
+            raise ValueError("The Sol-only baseline must not receive a Jev client")
         if min(max_navigation_steps, max_pages_per_read, max_read_tokens, max_context_tokens) < 1:
             raise ValueError("Agent budgets must be positive")
         self.pages, self.tree, self.question = pages, tree, question

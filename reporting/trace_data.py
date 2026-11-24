@@ -92,8 +92,8 @@ def derive_run(record):
             start, finish = pending[key].pop(0), completed[key].pop(0)
             purpose = req["purpose"]
             phase = "route" if purpose == "rank_toc_children" else "select" if purpose == "assess_retrieved_evidence" else "read"
-            title = {"rank_toc_children": "JEV → rank branches", "assess_retrieved_evidence": "JEV → enough evidence?",
-                     "check_page_window": "JEV → check pages"}[purpose]
+            title = {"rank_toc_children": "Jev → rank branches", "assess_retrieved_evidence": "Jev → enough evidence?",
+                     "check_page_window": "Jev → check pages"}[purpose]
             state = start["input"]
             calls.append({"purpose": purpose, "start": req["elapsed_seconds"] - req["latency_seconds"],
                           "end": req["elapsed_seconds"], "event_time": finish["elapsed_seconds"],

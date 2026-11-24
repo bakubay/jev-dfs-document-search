@@ -1,4 +1,4 @@
-"""Whole-page read budgets shared by JEV and the Sol-only agent."""
+"""Whole-page read budgets shared by Jev and the Sol-only agent."""
 
 from __future__ import annotations
 
@@ -23,7 +23,7 @@ def pack_page_windows(
 ) -> Iterator[PageWindow]:
     """Keep targets in order; each target's complete context must fit together.
 
-    A Sol read target has one page; a JEV target includes its neighbors.
+    A Sol read target has one page; a Jev target includes its neighbors.
     Count the union of actual source pages, never just the candidate count.
     Nothing is truncated or omitted to make a group fit.
     """

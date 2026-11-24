@@ -1,6 +1,6 @@
-"""Two JEV retrievers sharing page checks, evidence packing and the sufficiency check.
+"""Two Jev retrievers sharing page checks, evidence packing and the sufficiency check.
 
-Each target page gets one JEV judgment, read with its neighbor pages as context;
+Each target page gets one Jev judgment, read with its neighbor pages as context;
 only the judged page can be returned as evidence. DFS ranks ToC children, walks
 them depth first, and after every page window repacks the evidence and asks
 whether anything is still missing. Exhaustive checks every page and keeps the
@@ -48,7 +48,7 @@ def _wire(value):
 def _probability(value):
     value = float(value)
     if not math.isfinite(value) or not 0 <= value <= 1:
-        raise ValueError("JEV returned an invalid probability")
+        raise ValueError("Jev returned an invalid probability")
     return value
 
 
@@ -146,7 +146,7 @@ class JevDFSRetriever:
         return None
 
     def _rank(self, targets, path):
-        """Order siblings by JEV preference. Ordering only; nothing is discarded."""
+        """Order siblings by Jev preference. Ordering only; nothing is discarded."""
         if len(targets) > MAX_CHOICE_OPTIONS:
             raise ValueError(f"{' > '.join(path or ['Document root'])} has {len(targets)} targets; "
                              f"Choice supports at most {MAX_CHOICE_OPTIONS}.")

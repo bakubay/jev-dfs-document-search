@@ -29,13 +29,13 @@ python -m evaluation.run_repeated --output-dir evaluation-results/<new name>
 ```
 
 Runs every question × approach `repeats` times (180 runs), one query at a time
-in seeded shuffled order, and writes each record plus a source snapshot. JEV
+in seeded shuffled order, and writes each record plus a source snapshot. Jev
 needs `TYPESAFE_API_KEY`; Sol needs `OPENAI_API_KEY`. Use `--dry-run` to see the
 plan without API calls. `--resume` continues an interrupted run only if inputs,
 plan and source code are unchanged; recorded failures are kept, never retried.
 
 `--strategies jev_dfs exhaustive` runs only those approaches (120 runs), e.g. to
-rerun JEV after a JEV-only change without spending OpenAI credits. `--repeats 2` runs only the first
+rerun Jev after a Jev-only change without spending OpenAI credits. `--repeats 2` runs only the first
 two repeat blocks.
 `--parallel 4` runs four cases at once (about 4× sooner); each retrieval still
 sends one request at a time, but shared network and API load can raise

@@ -1,2 +1,2 @@
-"""Evaluation helpers for the JEV document-search experiment."""
+"""Evaluation helpers for the Jev document-search experiment."""
 

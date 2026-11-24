@@ -1,19 +1,20 @@
 ![A scout traverses a document graph toward evidence.](docs/assets/jev-dfs-header.png)
 
-# Walking the table of contents with JEV
+# Walking the table of contents with Jev
 
-**Claim being tested:** a fast judgment model like JEV can treat a PDF's real
+**Claim being tested:** a fast judgment model like Jev can treat a PDF's real
 table of contents as a tree, walk it depth first, and find the evidence pages
 for a question while reading only a small part of the document. The idea comes
-from tree indexes such as PageIndex.
+from tree indexes such as PageIndex. Featured in
+[Eventum’s Jev Builds](https://www.eventum.ai/jev-builds/pdf-table-of-contents-search).
 
 Two baselines isolate what each part contributes:
 
 | Approach | What it is | What the comparison shows |
 |---|---|---|
-| **JEV DFS** | JEV ranks the ToC children; Python walks them depth first, checking page windows. Stops as soon as JEV judges nothing the question needs is missing; otherwise it keeps going until every page is checked. Best case: one section. Worst case: an exhaustive search in a smarter order. | The method under test. |
-| **Exhaustive JEV** | The same page checks over every page, keeping the best-scoring pages. No tree, no stop decision. | What the tree saves: does skipping most pages lose evidence? |
-| **Sol agent** | An OpenAI model walks the same tree itself (descend / read / backtrack / finish). No JEV. | What JEV adds: is it a better driver for the walk than a general LLM? |
+| **Jev DFS** | Jev ranks the ToC children; Python walks them depth first, checking page windows. Stops as soon as Jev judges nothing the question needs is missing; otherwise it keeps going until every page is checked. Best case: one section. Worst case: an exhaustive search in a smarter order. | The method under test. |
+| **Exhaustive Jev** | The same page checks over every page, keeping the best-scoring pages. No tree, no stop decision. | What the tree saves: does skipping most pages lose evidence? |
+| **Sol agent** | An OpenAI model walks the same tree itself (descend / read / backtrack / finish). No Jev. | What Jev adds: is it a better driver for the walk than a general LLM? |
 
 Same inputs and limits for all three: the same parsed pages and ToC, at most
 **8 complete pages / 12,000 text tokens** per read and in the returned
@@ -21,10 +22,10 @@ evidence, page text never truncated. **Every approach sends one request at a
 time**, so time per question follows the work done, not scheduling. No answers
 are generated here.
 
-JEV asks **one judgment per page**: does this page, read with the page before
+Jev asks **one judgment per page**: does this page, read with the page before
 and after as context, state evidence for part of the question? Only the judged
 page can be returned; a neighbor is returned only on its own score. DFS stops
-once JEV judges that nothing the question needs is still missing from the
+once Jev judges that nothing the question needs is still missing from the
 selected pages (score ≥ **0.85**).
 
 ## Results
@@ -41,8 +42,8 @@ come from MMLongBench-Doc-V2 on the same PDFs:
 
 | Approach | Answer supported | Pages read | Requests | Cost / question | Time / question |
 |---|---:|---:|---:|---:|---:|
-| **JEV DFS** | 98% | 62 | 15.5 | **$0.0045** | **4.8 s** |
-| Exhaustive JEV | **100%** | 116 | 16 | $0.0056 | 5.3 s |
+| **Jev DFS** | 98% | 62 | 15.5 | **$0.0045** | **4.8 s** |
+| Exhaustive Jev | **100%** | 116 | 16 | $0.0056 | 5.3 s |
 | Sol agent | **100%** | **10** | **3.5** | $0.058 | 12.4 s |
 
 All three return pages that support the gold answer almost every time. The tree
@@ -58,7 +59,7 @@ How the settings were chosen: [`docs/experiments/`](docs/experiments/README.md).
 
 ```text
 retrieval/
-  jev.py          JEV DFS + exhaustive JEV; ranking, descent, backtracking, page checks, stopping
+  jev.py          Jev DFS + exhaustive Jev; ranking, descent, backtracking, page checks, stopping
   sol.py          Sol prompt, action loop, page reads and evidence selection
   tree.py         document types, ToC construction, child targets incl. uncovered gaps
   windows.py      complete-page batching shared by both providers
@@ -93,9 +94,9 @@ pip install -r requirements.txt
 cp .env.example .env
 ```
 
-Fill in the ignored `.env`: JEV needs `TYPESAFE_API_KEY`; Sol needs
+Fill in the ignored `.env`: Jev needs `TYPESAFE_API_KEY`; Sol needs
 `OPENAI_API_KEY` and optionally `OPENAI_MODEL`. Parsing needs `DATALAB_API_KEY`.
-The two JEV methods do not need an OpenAI key.
+The two Jev methods do not need an OpenAI key.
 
 ```bash
 python -m preparation.parse document.pdf --output runs/document --mode balanced
@@ -150,7 +151,7 @@ assistant, not independent reviewers
 [PageIndex](https://github.com/VectifyAI/PageIndex) is the principal
 inspiration. This work began from VectifyAI's
 [jev-doc-search](https://github.com/VectifyAI/jev-doc-search) (long-document
-search with JEV and PageIndex) and tests direct traversal of parser output and
+search with Jev and PageIndex) and tests direct traversal of parser output and
 real ToC entries. It does not use generated section summaries or the PageIndex
 package. The original [Apache 2.0 license](LICENSE) is preserved.
 

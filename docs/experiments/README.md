@@ -1,8 +1,8 @@
 # Parameter exploration
 
-How the shipped JEV DFS settings were reached. The main report
+How the shipped Jev DFS settings were reached. The main report
 ([`docs/results/REPORT.md`](../results/REPORT.md)) uses only the final setup.
-Recall here is annotated-page recall. All runs: the same 20 questions; JEV `jev-1.13.0`; page score cutoff 0.35;
+Recall here is annotated-page recall. All runs: the same 20 questions; Jev `jev-1.13.0`; page score cutoff 0.35;
 8 pages / 12,000 tokens per read and in the returned evidence.
 
 | Run | What changed | DFS page recall | 1-page / 2-page | Pages read | Requests | Cost | Time | Read whole doc |
@@ -13,7 +13,7 @@ Recall here is annotated-page recall. All runs: the same 20 questions; JEV `jev-
 | D | stop question reworded to *"is anything the question needs missing?"*, cutoff 0.7 | 87.5% | 100% / 72% | 30 | 7 | $0.0024 | 2.4 s | 4 of 60 |
 | **E (shipped)** | same question, cutoff 0.85 | **98.3%** | 100% / 96% | 62 | 15.5 | $0.0045 | 4.8 s | 20 of 60 |
 
-Exhaustive JEV over the same runs: recall 95–100%, 116 pages read, about
+Exhaustive Jev over the same runs: recall 95–100%, 116 pages read, about
 $0.006 per question. From run D on it no longer asks a stop question.
 
 ¹ Requests within one retrieval ran in parallel, so this time is not comparable.
@@ -48,5 +48,5 @@ An earlier Sol run (1–2 runs per question, one question at a time, 2 runs lost
 to a network timeout and exhausted credit) gave the same picture: pages
 supporting the gold answer in every completed run, 83% annotated-page recall,
 $0.056 and 12.5 s per question. The report uses a full rerun with the same
-harness as JEV (3 runs per question, four questions at a time).
+harness as Jev (3 runs per question, four questions at a time).
 

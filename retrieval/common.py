@@ -36,7 +36,7 @@ class RetrievalResult:
 
 
 def coverage(pages, *, read=(), verified=(), exhausted=False):
-    """read: pages whose text a model saw. verified: pages JEV judged as a target."""
+    """read: pages whose text a model saw. verified: pages Jev judged as a target."""
     expected = set(range(1, max(pages) + 1))
     empty = {p for p, row in pages.items() if not row.markdown.strip()}
     nonempty = set(pages) - empty

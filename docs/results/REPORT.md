@@ -1,4 +1,4 @@
-# Walking a PDF's table of contents with JEV
+# Walking a PDF's table of contents with Jev
 
 **Question.** Can a fast judgment model treat a long PDF's real table of contents
 as a tree, walk it, and find the pages that answer a question while reading only
@@ -16,13 +16,13 @@ what that costs:
 
 | | Answer supported | Pages read | Cost / question | Time / question |
 |---|---:|---:|---:|---:|
-| **JEV DFS** (tree walk) | 98% | 62 | **$0.0045** | **4.8 s** |
-| Exhaustive JEV (every page) | 100% | 116 | $0.0056 | 5.3 s |
+| **Jev DFS** (tree walk) | 98% | 62 | **$0.0045** | **4.8 s** |
+| Exhaustive Jev (every page) | 100% | 116 | $0.0056 | 5.3 s |
 | Sol agent (LLM walks the tree) | 100% | **10** | $0.058 | 12.4 s |
 
-- **Against Sol:** JEV DFS finds the answer in the same tree about 2.6× faster
+- **Against Sol:** Jev DFS finds the answer in the same tree about 2.6× faster
   and about 13× cheaper, with no LLM choosing the path.
-- **Against checking every page:** JEV DFS reads about half the pages and
+- **Against checking every page:** Jev DFS reads about half the pages and
   returns fewer pages that are not needed.
 - **Sol** returns the fewest pages (1.4 per question) and reads the least, but
   each step is a slow, expensive LLM call.
@@ -37,15 +37,15 @@ All three get the same parsed pages, the same table of contents and the same
 limits: at most 8 complete pages (12,000 tokens) per read and in the returned
 evidence. Page text is never cut. No answer is written; each returns pages.
 
-**JEV DFS** (the method under test)
+**Jev DFS** (the method under test)
 
 ```mermaid
 flowchart LR
-  Q[Question] --> R[JEV ranks the sections<br>at this level]
+  Q[Question] --> R[Jev ranks the sections<br>at this level]
   R --> D{Most likely section<br>has subsections?}
   D -- yes --> R
-  D -- no --> C[JEV checks its pages,<br>a window at a time]
-  C --> S{JEV: is anything the<br>question needs missing?}
+  D -- no --> C[Jev checks its pages,<br>a window at a time]
+  C --> S{Jev: is anything the<br>question needs missing?}
   S -- "no (score ≥ 0.85)" --> OUT[Return the useful pages]
   S -- yes --> N[Next window, or back up<br>to the next-ranked section]
   N --> C
@@ -54,17 +54,17 @@ flowchart LR
 Ranking only orders the walk; nothing is skipped for good, so if the evidence is
 never judged complete the walk reaches every page.
 
-**Exhaustive JEV** (what the tree saves): the same page checks over every page,
+**Exhaustive Jev** (what the tree saves): the same page checks over every page,
 then keep the best-scoring pages. No ranking and no stop decision.
 
-**Sol agent** (what JEV replaces): an OpenAI model walks the same tree itself.
+**Sol agent** (what Jev replaces): an OpenAI model walks the same tree itself.
 Each turn it chooses descend, read, back up or finish, and it decides when to
-stop. No JEV.
+stop. No Jev.
 
-**What JEV is asked.** For each page, read with the page before and after as
+**What Jev is asked.** For each page, read with the page before and after as
 context: *does this page state evidence needed for part of the question?* Pages
 are returned only on their own score; the neighbours are context. When ranking
-sections, JEV picks among the section titles. To decide whether to stop, it is
+sections, Jev picks among the section titles. To decide whether to stop, it is
 asked whether anything the question needs (for a ratio, each input separately) is
 still missing from the selected pages.
 
@@ -75,12 +75,12 @@ the annotated answer is page 47. One recorded run of each:
 
 | | Steps | Requests | Pages read | Returned | Time | Cost |
 |---|---|---:|---:|---|---:|---:|
-| JEV DFS | Part II → Item 8 (Financial Statements) → Notes → check pages 42–47 (41–48 read) → page 47 scores 0.94 → nothing missing (0.88) → stop | 5 | 8 | 46, **47** | 2.2 s | $0.0006 |
-| Exhaustive JEV | 14 windows covering all 85 pages → page 47 scores 0.93 → keep the top 8 | 14 | 85 | **47** + 7 others | 5.0 s | $0.0050 |
+| Jev DFS | Part II → Item 8 (Financial Statements) → Notes → check pages 42–47 (41–48 read) → page 47 scores 0.94 → nothing missing (0.88) → stop | 5 | 8 | 46, **47** | 2.2 s | $0.0006 |
+| Exhaustive Jev | 14 windows covering all 85 pages → page 47 scores 0.93 → keep the top 8 | 14 | 85 | **47** + 7 others | 5.0 s | $0.0050 |
 | Sol agent | descend Part II → descend Item 8 → read Notes from page 42 → finish with page 47 | 4 | 8 | **47** | 14.8 s | $0.033 |
 
 Sol took the same path as DFS. The difference is speed and cost: each Sol step
-took about 3 s, each JEV request 0.2–0.7 s.
+took about 3 s, each Jev request 0.2–0.7 s.
 
 ## How we evaluated
 
@@ -104,15 +104,15 @@ took about 3 s, each JEV request 0.2–0.7 s.
   Questions are weighted equally, so repeats measure variation, not extra
   questions.
 - **Cost:** token counts × list prices pinned in `evaluation/pricing.py`
-  (JEV $0.042 per million input tokens; Sol $2 per million input and $10 per
+  (Jev $0.042 per million input tokens; Sol $2 per million input and $10 per
   million output tokens).
 
 ## Results
 
 | Approach | Answer supported | Page recall | Pages read | Requests | Cost / question | Time / question | Pages returned | Precision |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|
-| JEV DFS | 98% (59/60) | 98% | 62 | 15.5 | **$0.0045** | **4.8 s** | 5.3 | 36% |
-| Exhaustive JEV | **100%** (60/60) | 98% | 116 | 16 | $0.0056 | 5.3 s | 7.3 | 20% |
+| Jev DFS | 98% (59/60) | 98% | 62 | 15.5 | **$0.0045** | **4.8 s** | 5.3 | 36% |
+| Exhaustive Jev | **100%** (60/60) | 98% | 116 | 16 | $0.0056 | 5.3 s | 7.3 | 20% |
 | Sol agent | **100%** (60/60) | 88% | **10** | **3.5** | $0.058 | 12.4 s | **1.4** | **92%** |
 
 - **Answer supported:** share of runs whose returned pages contain everything
@@ -144,7 +144,7 @@ Each accepted page set, with the source excerpt, is recorded in
 [`evaluation/evidence-review.json`](../../evaluation/evidence-review.json), and
 the report builder checks every excerpt against the page text.
 
-### Where JEV DFS misses
+### Where Jev DFS misses
 
 One of 60 runs: Activision interest coverage. DFS returned operating income but
 no page with the interest expense, and judged nothing was missing. The stop check
@@ -181,7 +181,7 @@ would narrow the gap.
 
 ## Setup
 
-- JEV model `jev-1.13.0` (TypeSafe); Sol model `gpt-6.1-sol` (OpenAI Responses API).
+- Jev model `jev-1.13.0` (TypeSafe); Sol model `gpt-6.1-sol` (OpenAI Responses API).
 - PDFs parsed with Datalab; the printed table of contents is matched to physical
   pages. Pages the table of contents does not cover become their own branches,
   so every page is reachable.
@@ -195,7 +195,7 @@ would narrow the gap.
   tree index for reasoning-based retrieval; the inspiration for walking the
   table of contents.
 - [jev-doc-search](https://github.com/VectifyAI/jev-doc-search) (VectifyAI):
-  long-document search with JEV and PageIndex; this project started from it
+  long-document search with Jev and PageIndex; this project started from it
   (Apache 2.0).
 - [PageIndex-OSS-Benchmark](https://github.com/VectifyAI/PageIndex-OSS-Benchmark):
   source of the 4 PDFs and 8 of the questions.

@@ -14,7 +14,7 @@ from zoneinfo import ZoneInfo
 
 from reporting.trace_data import ROOT, derive_run, recorded_sources
 
-NAMES = {"jev_dfs": "JEV DFS", "exhaustive": "Exhaustive JEV", "sol_only": "Sol agent"}
+NAMES = {"jev_dfs": "Jev DFS", "exhaustive": "Exhaustive Jev", "sol_only": "Sol agent"}
 
 
 class TextPool:
@@ -186,7 +186,7 @@ def load_cohort(folders, allow_partial=False):
     """Combine run folders, each validated against its own frozen plan.
 
     `folders` items are a Path, or (Path, approaches) to take only those
-    approaches from it, so the JEV approaches can be rerun without repeating
+    approaches from it, so the Jev approaches can be rerun without repeating
     Sol. Each approach must come from one folder; all must share the questions.
     """
     if not isinstance(folders, (list, tuple)):
@@ -256,8 +256,8 @@ def write_summary(data, destination):
             t = f"{r['median_question_seconds']:.2f}s" if r["median_question_seconds"] is not None else "—"
             lines.append(f"| {doc} | {r['name']} | {t} | {r['mean_recall']:.1%} | {r['full_recall_runs']}/{r['runs']} |")
     lines += ["", "## Scope", "",
-              "- Same prepared page text, grounded ToC and 8-page / 12k-token read and output limits for every approach. JEV neighbor pages count toward the read limit.",
-              "- JEV asks one judgment per candidate page, read with its neighbors as context; only judged pages are returned. DFS checks one window at a time and stops once JEV judges that nothing the question needs is missing from the selected pages (score ≥ 0.85); exhaustive checks every page. Sol walks the same ToC alone, with no JEV. No approach runs requests in parallel.",
+              "- Same prepared page text, grounded ToC and 8-page / 12k-token read and output limits for every approach. Jev neighbor pages count toward the read limit.",
+              "- Jev asks one judgment per candidate page, read with its neighbors as context; only judged pages are returned. DFS checks one window at a time and stops once Jev judges that nothing the question needs is missing from the selected pages (score ≥ 0.85); exhaustive checks every page. Sol walks the same ToC alone, with no Jev. No approach runs requests in parallel.",
               "- Recall counts annotated pages only. Annotations can miss valid alternative pages, and extra returned pages are not penalized by recall, so read it together with pages returned and precision.",
               "- Four PDFs (three financial reports and one manual) and twenty answerable questions: a convenience sample, not a representative one. Latency is client-observed and includes network time.", ""]
     lines += ["## Alternative evidence", "",
